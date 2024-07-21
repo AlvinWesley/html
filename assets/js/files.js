@@ -1,4 +1,4 @@
-const  store = (ky,vl,s=false,g=false,r=false) => {
+/*const  store = (ky,vl,s=false,g=false,r=false) => {
   let x,k,p;
   if (s === true && j === false && ky && vl !== null) {
     Object.prototype.toString.call(vl) === "[object Array]"
@@ -107,3 +107,58 @@ function addFileOrFolder(type, name, category) {
   }
 }
 
+
+/*function handleDropdownClick(event) {
+  if (event.target.closest(".dropdown-item.delete")) {
+    event.preventDefault();
+    alert("Delete action triggered");
+    const card = event.target.closest(".card-body");
+    if (card) {
+      card.remove();
+    }
+  } else if (event.target.closest(".dropdown-item.view")) {
+    event.preventDefault();
+    alert("View action triggered");
+  } else if (event.target.closest(".dropdown-item.edit")) {
+    event.preventDefault();
+    alert("Edit action triggered");
+  } else if (event.target.closest(".dropdown-item.print")) {
+    event.preventDefault();
+    const printLink = event.target.closest("a").getAttribute("href");
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "fixed";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    iframe.style.border = "none";
+    iframe.src = printLink;
+    iframe.onload = function () {
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    };
+    document.body.appendChild(iframe);
+    setTimeout(() => document.body.removeChild(iframe), 5000);
+    alert("Print action triggered");
+  } else if (event.target.closest(".dropdown-item.download")) {
+    event.preventDefault();
+    const downloadLink = event.target.closest("a").getAttribute("href");
+    const tempLink = document.createElement("a");
+    tempLink.href = downloadLink;
+    tempLink.download = "";
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+  }
+}
+
+
+document.querySelectorAll(".dropdown-menu.dropdown-menu-right .dropdown-item").forEach(item => {
+  item.addEventListener("click", handleDropdownClick);
+});
+
+document.addEventListener("click", handleDropdownClick);
+
+let r = document.querySelector("#nw-5y7");
+r.addEventListener("click", () => {
+  addFileOrFolder("folder", "Test");
+  alert("FOLDER ADDED");
+});*/

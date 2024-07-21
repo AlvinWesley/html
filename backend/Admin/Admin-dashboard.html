@@ -7,6 +7,10 @@
       <title>Bungo Arch</title>
       <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
       <link rel="stylesheet" href="../../assets/css/backend-plugin.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/ui/css/iziToast.css">
+      <link rel="stylesheet" href="../../assets/vendor/ui/css/introjs.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/ui/css/sweetalert2.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/ui/css/toastr.min.css">
       <link rel="stylesheet" href="../../assets/css/backend.css?v=1.0.0">    
       <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
       <link rel="stylesheet" href="../../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
@@ -264,7 +268,7 @@
                               </a>
                               <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton02">
                                   <div class="card shadow-none m-0">
-                                      <div class="card-body p-0 ">
+                                      <div id="js-toggle" class="card-body p-0 ">
                                           <div class="p-3">
                                               <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i> Settings</a>
                                               <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> Get Drive for desktop</a>
@@ -290,7 +294,7 @@
                                 </div>
                             </div>
                         </li>
-                          <li class="nav-item nav-icon dropdown caption-content">
+                          <li id="Ae3et" class="nav-item nav-icon dropdown caption-content">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                   <div class="caption bg-primary line-height">P</div>
                               </a>
@@ -412,7 +416,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div id="navhm" class="col-lg-8">
                     <div class="card card-block card-stretch card-height iq-welcome" style="background: url(../../assets/images/layouts/mydrive/background.png) no-repeat scroll right center; background-color: #ffffff; background-size: contain;">
                         <div class="card-body property2-content">
                             <div class="d-flex flex-wrap align-items-center">
@@ -425,7 +429,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div id="Sbar" class="col-lg-4">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
@@ -455,7 +459,7 @@
                         </div>
                     </div>
                 </div>                             
-                <div class="col-lg-12">
+                <div id="CountryL" class="col-lg-12">
                     <div class="card card-block card-stretch card-transparent ">
                         <div class="card-header d-flex justify-content-between pb-0">
                             <div class="header-title">
@@ -467,7 +471,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div  class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body image-thumb">
                             <a href="#" data-title="Terms.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../../assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal">
@@ -519,7 +523,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <div id="Ae3r" class="col-lg-12">
                     <div class="card card-block card-stretch card-transparent">
                         <div class="card-header d-flex justify-content-between pb-0">
                             <div class="header-title">
@@ -670,7 +674,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-xl-8"> 
+                <div id="Ae3e" class="col-lg-8 col-xl-8"> 
                     <div class="card card-block card-stretch card-height files-table">                   
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
@@ -733,7 +737,7 @@
                                         <td>jan 25, 2020 Poul Molive</td>
                                         <td>64 MB</td>
                                         <td>
-                                            <div class="dropdown">
+                                            <div id="po-tedax" class="dropdown">
                                                 <span class="dropdown-toggle" id="dropdownMenuButton7" data-toggle="dropdown">
                                                     <i class="ri-more-fill"></i>
                                                 </span>
@@ -922,7 +926,6 @@
         </div>
       </div>
     </div>
-    <!-- Wrapper End-->
     <footer class="iq-footer">
         <div class="container-fluid">
             <div class="row">
@@ -938,37 +941,31 @@
             </div>
         </div>
     </footer>
-    <!-- Backend Bundle JavaScript -->
+    <script src="../../assets/vendor/ui/js/introjs.min.js"></script>
+     <script src="../../assets/vendor/ui/js/toastr.min.js"></script>
+     <script src="../../assets/vendor/ui/js/iziToast.min.js"></script>
+     <script src="../../assets/vendor/ui/js/sweetalert2.min.js"></script>
+     <script src="../../assets/vendor/ui/js/intro.min.js"></script>
+     <script src="../../assets/js/files.js"></script>
+    <script src="../../assets/js/guide.js"></script>
+    <script src="../../assets/js/Admin.js"></script>
     <script src="../../assets/js/backend-bundle.min.js"></script>
-    
-    <!-- Chart Custom JavaScript -->
     <script src="../../assets/js/customizer.js" defer></script>
-    
-    <!-- Chart Custom JavaScript -->
     <script src="../../assets/js/chart-custom.js" defer></script>
-    
-    <!--PDF-->
     <script src="../../assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
-    <!--Docs-->
     <script src="../../assets/vendor/doc-viewer/include/docx/jszip-utils.js"></script>
     <script src="../../assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js"></script>
-    <!--PPTX-->
     <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js"></script>
     <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js"></script>
     <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js"></script>
     <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js"></script>
     <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js"></script>
-    <!--All Spreadsheet -->
     <script src="../../assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js"></script>
     <script src="../../assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js"></script>
-    <!--Image viewer-->
     <script src="../../assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
-    <!--officeToHtml-->
     <script src="../../assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
-    <!-- app JavaScript -->
     <script src="../../assets/js/app.js" defer></script>
     <script src="../../assets/js/doc-viewer.js" defer></script>
-     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">

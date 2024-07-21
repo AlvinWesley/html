@@ -1704,6 +1704,11 @@ textarea.form-control {
 .was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label {
   color: #7fdd85; }
 
+.swal2-popup {
+  background-image: url("") no-repeat center center;
+  background-size: cover;
+}
+
 .was-validated .form-check-input:valid ~ .valid-feedback,
 .was-validated .form-check-input:valid ~ .valid-tooltip, .form-check-input.is-valid ~ .valid-feedback,
 .form-check-input.is-valid ~ .valid-tooltip {
