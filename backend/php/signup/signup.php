@@ -22,7 +22,32 @@ $password='';
 $confirmPassword='';
 $userId='';
 $userName='';
+$termsOfAgreement='';
+$sql="SELECT email FROM USER_DETAILS_TBL ";
+$results=mysqli_query($conn,$sql);
+$systUsersEmail=mysqli_fetch_all($results,MYSQLI_ASSOC);
 
+function checkUniqueEmail($name){
+    global $systUsersEmail;
+    foreach($systUsersEmail as $emp){
+    if($name==$emp['email']){
+    // echo"<br> Found Match <br>";
+        return true;
+    }
+    }
+}
+$sql="SELECT phone_number FROM USER_DETAILS_TBL ";
+$results=mysqli_query($conn,$sql);
+$systUsersPhone=mysqli_fetch_all($results,MYSQLI_ASSOC);
+function checkUniquePhone($name){
+    global $systUsersPhone;
+    foreach($systUsersPhone as $emp){
+    if($name==$emp['phone_number']){
+    // echo"<br> Found Match <br>";
+        return true;
+    }
+    }
+}
 if(isset($_POST['submit'])){
         if(empty($_POST['firstName'])){
             $inputError['firstName']="The FirstName field Cannot be Empty";
@@ -34,7 +59,12 @@ if(isset($_POST['submit'])){
             $inputError['email']="Email is Empty";
            // echo "<br>Empty Field email<br>";
         }else{
-            $email=$_POST['email'];
+            if(checkUniqueEmail($_POST["email"])){
+                $inputError['email']="Email Already Exists";
+            }else{
+                $email=$_POST['email'];
+            }
+            
         }
         
         if(empty($_POST['lastName'])){
@@ -45,10 +75,17 @@ if(isset($_POST['submit'])){
         }
         if(empty($_POST['phone'])){
             $inputError['phone']="Phone Number is Empty";
+
             //echo "<br>Empty Field Password<br>";
         }else{
-            $phone=$_POST['phone'];
+            if(checkUniquePhone($_POST['phone'])){
+                $inputError['phone']="Phone Number Already Exists";
+            }else{
+                $phone=$_POST['phone'];
+            }
+           
         }
+    
        
             if(empty($_POST["password"])){
                 $inputError['password']="Password is Empty";
@@ -66,15 +103,15 @@ if(isset($_POST['submit'])){
                // echo "<br>Unequall Field FN<br>";
             }
         }
+        if(empty($_POST['termsOfAgreement'])){
+            $inputError['agreement']="Please Confirm to agreement before you proceed";
+        }
         $formPrompt['form']="Welcome to sign Up";
-    // Return JSON response
-  
-   
    if(!array_filter($inputError)){
     $formPrompt['form']="Good To Go";
     $_SESSION['email']=$email;
     $sql="INSERT INTO USER_DETAILS_TBL (f_name,l_name,email,phone_number) 
-                 VALUES ('$firstName','$lastName','$email','$phone')";
+    VALUES ('$firstName','$lastName','$email','$phone')";
     $query=mysqli_query($conn,$sql);
     //echo "<br> Normal".$email;
     if($query){

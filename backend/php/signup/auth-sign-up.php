@@ -121,7 +121,7 @@
                            </div>
                            <div class="col-lg-12">
                               <div class="custom-control custom-checkbox mb-3 text-left">
-                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                 <input type="checkbox" class="custom-control-input" id="customCheck1" name="termsOfAgreement" value="1">
                                  <label class="custom-control-label" for="customCheck1">I agree with the terms of use</label>
                                  <div style="color:rgb(255, 94, 0); padding-left: 10px; font-size: 12px; text-align: left;" id="txtCustomCheck1">
                                  </div>

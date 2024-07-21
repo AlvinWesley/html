@@ -7,7 +7,7 @@ function gr() {
 }
 
 gr(); 
-setInterval(gr, 6*10000); 
+setInterval(gr, 3600*1000); 
 
 document.getElementById("signUpForm").addEventListener("submit",signUpForm);
 function signUpForm(e){
@@ -20,8 +20,10 @@ function signUpForm(e){
     var email=document.getElementById('email').value;
     var password=document.getElementById("password").value;
     var confirmPassword=document.getElementById("confirmPassword").value;
-    var customCheck1= document.getElementById("customCheck1").value;
-    var sendData="submit=Submit"+"&firstName="+firstName+"&lastName="+lastName+"&email="+email+"&password="+password+"&confirmPassword="+confirmPassword+"&phone="+phoneNo;
+   
+    var toa= document.getElementById("customCheck1").checked? document.getElementById("customCheck1").value:"";
+    console.log(toa);
+    var sendData="submit=Submit"+"&firstName="+firstName+"&lastName="+lastName+"&email="+email+"&password="+password+"&confirmPassword="+confirmPassword+"&phone="+phoneNo+"&termsOfAgreement="+toa;
     xhr.open("POST","signup.php",true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     console.log(this.responseText);
@@ -29,6 +31,7 @@ function signUpForm(e){
         console.log(this.responseText);
         var promptErrors=JSON.parse(this.responseText);
         console.log(this.responseText);
+        console.log("Hello Wald");
         document.getElementById("formPrompt").innerText=promptErrors.formPrompt;
         document.getElementById("txtFirstName").innerText=promptErrors.firstNamePrompt;
         document.getElementById("txtLastName").innerText=promptErrors.lastNamePrompt;
