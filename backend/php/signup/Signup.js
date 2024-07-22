@@ -40,6 +40,12 @@ function signUpForm(e){
         document.getElementById("txtPassword").innerText=promptErrors.passwordPrompt;
         document.getElementById("txtConfirmPassword").innerText=promptErrors.confirmPasswordPrompt;
         document.getElementById("txtCustomCheck1").innerText=promptErrors.agreementPrompt;
+        console.log(promptErrors.sc);
+       if(promptErrors.sc){
+         setTimeout(function() {
+            window.location.href = '/BungoArch/html/backend/php/signin/auth-sign-in.php';
+        }, 3000);
+       }
     }
     xhr.send(sendData);
 }

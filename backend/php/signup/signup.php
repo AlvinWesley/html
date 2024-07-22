@@ -2,6 +2,7 @@
 session_start();
 //echo "<br> Hell";
 include "connect.php";
+$sc=false;
 $formPrompt=array(
     'form'=>'Hello There'
 );
@@ -131,6 +132,7 @@ if(isset($_POST['submit'])){
             $queryFinishUp=mysqli_query($conn,$sqlFinishUp);
             if($queryFinishUp){
                 $formPrompt['form']="User Has Been Registered with userName $email";
+                $sc=true;
             }
         }else{
             $formPrompt['form']="Error in Registering LoginDetails";
@@ -152,9 +154,10 @@ if(isset($_POST['submit'])){
         "emailPrompt"=>$inputError['email'],
         "passwordPrompt"=>$inputError['password'],
         "confirmPasswordPrompt"=>$inputError['confirmPassword'],
-        "agreementPrompt"=>$inputError['agreement']
-        
+        "agreementPrompt"=>$inputError['agreement'],
+        "sc"=>$sc
     ));
+    exit;
     // echo json_encode(array(
     //     'formPrompt' => $formPrompt['form'],
     //     'inputErrorFirstName' => $inputError['firstName'],

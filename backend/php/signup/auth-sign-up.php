@@ -131,7 +131,7 @@
                         <!-- <input type="submit" value="Submit the Data" name="submit"> -->
                         <button type="submit" class="btn btn-primary sign_in_btn" name="submit" id="signUpBtn">Sign Up</button>
                         <p class="mt-3">
-                           Already have an Account <a href="#"  class="text-primary ">Sign In</a>
+                           Already have an Account <a href="/BungoArch/html/backend/php/signin/auth-sign-in.php"  class="text-primary ">Sign In</a>
                         </p>
                      </form>
                   </div>
