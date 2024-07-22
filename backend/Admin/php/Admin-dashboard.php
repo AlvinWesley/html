@@ -1,8 +1,3 @@
-<?php
-session_start();
-$userId=$_SESSION['userId'];
-
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -313,22 +308,19 @@ $userId=$_SESSION['userId'];
                                       <div class="card-body">
                                           <div class="profile-header">
                                               <div class="cover-container text-center">
-                                                  <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                      P                                                    
-                                                      <a href="">
+                                                  <div class="rounded-circle profile-icon bg-primary mx-auto d-block" >
+                                                                                                     
+                                                      <a href="../app/user-profile-edit.php" id="profile_name_init" style="text-decoration:none; color:white;" >
                                                           
                                                       </a>
                                                   </div>
                                                   <div class="profile-detail mt-3">
-                                                  <h5><a href="/BUNGOARCH/html/app/user-profile-edit.html">Admin-User</a></h5>
-                                                  <p>User name@admin.com</p>
+                                                  <h5 ><a href="../app/user-profile-edit.php" id="profile_name"></a></h5>
+                                                  <p id="profile_email"></p>
                                                   </div>
-                                                  <a href="auth-sign-in.html" class="btn btn-primary">Sign Out</a>
+                                                  <a href="auth-sign-in.php" class="btn btn-primary">Sign Out</a>
                                               </div>
                                               <div class="profile-details mt-4 pt-4 border-top">
-                                                <p class="">Recent Log out</p>
-                                              </div>                                                                                     
-                                              <div class="profile-details mt-4 pt-4 border-top">                                               
                                                   <div class="media align-items-center mb-3">
                                                       <div class="rounded-circle iq-card-icon-small bg-primary">
                                                           A
@@ -425,7 +417,7 @@ $userId=$_SESSION['userId'];
                         <div class="card-body property2-content">
                             <div class="d-flex flex-wrap align-items-center">
                                 <div class="col-lg-6 col-sm-6 p-0">
-                                    <h3 class="mb-3">Welcome <?php echo $_SESSION['fName'];?></h3>
+                                    <h3 class="mb-3">Welcome <p id="fname"></p></h3>
                                     <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
@@ -970,6 +962,7 @@ $userId=$_SESSION['userId'];
     <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
     <script src="/BUNGOARCH/html/assets/js/app.js" defer></script>
     <script src="/BUNGOARCH/html/assets/js/doc-viewer.js" defer></script>
+    <script src="Admin.js"></script>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">

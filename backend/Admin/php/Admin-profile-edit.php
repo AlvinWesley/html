@@ -391,7 +391,7 @@
               </div>
                   <div class="iq-search-bar device-search">
                       
-                      <form>
+                      <form >
                           <div class="input-prepend input-append">
                               <div class="btn-group">
                                   <label class="dropdown-toggle searchbox" data-toggle="dropdown">
@@ -479,7 +479,7 @@
                           </li>
                           <li class="nav-item nav-icon dropdown caption-content">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                  <div class="caption bg-primary line-height">P</div>
+                                  <div class="caption bg-primary line-height" id="profile_name_init1"></div>
                               </a>
                               <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton03">
                                   <div class="card mb-0">
@@ -492,15 +492,15 @@
                                       <div class="card-body">
                                           <div class="profile-header">
                                               <div class="cover-container text-center">
-                                                  <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                      P                                                    
-                                                      <a href="">
+                                                  <div class="rounded-circle profile-icon bg-primary mx-auto d-block" >
+                                                                                                     
+                                                      <a href="../app/user-profile-edit.php" id="profile_name_init" style="text-decoration:none; color:white;" >
                                                           
                                                       </a>
                                                   </div>
                                                   <div class="profile-detail mt-3">
-                                                  <h5><a href="../app/user-profile-edit.php">Panny Marco</a></h5>
-                                                  <p>pannymarco@gmail.com</p>
+                                                  <h5 ><a href="../app/user-profile-edit.php" id="profile_name"></a></h5>
+                                                  <p id="profile_email"></p>
                                                   </div>
                                                   <a href="auth-sign-in.php" class="btn btn-primary">Sign Out</a>
                                               </div>
@@ -593,11 +593,11 @@
                         <div class="card">
                            <div class="card-header d-flex justify-content-between">
                               <div class="iq-header-title">
-                                 <h4 class="card-title">Personal Information</h4>
+                                 <h4 class="card-title" id="prompt">Personal Information</h4>
                               </div>
                            </div>
                            <div class="card-body">
-                              <form>
+                              <form id="U_Details_update">
                                  <div class="form-group row align-items-center">
                                     <div class="col-md-12">
                                        <div class="profile-img-edit">
@@ -612,21 +612,32 @@
                                     </div>
                                  </div>
                                  <div class=" row align-items-center">
+                                    
                                     <div class="form-group col-sm-6">
                                        <label for="fname">First Name:</label>
-                                       <input type="text" class="form-control" id="fname" value="Barry">
+                                       <input type="text" class="form-control" id="fname" name="firstName">
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <label for="lname">Last Name:</label>
-                                       <input type="text" class="form-control" id="lname" value="Tech">
+                                       <input type="text" class="form-control" id="lname" name="lastName">
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <label for="uname">User Name:</label>
-                                       <input type="text" class="form-control" id="uname" value="Barry@01">
+                                       <input readonly type="text" class="form-control" id="uname" name="userName">
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <label for="cname">Id-Number</label>
-                                       <input type="number" class="form-control" id="cname" value="Atlanta">
+                                       <input readonly type="number" class="form-control" id="cname" name="nationalID">
+                                        <div id="idNoErr"></div>
+            
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                       <label for="uEmail">Email</label>
+                                       <input type="email" class="form-control" id="uEmail" name="Email" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                       <label for="Empno">Employee-Number</label>
+                                       <input type="text" class="form-control" id="Empno" name="employeeNumber">
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <label class="d-block">Gender:</label>
@@ -641,27 +652,10 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <label for="dob">Date Of Birth:</label>
-                                       <input  class="form-control" id="dob" value="1984-01-24">
+                                       <input class="form-control" id="dob" name="dateOfBirth" type="date" >
+
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                       <label>Marital Status:</label>
-                                       <select class="form-control" id="exampleFormControlSelect1">
-                                          <option selected="">Single</option>
-                                          <option>Married</option>
-                                          <option>Widowed</option>
-                                          <option>Divorced</option>
-                                          <option>Separated </option>
-                                       </select>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                       <label>Age:</label>
-                                       <select class="form-control" id="exampleFormControlSelect2">
-                                          <option>19-29</option>
-                                          <option>30-40</option>
-                                          <option>41-50</option>
-                                          <option>51-60</option>
-                                       </select>
-                                    </div>
+                                   
                                     <div class="form-group col-sm-6">
                                        <label>County:</label>
                                        <select class="form-control" id="exampleFormControlSelect3">
@@ -679,7 +673,7 @@
                                           <option>Chwele</option>
                                        </select>
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <!-- <div class="form-group col-sm-12">
                                        <label>Address:</label>
                                        <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">
                                        37 Cardinal Lane
@@ -687,7 +681,7 @@
                                        United States of America
                                        Zip Code: 85001
                                        </textarea>
-                                    </div>
+                                    </div> -->
                                  </div>
                                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                  <button type="reset" class="btn iq-bg-danger">Cancel</button>
@@ -703,7 +697,7 @@
                               </div>
                            </div>
                            <div class="card-body">
-                              <form>
+                              <form id="U_LogInDetails">
                                  <div class="form-group">
                                     <label for="cpass">Current Password:</label>
                                     <a href="javascripe:void();" class="float-right">Forgot Password</a>
@@ -711,13 +705,13 @@
                                  </div>
                                  <div class="form-group">
                                     <label for="npass">New Password:</label>
-                                    <input type="Password" class="form-control" id="npass" value="">
+                                    <input type="Password" class="form-control" id="npass" name="password">
                                  </div>
                                  <div class="form-group">
                                     <label for="vpass">Verify Password:</label>
                                     <input type="Password" class="form-control" id="vpass" value="">
                                  </div>
-                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                 <button type="submit" class="btn btn-primary mr-2" name="submit">Submit</button>
                                  <button type="reset" class="btn iq-bg-danger">Cancel</button>
                               </form>
                            </div>
@@ -775,7 +769,7 @@
                                           <label class="custom-control-label" for="email05"> New membership approval</label>
                                        </div>
                                        <div class="custom-control custom-checkbox">
-                                          <input type="checkbox" class="custom-control-input" id="email06" checked="">
+                                          <input type="checkbox" class="custom-control-input" id="email06" checked="" >
                                           <label class="custom-control-label" for="email06"> Member registration</label>
                                        </div>
                                     </div>
@@ -797,16 +791,16 @@
                               <form>
                                  <div class="form-group">
                                     <label for="cno">Contact Number:</label>
-                                    <input type="text" class="form-control" id="cno" value="001 2536 123 458">
+                                    <input type="text" class="form-control" id="cno"  readonly>
                                  </div>
                                  <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="text" class="form-control" id="email" value="Barryjone@demo.com">
+                                    <input type="text" class="form-control" id="email" readonly>
                                  </div>
-                                 <div class="form-group">
+                                 <!-- <div class="form-group">
                                     <label for="url">Url:</label>
                                     <input type="text" class="form-control" id="url" value="https://getbootstrap.com">
-                                 </div>
+                                 </div> -->
                                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                  <button type="reset" class="btn iq-bg-danger">Cancel</button>
                               </form>
@@ -871,6 +865,7 @@
     <!-- app JavaScript -->
     <script src="/BUNGOARCH/html/assets/js/app.js" defer></script>
     <script src="/BUNGOARCH/html/assets/js/doc-viewer.js" defer></script>
+    <script src="Admin.js"></script>
      <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
