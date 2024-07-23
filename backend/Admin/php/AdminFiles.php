@@ -39,7 +39,7 @@ if(isset($_SESSION['userId'])){
     //SQL TO UPDATE THE USER CREDENTIALS
     //Stating the items needed to be updated
     //JSON ENCODING FOR THE CREDENTIALS
-   
+    $lgb=false;
     $credentials=json_encode(array(
         "f_name"=>$firstName,
         "l_name"=>$lastName,
@@ -51,7 +51,8 @@ if(isset($_SESSION['userId'])){
         "national_id"=>$nationalID,
         "region"=>$region,
         "phone_number"=>$phoneNumber,
-        "firstNameInit"=>$firstName[0]
+        "firstNameInit"=>$firstName[0],
+        "log"=>$lgb
     ));
     //SQL TO UPDATE THE USER CREDENTIALS
 echo $credentials;

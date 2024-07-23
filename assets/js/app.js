@@ -34,9 +34,7 @@
 :: Remove collapse panel
 :: Current Time
 
-------------------------------------------------
-Index Of Script
-----------------------------------------------*/
+-*/
 
 (function(jQuery) {
 

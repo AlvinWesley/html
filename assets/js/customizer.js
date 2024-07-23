@@ -2,7 +2,7 @@
     "use strict";
 
     const urlParams = new URLSearchParams(window.location.search);
-    let storageDark = sessionStorage.getItem('dark')
+    let storageDark = localStorage.getItem('dark')
     const myParam = urlParams.get('dark');
     
     if (myParam !== null) {
@@ -17,7 +17,7 @@
         changeMode('false');
       }
     }
-    storageDark = sessionStorage.getItem('dark')
+    storageDark = localStorage.getItem('dark')
     if (storageDark !== 'null') {
       if (storageDark !== 'null') {
         changeMode(storageDark)
@@ -63,7 +63,7 @@
         document.dispatchEvent(event);
     }
     function updateLocalStorage(dark) {
-      sessionStorage.setItem('dark', dark)
+      localStorage.setItem('dark', dark)
     }
 })(jQuery)
 

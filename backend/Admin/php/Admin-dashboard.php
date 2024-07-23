@@ -295,7 +295,7 @@
                         </li>
                           <li id="Ae3et" class="nav-item nav-icon dropdown caption-content">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                  <div class="caption bg-primary line-height">P</div>
+                                  <div class="caption bg-primary line-height" id="profile_name_init1"></div>
                               </a>
                               <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton03">
                                   <div class="card mb-0">
@@ -310,42 +310,20 @@
                                               <div class="cover-container text-center">
                                                   <div class="rounded-circle profile-icon bg-primary mx-auto d-block" >
                                                                                                      
-                                                      <a href="../app/user-profile-edit.php" id="profile_name_init" style="text-decoration:none; color:white;" >
+                                                      <a href="Admin-profile-edit.php" id="profile_name_init" style="text-decoration:none; color:white;" >
                                                           
                                                       </a>
                                                   </div>
                                                   <div class="profile-detail mt-3">
-                                                  <h5 ><a href="../app/user-profile-edit.php" id="profile_name"></a></h5>
+                                                  <h5 ><a href="Admin-profile-edit.php" id="profile_name"></a></h5>
                                                   <p id="profile_email"></p>
                                                   </div>
-                                                  <a href="auth-sign-in.php" class="btn btn-primary">Sign Out</a>
+                                                  <a href="/BungoArch/html/backend/php/signin/auth-sign-in.php" class="btn btn-primary">Sign Out</a>
                                               </div>
-                                              <div class="profile-details mt-4 pt-4 border-top">
-                                                  <div class="media align-items-center mb-3">
-                                                      <div class="rounded-circle iq-card-icon-small bg-primary">
-                                                          A
-                                                      </div>
-                                                      <div class="media-body ml-3">
-                                                          <div class="media justify-content-between">
-                                                              <h6 class="mb-0">Anna Mull</h6>
-                                                              <p class="mb-0 font-size-12"><i>Signed Out</i></p>
-                                                          </div>
-                                                          <p class="mb-0 font-size-12">annamull@gmail.com</p>
-                                                      </div>                                                 
-                                                  </div>
-                                                  <div class="media align-items-center mb-3">
-                                                      <div class="rounded-circle iq-card-icon-small bg-success">
-                                                          K
-                                                      </div>
-                                                      <div class="media-body ml-3">
-                                                          <div class="media justify-content-between">
-                                                              <h6 class="mb-0">King Poilin</h6>
-                                                              <p class="mb-0 font-size-12"><i>Signed Out</i></p>
-                                                          </div>
-                                                          <p class="mb-0 font-size-12">kingpoilin@gmail.com</p>
-                                                      </div>
-                                                  </div>
-                                                  <div class="media align-items-center">
+                                              <div class="profile-details mt-4 pt-4 border-top" id="thisUsers">
+                                                 
+                        
+                                                  <!-- <div class="media align-items-center">
                                                       <div class="rounded-circle iq-card-icon-small bg-danger">
                                                           D
                                                       </div>
@@ -356,7 +334,7 @@
                                                           </div>
                                                           <p class="mb-0 font-size-12">devidworner@gmail.com</p>
                                                       </div>
-                                                  </div>
+                                                  </div> -->
                                               </div>
                                           </div>
                                       </div>
@@ -417,7 +395,7 @@
                         <div class="card-body property2-content">
                             <div class="d-flex flex-wrap align-items-center">
                                 <div class="col-lg-6 col-sm-6 p-0">
-                                    <h3 class="mb-3">Welcome <p id="fname"></p></h3>
+                                    <h3 class="mb-3" id="fname"></h3>
                                     <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
@@ -962,7 +940,7 @@
     <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
     <script src="/BUNGOARCH/html/assets/js/app.js" defer></script>
     <script src="/BUNGOARCH/html/assets/js/doc-viewer.js" defer></script>
-    <script src="Admin.js"></script>
+    <script src="AdminDash.js"></script>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
