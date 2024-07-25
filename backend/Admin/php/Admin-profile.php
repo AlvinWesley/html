@@ -7,20 +7,20 @@
     <title>Bungo Arch</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/BUNGOARCH/html/assets/images/favicon.ico" />
 
-    <link rel="stylesheet" href="../../assets/css/backend-plugin.min.css">
-    <link rel="stylesheet" href="../../assets/css/backend.css?v=1.0.0">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/css/backend-plugin.min.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/css/backend.css?v=1.0.0">
 
-    <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/vendor/remixicon/fonts/remixicon.css">
-    <link rel="stylesheet" href="../../assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
-    <link rel="stylesheet" href="../../assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
-    <link rel="stylesheet" href="../../assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
-    <link rel="stylesheet" href="../../assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
-    <link rel="stylesheet" href="../../assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
-    <link rel="stylesheet" href="../../assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
+    <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
 </head>
 <body class="  ">
     <div id="loading">
@@ -31,8 +31,8 @@
         <div class="iq-sidebar  sidebar-default ">
             <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
                 <a href="index.html" class="header-logo">
-                    <img src="../../assets/images/logo/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                    <img src="../../assets/images/logo/logo.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+                    <img src="/BUNGOARCH/html/assets/images/logo/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                    <img src="/BUNGOARCH/html/assets/images/logo/logo.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
                 </a>
                 <div class="iq-menu-bt-sidebar">
                     <i class="las la-bars wrapper-menu"></i>
@@ -389,8 +389,8 @@
                     <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                         <i class="ri-menu-line wrapper-menu"></i>
                         <a href="index.html" class="header-logo">
-                            <img src="../../assets/images/logo/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                            <img src="../../assets/images/logo/logo.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+                            <img src="/BUNGOARCH/html/assets/images/logo/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                            <img src="/BUNGOARCH/html/assets/images/logo/logo.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
                         </a>
                     </div>
                     <div class="iq-search-bar device-search">
@@ -576,7 +576,7 @@
                         <div class="card car-transparent">
                             <div class="card-body p-0">
                                 <div class="profile-image position-relative">
-                                    <img src="../../assets/images/page-img/profile.png" class="img-fluid rounded w-100" alt="">
+                                    <img src="/BUNGOARCH/html/assets/images/page-img/profile.png" class="img-fluid rounded w-100" alt="">
                                 </div>
                                 <div class="profile-overly">
                                     <h4>Donatella Nobatti</h4>
@@ -984,23 +984,23 @@
             </div>
         </div>
     </footer>
-    <script src="../../assets/js/backend-bundle.min.js"></script>
-    <script src="../../assets/js/customizer.js" defer></script>
-    <script src="../../assets/js/chart-custom.js" defer></script>
-    <script src="../../assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/docx/jszip-utils.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
-    <script src="../../assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
-    <script src="../../assets/js/app.js" defer></script>
-    <script src="../../assets/js/doc-viewer.js" defer></script>
+    <script src="/BUNGOARCH/html/assets/js/backend-bundle.min.js"></script>
+    <script src="/BUNGOARCH/html/assets/js/customizer.js" defer></script>
+    <script src="/BUNGOARCH/html/assets/js/chart-custom.js" defer></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/docx/jszip-utils.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
+    <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
+    <script src="/BUNGOARCH/html/assets/js/app.js" defer></script>
+    <script src="/BUNGOARCH/html/assets/js/doc-viewer.js" defer></script>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
