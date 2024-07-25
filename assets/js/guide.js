@@ -10,7 +10,7 @@ const dt = (url,imgurl) => {
     Swal.fire({
         title: 'Welcome to Bungo-Arch',
         text: 'We are glad to have you here.',
-        imageUrl: '../../assets/images/file-searching-concept-landing-page_23-2148298808.jpg',
+        imageUrl: '/BUNGOARCH/html/assets/images/file-searching-concept-landing-page_23-2148298808.jpg',
         imageWidth: 300,
         imageHeight: 200,
         imageAlt: 'Custom image',
@@ -21,7 +21,7 @@ const dt = (url,imgurl) => {
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire({
-                imageUrl: '../../assets/images/file-searching-concept-landing-page_23-2148298808.jpg',
+                imageUrl: '/BUNGOARCH/html/assets/images/file-searching-concept-landing-page_23-2148298808.jpg',
                 imageWidth: 300,
                 imageHeight: 200,
                 title: 'About Bungo-Arch',
@@ -34,7 +34,7 @@ const dt = (url,imgurl) => {
                 if (result.isConfirmed) {
                     Swal.fire({
                         title: 'Finish Setup',
-                        imageUrl: '../../assets/images/file-searching-concept-landing-page_23-2148298808.jpg',
+                        imageUrl: '/BUNGOARCH/html/assets/images/file-searching-concept-landing-page_23-2148298808.jpg',
                         html: `Quickly finish setting up your Account <a id="registration-link" href="${url}">here</a>.`,
                         showCancelButton: false,
                         showCloseButton: false,
