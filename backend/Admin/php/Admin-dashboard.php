@@ -53,7 +53,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                        <li class="active">
-                              <a href="Admin-dashboard.html" class="">
+                              <a href="/BungoArch/html/backend/Admin/php/Admin-dashboard.php" class="">
                                   <i class="las la-home iq-arrow-left"></i><span>Dashboard</span>
                               </a>
                           <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
