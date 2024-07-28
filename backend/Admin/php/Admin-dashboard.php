@@ -44,9 +44,9 @@
                       <span class="caret"><!--icon--></span>
                       </div>
                       <ul class="dropdown-menu">
-                          <li><div class="item"><i class="ri-folder-add-line pr-3"></i>New Folder</div></li>
-                          <li><div class="item"><i class="ri-file-upload-line pr-3"></i>Upload Files</div></li>
-                          <li><div class="item"><i class="ri-folder-upload-line pr-3"></i>Upload Folders</div></li>
+                          <li class="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
+                          <li class="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
+                          <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>New File</div></li>
                       </ul>
                   </div>
               </div>
@@ -940,7 +940,19 @@
     <script src="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
     <script src="/BUNGOARCH/html/assets/js/app.js" defer></script>
     <script src="/BUNGOARCH/html/assets/js/doc-viewer.js" defer></script>
+        <script src="/BUNGOARCH/html/assets/js/Functions/index.js"></script>
+    <script src="/BUNGOARCH/html/assets/js/Functions/handler.js"></script>
     <script src="AdminDash.js"></script>
+
+     <script>
+iziToast.error({
+    title: 'Error',
+    message: 'An error occurred!',
+    position: 'topRight',
+    timeout: 5000,
+});
+
+    </script>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
