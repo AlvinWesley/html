@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Progress Bar</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .progress-container {
+        width: 60%;
+        background-color: #f3f3f3;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        height: 15px;
+        margin: 20px 0;
+      }
+
+      .progress-bar {
+        width: 0;
+        height: 100%;
+        background-color: #4caf50;
+        text-align: center;
+        line-height: 15px;
+        color: white;
+        position: relative;
+        transition: width 6s linear; /* Smooth transition over 14 seconds */
+      }
+
+      #progress-text {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar">
+        <span id="progress-text"></span>
+      </div>
+    </div>
+    <button id="btn">Start Progress</button>
+
+    <script>
+        let v = document.querySelector("#btn");
+
+      v.addEventListener("click",()=> {
+        startProgressBar();
+      });
+
+      function startProgressBar() {
+        const progressBar = document.getElementById("progress-bar");
+        const progressText = document.getElementById("progress-text");
+        const totalDuration = 6 * 1000;
+
+        progressBar.style.width = "0%";
+        progressText.textContent = "0%";
+        progressBar.style.display = "block";
+
+        setTimeout(() => {
+          progressBar.style.width = "100%";
+        }, 10);
+
+        let startTime = null;
+
+        function updateProgress(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const elapsed = timestamp - startTime;
+          const percentage = Math.min((elapsed / totalDuration) * 100, 100);
+          progressText.textContent = Math.floor(percentage) + "%";
+          if (percentage < 100) {
+            requestAnimationFrame(updateProgress);
+          } else if (){
+            progressBar.style.width = "0%";
+            progressText.textContent = "0%";
+            progressBar.style.display = "none";
+          }
+        }
+
+        requestAnimationFrame(updateProgress);
+      }
+    </script>
+  </body>
+</html>

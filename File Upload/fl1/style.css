@@ -1,25 +1,23 @@
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-/* *{
-  margin: 0;
-  padding: 0;
+*{
+  margin: auto;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
   background: #6990F2;
   width:100vw;
-} */
+} 
 
 ::selection{
   color: #fff;
   background: #6990F2;
 }
-.wrapper{
+.zx-bvce{
+  z-index: 999;
  width: 320px;
   max-width: 470px;
   background: #fff;
@@ -27,13 +25,13 @@ body{
   padding: 30px;
   box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
 }
-.wrapper header{
+.zx-bvce header{
   color: #6990F2;
   font-size: 27px;
   font-weight: 600;
   text-align: center;
 }
-.wrapper form{
+.zx-bvce form{
   height: 167px;
   display: flex;
   cursor: pointer;
@@ -182,5 +180,5 @@ section .details span{
 
 .nb-3rse7 {
     border-bottom: 2px dashed #6990F2;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.9rem;
 }

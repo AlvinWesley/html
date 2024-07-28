@@ -71,7 +71,7 @@
                        </li>
                        <li class=" ">
                           <a href="#mydrive" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                              <i class="las la-user"></i><span>User </span>
+                              <i class="las la-user"></i><span>Supervisor</span>
                               <i class="las la-angle-right iq-arrow-right arrow-active"></i>
                               <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
                           </a>
@@ -880,6 +880,15 @@
             </div>
         </div>
     </footer>
+        <script>
+        function Tshare() {
+         const aElement = document.querySelector('a[href="#mydrive"]');
+         const spanElement = aElement.querySelector("span");
+         const spanText = spanElement.innerText || spanElement.textContent;
+         alert(spanText); 
+}
+Tshare()
+    </script>
     <!-- Backend Bundle JavaScript -->
      <script src="../../assets/vendor/ui/js/intro.js"></script>
      <script src="../../assets/vendor/ui/js/sweetalert2.min.js"></script>

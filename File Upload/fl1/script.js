@@ -9,27 +9,6 @@ const pr = document.querySelector('.img-area'),
 df.textContent = 'Browse File to Upload';
 
 
-/*
-form.addEventListener("click", () =>{
-  fileInput.click();
-});
-
-fileInput.onchange = ({target})=>{
-  let file = target.files[0]; //getting file [0] this means if user has selected multiple files then get first one only
-  if(file){
-    let fileName = file.name; //getting file name
-    if(fileName.length >= 12){ //if file name length is greater than 12 then split it and add ...
-      let splitName = fileName.split('.');
-      fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
-    }
-    uploadFile(fileName); //calling uploadFile with passing file name as an argument
-  }
-}*/
-
-
-
-
-
 const cxe = (e) => {
     if (e) {
         e.forEach(item => item.remove());
@@ -83,6 +62,7 @@ function loadpr(mg) {
         frt("Image size is greater than 2MB");
         return;
     }
+    
 }
 
 

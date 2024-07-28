@@ -1,4 +1,4 @@
-/*const  store = (ky,vl,s=false,g=false,r=false) => {
+const  store = (ky,vl,s=false,g=false,r=false) => {
   let x,k,p;
   if (s === true && j === false && ky && vl !== null) {
     Object.prototype.toString.call(vl) === "[object Array]"
