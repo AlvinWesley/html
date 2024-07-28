@@ -1,7 +1,8 @@
 <?php
 $servername="localhost";
 $username="root";
-$password="wesel123@90";
+$password="wesel123@90";//Change this password to blank
+
 $database_name="BungoArch";
 $conn=new mysqli($servername,$username,$password,$database_name);
 if($conn->connect_error){
