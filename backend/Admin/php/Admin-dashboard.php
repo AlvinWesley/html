@@ -648,7 +648,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="Ae3e" class="col-lg-8 col-xl-8"> 
+                <div id="Ae3e" class="col-lg-12 col-xl-12"> 
                     <div class="card card-block card-stretch card-height files-table">                   
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
@@ -663,53 +663,35 @@
                                 <table class="table mb-0 table-borderless tbl-server-info">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Members</th>
-                                        <th scope="col">Last Edit</th>
-                                        <th scope="col">Size</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col"></th>
+                                         <th scope="col">User id</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">Date requested</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="U_R_list">
+                                   
+                                    <!-- <tr class="active">
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="icon-small bg-danger rounded mr-3">
                                                     <i class="ri-file-excel-line"></i>
                                                 </div>
-                                                <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Weekly-report.pdf" style="cursor: pointer;">Weekly-report.pdf</div>
+                                                 <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Weekly-report.pdf" style="cursor: pointer;">Weekly-report.pdf</div>  
                                             </div>
                                         </td>
-                                        <td>Me</td>
-                                        <td>jan 21, 2020 me</td>
-                                        <td>02 MB</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle" id="dropdownMenuButton6" data-toggle="dropdown">
-                                                    <i class="ri-more-fill"></i>
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="active">
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon-small bg-primary rounded mr-3">
-                                                    <i class="ri-file-download-line"></i>
-                                                </div>
-                                                <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="VueJs.pdf" style="cursor: pointer;">VueJs.pdf</div>
-                                            </div>
-                                        </td>
-                                        <td>Poul Molive</td>
-                                        <td>jan 25, 2020 Poul Molive</td>
-                                        <td>64 MB</td>
+
+                                        <td>001</td>
+                                        <td>Alvin </td>
+                                        <td>Wesley </td>
+                                        <td>12/12/2004</td>
+                                        <td>ICT</td>
+                                        <td>online</td>
                                         <td>
                                             <div id="po-tedax" class="dropdown">
                                                 <span class="dropdown-toggle" id="dropdownMenuButton7" data-toggle="dropdown">
@@ -724,88 +706,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon-small bg-info rounded mr-3">
-                                                    <i class="ri-file-excel-line"></i>
-                                                </div>
-                                                <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="Milestone.docx" style="cursor: pointer;">Milestone.docx</div>
-                                            </div>
-                                        </td>
-                                        <td>Me</td>
-                                        <td>Mar 30, 2020 Gail Forcewind</td>
-                                        <td>30 MB</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle" id="dropdownMenuButton8" data-toggle="dropdown">
-                                                    <i class="ri-more-fill"></i>
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton8">
-                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon-small bg-success rounded mr-3">
-                                                    <i class="ri-file-excel-line"></i>
-                                                </div>
-                                                <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal" data-title="Training center.xlsx" style="cursor: pointer;">Training center.xlsx</div>
-                                            </div>
-                                        </td>
-                                        <td>Me</td>
-                                        <td>Mar 30, 2020 Gail Forcewind</td>
-                                        <td>10 MB</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle" id="dropdownMenuButton09" data-toggle="dropdown">
-                                                    <i class="ri-more-fill"></i>
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton09">
-                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon-small bg-warning rounded mr-3">
-                                                    <i class="ri-file-excel-line"></i>
-                                                </div>
-                                                <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal" data-title="Flavour.pptx" style="cursor: pointer;">Flavour.pptx</div>
-                                            </div>
-                                        </td>
-                                        <td>Me</td>
-                                        <td>Mar 30, 2020 Gail Forcewind</td>
-                                        <td>10 MB</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle" id="dropdownMenuButton9" data-toggle="dropdown">
-                                                    <i class="ri-more-fill"></i>
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton9">
-                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                                 </table>
                             </div>

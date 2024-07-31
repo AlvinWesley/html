@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Row Table with Button</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-column {
+            text-align: center;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Four Row Table with Button</h2>
+
+<table>
+    <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+        <th>Column 4</th>
+        <th>Column 5</th>
+    </tr>
+    <tr>
+        <td id="r1">Row 1, Col 1</td>
+        <td>Row 1, Col 2</td>
+        <td>Row 1, Col 3</td>
+        <td>Row 1, Col 4</td>
+        <td class="button-column"><button class="btn1">Button 1</button></td>
+    </tr>
+    <tr>
+        <td >Row 2, Col 1</td>
+        <td>Row 2, Col 2</td>
+        <td>Row 2, Col 3</td>
+        <td>Row 2, Col 4</td>
+        <td class="button-column"><button class="btn">Button 2</button></td>
+    </tr>
+    <tr>
+        <td>Row 3, Col 1</td>
+        <td>Row 3, Col 2</td>
+        <td>Row 3, Col 3</td>
+        <td>Row 3, Col 4</td>
+        <td class="button-column"><button class="btn">Button 3</button></td>
+    </tr>
+    <tr>
+        <td>Row 4, Col 1</td>
+        <td>Row 4, Col 2</td>
+        <td>Row 4, Col 3</td>
+        <td>Row 4, Col 4</td>
+        <td class="button-column"><button class="btn">Button 4</button></td>
+    </tr>
+</table>
+<script src="page.js"></script>
+</body>
+</html>
