@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.upload-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.upload-container h2 {
+    margin-bottom: 20px;
+    color: #4a73f1;
+    font-size: 1.5em;
+}
+
+.upload-box {
+    border: 2px dashed #4a73f1;
+    padding: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.upload-box p {
+    color: #4a73f1;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.upload-box input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#fileList {
+    margin-bottom: 20px;
+}
+
+.file-item {
+    background-color: #edf2ff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.file-item p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.file-item .file-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.file-item .file-info span {
+    color: #333;
+    font-weight: bold;
+}
+
+.file-item .file-info .file-size {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.file-item .file-info .file-delete {
+    color: #ff4d4d;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.file-item .file-description {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.file-item .file-description input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a73f1;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #3d5ecc;
+}
