@@ -652,7 +652,7 @@
                     <div class="card card-block card-stretch card-height files-table">                   
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Files</h4>
+                                <h4 class="card-title">User Requests</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
                                 <a href="./page-files.html" class=" view-more">View All</a>

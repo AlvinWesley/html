@@ -16,7 +16,17 @@ function UserItems() {
     if (this.status == 200) {
       console.log("Hello This loadusers function has executed");
 
-      var users = JSON.parse(this.responseText);
+      var resultData = JSON.parse(this.responseText);
+      var users=resultData["results"];
+      var departments=resultData[ "departments"];
+     function getinDeparts(selectedDeptId) {
+       let myDept = "";
+       departments.forEach(function (dept) {
+         let isSelected = dept.department_id == selectedDeptId ? "selected" : "";
+         myDept += `<option value="${dept.department_id}" ${isSelected}>${dept.department_name}</option>`;
+       });
+       return myDept;
+     }
       var output = "";
       function regStatusDisp(status) {
         if (status == 1) {
@@ -44,7 +54,9 @@ function UserItems() {
             <td>${user.date_of_reg}</td>
             <td>
               <form id="userDeptTbl">
-                <input type="text" class="form-control" id="deptNameTbl" name="deptNameTbl" value="ICT" style="border:none; background-color:none; outline:none;">
+              <select class="form-control" id="exampleFormControlSelect4">
+                                           ${getinDeparts(user.department_id)}
+                                       </select>
               </form>
             </td>
             <td>${regStatusDisp(user.regStatus)}</td>
@@ -54,12 +66,12 @@ function UserItems() {
                   <i class="ri-more-fill"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton6">
-                  <form class="frm">
-                    <button class="dropdown-item prof" type="submit" name="submitUserEdits"><i class="ri-eye-fill mr-2"></i>Approve</button>
-                    <button class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</button>
-                    <button class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Update</button>
-                    <button class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Deactivate</button>
-                  </form>
+                  <form class="frm" >
+                    <button class="dropdown-item prof u_Stats" type="button" name="submitUserEdits" ><i class="ri-eye-fill mr-2"></i>Approve</button>
+                    <button class="dropdown-item u_del"  type="button"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</button>
+                    <button class="dropdown-item u_updt" type="button"><i class="ri-pencil-fill mr-2 "></i>Update</button>
+                    <button class="dropdown-item d_actv" type="button" ><i class="ri-printer-fill mr-2"></i>Deactivate</button>
+                    </form>
                 </div>
               </div>
             </td>
@@ -78,46 +90,104 @@ function UserItems() {
   xhr.send();
 }
 
-document.addEventListener("submit", function (event) {
+// document.addEventListener("click", function (event) {
+//  if (event.target.classList.contains("u_updt")){
+//   alert("the Update btn Clicked");
+//  }else{
+//     alert("NGO");
+//  }
+ 
+// });
+// document.addEventListener("click",
+// function(event){
+// if(event.target.classList.contains("frm")){
+//   alert("function updtdd found ");
+// }
+// });
+document.addEventListener("click", function (event) {
+  if (
+    event.target.classList.contains("u_updt") ||
+    event.target.classList.contains("u_Stats") ||
+    event.target.classList.contains("d_actv") ||
+    event.target.classList.contains("u_del")
+  ) {
+    u_Updates(
+      event,
+      event.target.classList.contains("u_updt")
+        ? "click"
+        : event.target.classList.contains("u_Stats")
+        ? "submit"
+        : event.target.classList.contains("d_actv")
+        ? "deactivate"
+        : event.target.classList.contains("u_del")
+        ? "delete"
+        : "err"
+    );
+  }
+});
+function u_Updates(event,input) {
   event.preventDefault(); // Prevent the default form submission
-
-  if (event.target.classList.contains("frm")) {
+   // alert("This is the users Client side saySs: " + input);
+   // var frm= event.target.classList.contains("frm") ;
     var userRow = event.target.closest("tr");
+    //alert("This is the 2'nd users Client side says: " + input);
     var userId = userRow.querySelector(".user-id").textContent.trim();
+    //alert("This is the 2'nd users Client side says: " + userId);
+    var deptSelect = userRow.querySelector("select");
+    var selectedOption = deptSelect.options[deptSelect.selectedIndex];
+    var dept_Id = selectedOption.value;
+    var dept_Name = selectedOption.textContent.trim();
     var userStat = userRow.querySelector(".user-status").textContent.trim();
     var userStats;
     var newStats;
-
-    if (userStat === "Approved") {
+    //alert("This is the users Client side saySSSs: "+ input);
+   if (userStat != "Approved" && input == "submit") {
+     userStats = 0;
+     newStats = 1; // Change from Pending to Approved
+   } else 
+   if (userStat == "Approved" && input == "submit") {
+     alert("User is already approved, click deactivate to deactivate");
+     return; // Exit the function if the user is already approved
+   }
+   else if (userStat == "Approved" && input == "deactivate"){
       userStats = 1;
-      newStats = 0; // Change from Approved to Pending
-    } else {
-      userStats = 0;
-      newStats = 1; // Change from Pending to Approved
-    }
-
-    // alert(
-    //   `The Button Has been clicked for user_id: ${userId} and status of the user is: ${userStats}. The New Status will be ${newStats}`
-    // );
-
-    var sendData = "submitUserEdits=Submit"+"&userId=" + userId + "&userStatus=" + newStats;
+      newStats = 0;
+   }else if (userStat != "Approved" && input == "deactivate") {
+     alert("User is already innactive, click activate to activate");
+     return; // Exit the function if the user is already approved
+   }else if (input === "click"||input==="delete") {
+    //alert("update or delete in progress");
+   } else {
+     alert("OOPS WE ran into an ERROR");
+     return;
+   }
+     var sendData =
+       "submitUserEdits=" +
+       input +
+       "&userId=" +
+       userId +
+       "&userStatus=" +
+       newStats +
+       "&deptID=" +
+       dept_Id;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "usersList.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onload = function () {
-      if (this.status == 200) {
-        console.log("Updates for user were successful");
-        alert(this.responseText);
-        // Reload the user list to reflect changes
-       UserItems();
-      } else {
-        console.error("Failed to update user status");
-      }
-    };
-    xhr.send(sendData);
-  }
-});
+  xhr.onload = function () {
+    if (this.status == 200) {
+      console.log("Updates for user were successful");
+      alert(this.responseText);
+      // Reload the user list to reflect changes
+      UserItems();
+    } else {
+      console.error("Failed to update user status");
+    }
+  };
 
+    xhr.send(sendData);
+  
+  
+}
 
 function ItemsForm() {
   console.log("HEllo Wald");
@@ -155,8 +225,7 @@ function ItemsForm() {
 }
 
 document
-  .getElementById("profile_name_init1")
-  .addEventListener("click", loadUsersLog);
+  .getElementById("profile_name_init1").addEventListener("click", loadUsersLog);
 
 function loadUsersLog(e) {
   console.log("Hello This loadusers has been clicked ");
@@ -167,6 +236,8 @@ function loadUsersLog(e) {
     if (this.status == 200) {
       console.log("Hello This loadusers function has executed");
       var users = JSON.parse(this.responseText);
+       var users = users["results"];
+      console.log(users);
       var output = "";
       for (var i = 0; i < users.length && i < 3; i++) {
         output +=
