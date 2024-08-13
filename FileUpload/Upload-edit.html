@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploader</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            justify-content: center;
+            min-height: 100vh;
+            background: #efefef;
+        }
+
+        .file-uploader {
+            background: #fff;
+            border-radius: 5px;
+            overflow-x: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .file-uploader .uploader-header {
+            display: flex;
+            padding: 20px;
+            background: #EEF1FB;
+            align-items: center;
+            border-radius: 5px 5px 0 0;
+            justify-content: space-between;
+        }
+
+        .uploader-header .uploader-title {
+            font-size: 1rem;
+            font-weight: 420;
+        }
+
+        .text-title {
+            margin-left: 4px;
+            color: #333;
+        }
+
+
+        .uploader-header .file-completed-status {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .file-uploader .file-list {
+            list-style: none;
+            width: 100%;
+            padding-bottom: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            scrollbar-color: #999 transparent;
+            scrollbar-width: thin;
+        }
+
+
+
+
+
+        .file-list .file-item .file-extension {
+            color: #fff;
+            display: flex;
+            text-transform: uppercase;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background: #5145BA;
+        }
+
+
+        .file-list .file-item .file-content-wrapper {
+            overflow-x: hidden;
+        }
+
+        .file-list .file-item .file-content-wrapper .file-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .file-list .file-item .file-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .file-list .file-item .file-info {
+            display: flex;
+        }
+
+        .file-list .file-item .file-info small {
+            color: #5c5c5c;
+            margin-top: 5px;
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .file-list .file-item .file-info .file-status {
+            color: #5145BA;
+        }
+
+        .file-list .file-item .cancel-button {
+            align-self: center;
+            border: none;
+            outline: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .file-list .file-item .cancel-button:hover {
+            color: #E3413F;
+        }
+
+        .file-list .file-item .file-progress-bar {
+            border-radius: 30px;
+            background: #d9d9d9;
+        }
+
+        .file-list .file-item .file-progress-bar .file-progress {
+            width: 0%;
+            height: inherit;
+            border-radius: inherit;
+            background: #5145BA;
+        }
+
+        .file-list .file-item {
+            display: flex;
+        }
+
+        .file-uploader .file-upload-box {
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .file-uploader .file-upload-box.active {
+            border: 2px solid #5145BA;
+            background: #F3F6FF;
+        }
+
+        .file-uploader .file-upload-box .box-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #626161;
+        }
+
+        .file-uploader .file-upload-box.active .box-title {
+            pointer-events: none;
+        }
+
+        .file-upload-box .box-title .file-browse-button {
+            color: #5145BA;
+            cursor: pointer;
+        }
+
+        .file-upload-box .box-title .file-browse-button:hover {
+            text-decoration: underline;
+        }
+
+        .uploader-header .uploader-title {
+            color: #626161;
+        }
+
+        .file-uploader .uploader-header .uploader-title .fas {
+            color: #5145BA;
+        }
+
+        .txe {
+            color: #5145BA;
+            font-size: 36px;
+        }
+
+        .float-fade-in {
+            animation: f3ezcr 1s forwards;
+        }
+
+        .sink-fade-out {
+            animation: x9eoeq 0.7s forwards;
+        }
+
+        @keyframes f3ezcr {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes x9eoeq {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+
+
+        /** Start of responsive media query **/
+
+        @media only screen and (max-width: 575.98px) {
+            .file-uploader {
+                width: 420px;
+            }
+
+            .file-list .file-item {
+                display: flex;
+                gap: 14px;
+                margin-bottom: 22px;
+            }
+
+            .uploader-header .uploader-title {
+                font-size: 1rem;
+            }
+
+            .file-list .file-item .file-progress-bar {
+                width: 100%;
+                height: 3px;
+                margin-top: 10px;
+            }
+
+            .file-uploader .file-upload-box {
+                margin: 10px 20px 20px;
+                border: 2px dashed #B1ADD4;
+                min-height: 125px;
+            }
+
+            .file-list .file-item .file-content-wrapper {
+                flex: 1;
+            }
+
+            .file-list .file-item .file-content-wrapper .file-content {
+                width: 100%;
+                gap: 2px;
+            }
+
+            .file-list .file-item .file-extension {
+                height: 50px;
+                width: 50px;
+            }
+
+            .file-uploader .file-list:has(li) {
+                padding: 20px;
+            }
+
+            .file-list .file-item:last-child {
+                margin-bottom: 1rem;
+            }
+
+            .file-list .file-item .cancel-button {
+                font-size: 1rem;
+            }
+
+            .file-list .file-item .file-info {
+                gap: 5px;
+            }
+
+            .file-item .file-content-wrapper .file-content .file-details {
+                margin-left: 0rem;
+            }
+
+        }
+
+
+        @media only screen and (min-width: 576px) and (max-width: 767.98px) {
+            .file-uploader {
+                width: 520px;
+            }
+
+            .file-list .file-item {
+                display: flex;
+                gap: 17px;
+                margin-bottom: 22px;
+            }
+
+            .uploader-header .uploader-title {
+                font-size: 1rem;
+            }
+
+            .file-list .file-item .file-progress-bar {
+                width: 100%;
+                height: 4px;
+                margin-top: 12px;
+            }
+
+            .file-uploader .file-upload-box {
+                margin: 10px 20px 20px;
+                border: 2px dashed #B1ADD4;
+                min-height: 125px;
+            }
+
+            .file-list .file-item .file-content-wrapper {
+                flex: 2;
+            }
+
+            .file-list .file-item .file-content-wrapper .file-content {
+                width: 100%;
+                gap: 2px;
+            }
+
+
+            .file-list .file-item .file-extension {
+                height: 50px;
+                width: 50px;
+            }
+
+            .file-uploader .file-list:has(li) {
+                padding: 24px;
+            }
+
+            .file-list .file-item:last-child {
+                margin-bottom: 1rem;
+            }
+
+            .file-list .file-item .cancel-button {
+                font-size: 1rem;
+            }
+
+            .file-list .file-item .file-info {
+                gap: 6.3px;
+            }
+
+            .file-item .file-content-wrapper .file-content .file-details {
+                margin-left: 0rem;
+            }
+        }
+
+
+        @media only screen and (min-width: 768px) and (max-width: 991.98px) {
+            .file-uploader {
+                width: 820px;
+            }
+
+            .file-list .file-item {
+                display: flex;
+                gap: 1px;
+                margin-bottom: 22px;
+            }
+
+            .uploader-header .uploader-title {
+                font-size: 1.1rem;
+            }
+
+            .file-list .file-item .file-progress-bar {
+                width: 100%;
+                height: 4px;
+                margin-top: 16px;
+            }
+
+            .file-uploader .file-upload-box {
+                margin: 10px 20px 20px;
+                border: 2.7px dashed #B1ADD4;
+                min-height: 145px;
+            }
+
+            .file-list .file-item .file-content-wrapper {
+                flex: 1;
+            }
+
+            .file-list .file-item .file-content-wrapper .file-content {
+                width: 100%;
+                gap: 3px;
+            }
+
+            .file-list .file-item .file-extension {
+                height: 60px;
+                width: 60px;
+            }
+
+            .file-uploader .file-list:has(li) {
+                padding: 26px;
+            }
+
+            .file-list .file-item:last-child {
+                margin-bottom: 1.8rem;
+            }
+
+            .file-list .file-item .cancel-button {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-info {
+                gap: 6.5px;
+            }
+
+            .file-item .file-content-wrapper .file-content .file-details {
+                margin-left: 0rem;
+            }
+        }
+
+
+        @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+            .file-uploader {
+                width: 900px;
+            }
+
+            .file-list .file-item {
+                display: flex;
+                gap: 1px;
+                margin-bottom: 22px;
+            }
+
+            .uploader-header .uploader-title {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-progress-bar {
+                width: 100%;
+                height: 4px;
+                margin-top: 18px;
+            }
+
+            .file-uploader .file-upload-box {
+                margin: 11px 21px 21px;
+                border: 2.7px dashed #B1ADD4;
+                min-height: 155px;
+            }
+
+            .file-list .file-item .file-content-wrapper {
+                flex: 1;
+            }
+
+            .file-list .file-item .file-content-wrapper .file-content {
+                width: 100%;
+                gap: 3px;
+            }
+
+            .file-list .file-item .file-extension {
+                height: 63px;
+                width: 63px;
+            }
+
+            .file-uploader .file-list:has(li) {
+                padding: 28px;
+            }
+
+            .file-list .file-item:last-child {
+                margin-bottom: 2.1rem;
+            }
+
+            .file-list .file-item .cancel-button {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-info {
+                gap: 1rem;
+            }
+
+            .file-item .file-content-wrapper .file-content .file-details {
+                margin-left: 0rem;
+            }
+        }
+
+
+
+        @media only screen and (min-width: 1200px) {
+            .file-uploader {
+                width: 940px;
+            }
+
+            .file-list .file-item {
+                display: flex;
+                gap: 1px;
+                margin-bottom: 22px;
+            }
+
+            .uploader-header .uploader-title {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-progress-bar {
+                width: 100%;
+                height: 4px;
+                margin-top: 20px;
+            }
+
+            .file-uploader .file-upload-box {
+                margin: 12px 22px 22px;
+                border: 2.9px dashed #B1ADD4;
+                min-height: 165px;
+            }
+
+            .file-list .file-item .file-content-wrapper {
+                flex: 1;
+            }
+
+            .file-list .file-item .file-content-wrapper .file-content {
+                width: 100%;
+                gap: 3px;
+            }
+
+            .file-list .file-item .file-extension {
+                height: 67px;
+                width: 67px;
+            }
+
+            .file-uploader .file-list:has(li) {
+                padding: 30px;
+            }
+
+            .file-list .file-item:last-child {
+                margin-bottom: 2.2rem;
+            }
+
+            .file-list .file-item .cancel-button {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-info {
+                gap: 1rem;
+            }
+
+            .file-item .file-content-wrapper .file-content .file-details {
+                margin-left: 0rem;
+            }
+        }
+
+
+        @media only screen and (min-width: 1400px) {
+            .file-uploader {
+                width: 630px;
+            }
+
+            .file-list .file-item {
+                display: flex;
+                gap: 1px;
+                margin-bottom: 22px;
+            }
+
+            .uploader-header .uploader-title {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-progress-bar {
+                width: 100%;
+                height: 6px;
+                margin-top: 22px;
+            }
+
+            .file-uploader .file-upload-box {
+                margin: 13px 23px 23px;
+                border: 3px dashed #B1ADD4;
+                min-height: 175px;
+            }
+
+            .file-list .file-item .file-content-wrapper {
+                flex: 1;
+            }
+
+            .file-list .file-item .file-content-wrapper .file-content {
+                width: 100%;
+                gap: 3px;
+            }
+
+            .file-list .file-item .file-extension {
+                height: 71px;
+                width: 71px;
+            }
+
+            .file-uploader .file-list:has(li) {
+                padding: 32px;
+            }
+
+            .file-list .file-item:last-child {
+                margin-bottom: 2.4rem;
+            }
+
+            .file-list .file-item .cancel-button {
+                font-size: 1.2rem;
+            }
+
+            .file-list .file-item .file-info {
+                gap: 7.4px;
+            }
+
+            .file-item .file-content-wrapper .file-content .file-details {
+                margin-left: 0rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex align-items-center justify-content-center  vh-100">
+
+    <!--RESPONSIVE  MEDIA QUERY-->
+    <div class="file-uploader">
+        <form enctype="multipart/form-data" accept-charset="utf-8">
+            <div class="uploader-header">
+                <h2 class="uploader-title">
+                    <i class="fas fa-close"></i>
+                    <span class="text-title">file uploader</span>
+                </h2>
+                <h4 class="file-completed-status"></h4>
+            </div>
+            <ul class="file-list"></ul>
+            <div class="file-upload-box">
+                <h2 class="box-title">
+                    <span class="file-instruction">Drag files here or</span>
+                    <span class="file-browse-button">
+                        Browse files
+                    </span>
+                </h2>
+                <input class="file-browse-input" type="file" multiple hidden>
+            </div>
+        </form>
+    </div>
+
+    <!--BOOTSRAP-->
+    <!--
+    <div class="file-uploader bg-white rounded shadow-sm overflow-hidden">
+        <form enctype="multipart/form-data" accept-charset="utf-8">
+            <div class="uploader-header d-flex p-3 bg-light align-items-center justify-content-between rounded-top">
+                <h2 class="uploader-title d-flex align-items-center">
+                    <i class="fas fa-close text-primary me-2"></i>
+                    <span class="text-title">File Uploader</span>
+                </h2>
+                <h4 class="file-completed-status text-dark"></h4>
+            </div>
+            <ul class="file-list list-unstyled p-3" id="file-list"></ul>
+            <div class="file-upload-box d-flex flex-column align-items-center justify-content-center rounded border border-primary-dashed">
+                <h2 class="box-title text-secondary">
+                    <span class="file-instruction">Drag files here or</span>
+                    <span class="file-browse-button text-primary cursor-pointer">Browse files</span>
+                </h2>
+                <input class="file-browse-input" type="file" multiple hidden>
+            </div>
+        </form>
+    </div>
+    -->
+    <script>
+        const fileList = document.querySelector(".file-list"),
+            fileBrowseButton = document.querySelector(".file-browse-button"),
+            fileBrowseInput = document.querySelector(".file-browse-input"),
+            fileUploadBox = document.querySelector(".file-upload-box"),
+            fileCompletedStatus = document.querySelector(".file-completed-status"),
+            kg = document.querySelector('.uploader-title'),
+            bv = document.querySelector('.file-uploader');
+
+
+
+        let _v = (n, e) => { return n.classList ? n.classList.contains(e) : '' /*-1 !== n.className.split(" ").indexOf(e)*/ };
+
+        const trimmer = (file_name) => {
+            let maxLength;
+            if (window.innerWidth >= 1200) {
+                maxLength = 61;
+            } else if (window.innerWidth >= 992) {
+                maxLength = 52;
+            } else if (window.innerWidth >= 768) {
+                maxLength = 40;
+            } else {
+                maxLength = 19;
+            }
+
+            if (file_name.length >= maxLength) {
+                try {
+                    let splitName = file_name.split('.');
+                    file_name = splitName[0].substring(0, maxLength) + "...." + splitName[1];
+                } catch (e) {
+                    throw e;
+                }
+            }
+
+            return file_name;
+        };
+
+        let totalFiles = 0;
+        let completedFiles = 0;
+
+
+
+        const createFileItemHTML = (file, uniqueIdentifier) => {
+            const { name, size } = file;
+            const extension = name.split(".").pop();
+            const formattedFileSize = size >= 1024 * 1024 ? `${(size / (1024 * 1024)).toFixed(2)} MB` : `${(size / 1024).toFixed(2)} KB`;
+            return `
+    
+    <li class="file-item" id="file-item-${uniqueIdentifier}">
+        <div class="file-extension">${extension}</div>
+        <div class="file-content-wrapper">
+            <div class="file-content">
+                <div class="file-details">
+                    <h5 class="file-name">${trimmer(name)}</h5>
+                    <div class="file-info">
+                        <small class="file-size">0 MB / ${formattedFileSize}</small>
+                        <small class="file-divider">•</small>
+                        <small class="file-status">Uploading...</small>
+                    </div>
+                </div>
+                <button class="cancel-button">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="file-progress-bar">
+                <div class="file-progress"></div>
+            </div>
+        </div>
+    </li>`;
+        }
+
+        const handleFileUploading = (file, uniqueIdentifier) => {
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append("file", file);
+            xhr.upload.addEventListener("progress", (e) => {
+                const fileProgress = document.querySelector(`#file-item-${uniqueIdentifier} .file-progress`);
+                const fileSize = document.querySelector(`#file-item-${uniqueIdentifier} .file-size`);
+                const formattedFileSize = file.size >= 1024 * 1024 ? `${(e.loaded / (1024 * 1024)).toFixed(2)} MB / ${(e.total / (1024 * 1024)).toFixed(2)} MB` : `${(e.loaded / 1024).toFixed(2)} KB / ${(e.total / 1024).toFixed(2)} KB`;
+                const progress = Math.round((e.loaded / e.total) * 100);
+                fileProgress.style.width = `${progress}%`;
+                fileSize.innerText = formattedFileSize;
+            });
+            xhr.open("POST", "api.php", true);
+            xhr.send(formData);
+            return xhr;
+        }
+
+
+
+        const handleSelectedFiles = ([...files]) => {
+            if (files.length === 0) return;
+            totalFiles += files.length;
+            files.forEach((file, index) => {
+                const uniqueIdentifier = Date.now() + index;
+                const fileItemHTML = createFileItemHTML(file, uniqueIdentifier);
+                fileList.insertAdjacentHTML("afterbegin", fileItemHTML);
+                const currentFileItem = document.querySelector(`#file-item-${uniqueIdentifier}`);
+                const cancelFileUploadButton = currentFileItem.querySelector(".cancel-button");
+                const xhr = handleFileUploading(file, uniqueIdentifier);
+                const updateFileStatus = (status, color) => {
+                    currentFileItem.querySelector(".file-status").innerText = status;
+                    currentFileItem.querySelector(".file-status").style.color = color;
+                }
+                xhr.addEventListener("readystatechange", () => {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        completedFiles++;
+                        cancelFileUploadButton.remove();
+                        updateFileStatus("Completed", "#00B125");
+                        fileCompletedStatus.innerText = `${completedFiles} / ${totalFiles} files completed`;
+                    }
+                });
+
+                cancelFileUploadButton.addEventListener("click", () => {
+                    xhr.abort();
+                    updateFileStatus("Cancelled", "#E3413F");
+                    cancelFileUploadButton.remove();
+                });
+
+                xhr.addEventListener("error", () => {
+                    updateFileStatus("Error", "#E3413F");
+                    alert("An error occurred during the file upload!");
+                });
+            });
+
+            fileCompletedStatus.innerText = `${completedFiles} / ${totalFiles} files completed`;
+        }
+
+
+        //for handling re-appearance consider display property 
+        kg.addEventListener('click', () => {
+            bv.classList.add('sink-fade-out')
+            bv.addEventListener('animationend', () => {
+                bv.style.display = 'none';
+                bv.classList.remove('sink-fade-out')
+            })
+        })
+
+
+        fileUploadBox.addEventListener("drop", (e) => {
+            e.preventDefault();
+            handleSelectedFiles(e.dataTransfer.files);
+            fileUploadBox.classList.remove("active");
+            fileUploadBox.querySelector(".file-instruction").innerText = "Drag files here or";
+        });
+
+
+        fileUploadBox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            fileUploadBox.classList.add("active");
+            fileUploadBox.querySelector(".file-instruction").innerText = "Release to upload or";
+        });
+
+        fileUploadBox.addEventListener("dragleave", (e) => {
+            e.preventDefault();
+            fileUploadBox.classList.remove("active");
+            fileUploadBox.querySelector(".file-instruction").innerText = "Drag files here or";
+        });
+
+        fileBrowseInput.addEventListener("change", (e) => handleSelectedFiles(e.target.files));
+        fileBrowseButton.addEventListener("click", () => fileBrowseInput.click());
+    </script>
+</body>
+</html>
+
