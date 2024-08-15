@@ -14,9 +14,21 @@
             <p>Upload any file types</p>
         </div>
         <div id="fileList"></div>
-        <button type="submit">Upload Files</button>
+        <button type="submit" id="uploadBtn">Upload Files</button>
+        <div id="progressContainer" class="progress-container">
+            <div id="progressBar" class="progress-bar"></div>
+            <span id="progressText" class="progress-text"></span>
+        </div>
     </div>
 
-    <script src="files.js"></script>
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <script src="scriptme.js"></script>
 </body>
 </html>
