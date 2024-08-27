@@ -1,8 +1,9 @@
 let svxn = new Svx(),sq = new Svx.Storage(),
-  flpz = document.querySelectorAll(".nfd-ct"),
-  flpx = document.querySelectorAll(".nfl-ct"),
-  ftx = document.querySelectorAll(".upload-file-upf");
-
+//disabled theese for now
+  flpz = document.querySelectorAll(".nfd-ct t"),
+  flpx = document.querySelectorAll(".nfl-ct t"),
+  ftx = document.querySelectorAll(".upload-file-upf t");
+//end of disablin just added t
 ftx.forEach((ft) => {
   ft.addEventListener("click", () => {
     alert(`${ft} clicked..`);

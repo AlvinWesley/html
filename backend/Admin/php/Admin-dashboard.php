@@ -4,6 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Bungo Arch</title>
+      <link rel="stylesheet" href="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadstyle.css">
       <link rel="shortcut icon" href="/BUNGOARCH/html/assets/images/favicon.ico" />
       <link rel="stylesheet" href="/BUNGOARCH/html/assets/css/backend-plugin.min.css">
       <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/ui/css/iziToast.css">
@@ -19,7 +20,9 @@
         <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
         <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
         <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
-        <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">  </head>
+        <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
+        
+      </head>
   <body class="  ">
     <id id="loading">
           <div id="loading-center">
@@ -46,8 +49,33 @@
                       <ul class="dropdown-menu">
                           <li class="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
                           <li class="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
-                          <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>New File</div></li>
+                          <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
                       </ul>
+                      <dialog id="d-mdl" class="file-uploader" >
+        
+        <div class="uploader-header">
+            <h2 class="uploader-title">File Upload</h2>
+            <h4 class="file-completed-status"></h4>
+        
+        </div>
+         <div class="file-upload-box">
+            <h2 class="box-title">
+                <span class="file-instruction">Drag files here or</span>
+                 <span class="file-browse-button">Browse</span>
+            </h2>
+            <input class="file-browse-input" type="file" multiple hidden >
+        </div>
+        <ul class="file-list">
+           
+        </ul>
+       
+        <div class="operations">
+             <button id="add_file">Add File</button>
+                <button id="sbmt_file">Upload Files</button> 
+                 <button id="clr">Clear</button>
+                <button id="cancel">Exit</button>
+        </div>
+                             </dialog>
                   </div>
               </div>
               <nav class="iq-sidebar-menu">
@@ -844,6 +872,7 @@
         <script src="/BUNGOARCH/html/assets/js/Functions/index.js"></script>
     <script src="/BUNGOARCH/html/assets/js/Functions/handler.js"></script>
     <script src="AdminDash.js"></script>
+     <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js"></script>
 
      <script>
 iziToast.error({

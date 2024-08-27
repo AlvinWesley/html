@@ -266,3 +266,13 @@ function loadUsersLog(e) {
   };
   xhr.send();
 }
+// const 
+// Nwfldr = document.querySelectorAll(".nfd-ct"),
+const  Fmdl = document.querySelector("#d-mdl");
+//   ShrFl = document.querySelectorAll(".nfl-ct "),
+ const UplFl = document.querySelector(".upload-file-upf");
+
+UplFl.addEventListener("click",()=>{
+  alert("here we go");
+  Fmdl.showModal();
+});

@@ -25,6 +25,13 @@ const createFileItemHTML=(file,uniqueId)=>{
                                 <small class="file-divider">.</small>
                                 <small class="file-status">Pending...</small>
                                 <input type="text" name="descr" id="a_descr${uniqueId}" placeholder="add A description">
+                                <label for="folder">Select Folder</label>
+                                 <select class="form-control" id="f_folder-${uniqueId}">
+                                          <option selected="">Folder 1</option>
+                                          <option>Folder 2</option>
+                                          <option >Folder 3</option>
+                                          <option>Folder 4</option>
+                                       </select>
                             </div>
                         </div>
                         <button class="cancel-button">❌</button>
@@ -41,7 +48,9 @@ const handleFileUploading=(file,uniqueId)=>{
     const xhr =new  XMLHttpRequest();
     const formData =new FormData();
     formData.append("file",file);
-    formData.append("firstName","Erick Ekea");
+    let folderName= document.querySelector(`#f_folder-${uniqueId}`).value;
+    console.log("the folder Name selected is "+folderName);
+    formData.append("firstName",folderName);
 
     xhr.upload.addEventListener("progress",(e)=>{
         const fileProgress=document.querySelector(`#file-item-${uniqueId} .file-progress`);
@@ -59,7 +68,7 @@ const handleFileUploading=(file,uniqueId)=>{
            fileProgress.style.width=`${progress}%`;
            fileSize.innerText=fromatedFileSize;
     });
-    xhr.open("POST","upload.php",true);
+    xhr.open("POST", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php", true);
     xhr.send(formData);
     return xhr;   
 }

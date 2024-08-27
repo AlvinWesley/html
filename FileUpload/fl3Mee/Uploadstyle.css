@@ -1,4 +1,4 @@
-*{
+/* *{
     margin:0;
     padding:0;
     box-sizing: border-box;
@@ -12,11 +12,12 @@ body{
     background-color: aqua;
     padding:5px;
 
-}
+} */
 .file-uploader{
     width: 500px;
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
+    border:none;
 
 }
 .file-uploader .uploader-header{
