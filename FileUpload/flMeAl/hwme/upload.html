@@ -11,7 +11,7 @@
         <div class="mid">
             <div class="upper">
                 <div class="dropBox">
-                    <p> Click or drop to add file</p>
+                    <p> <a class="clck_here">Click</a> or drop to add file</p>
                 </div>
                 
             </div>
@@ -21,8 +21,8 @@
                    <div class="items">
                         <div class="f_name">name here</div>
                         <div class="f_manip">
-                            <button type="button">delete</button>
-                            <button type="button">view</button>
+                            <button type="button" id="del">delete</button>
+                            <button type="button" id="view">view</button>
                             
                         </div>
                    </div>
@@ -34,17 +34,19 @@
                     
                     <form action="#" id="itemDescription">
                                 <input type="text" name="descr" id="a_descr" placeholder="add A description">
-                            </form>
+                    </form>
                 </div>
                 
             </div>
+            
             <div class="lower">
-                <button type="submit">Add File</button>
-                <button type="submit">Submit</button> 
-                 <button type="submit">Clear</button>
-                <button type="submit">Cancel</button>
+                <button type="submit"id="add_file">Add File</button>
+                <button type="submit"id="sbmt_file">Submit</button> 
+                 <button type="submit"id="clr">Clear</button>
+                <button type="submit"id="cancel">Cancel</button>
             </div>
         </div>
     </div>
 </body>
+<script src="upload.js"></script>
 </html>

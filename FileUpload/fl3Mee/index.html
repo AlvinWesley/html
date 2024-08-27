@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple File Upload</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="file-uploader">
+        
+        <div class="uploader-header">
+            <h2 class="uploader-title">File Upload</h2>
+            <h4 class="file-completed-status"></h4>
+        
+        </div>
+         <div class="file-upload-box">
+            <h2 class="box-title">
+                <span class="file-instruction">Drag files here or</span>
+                 <span class="file-browse-button">Browse</span>
+            </h2>
+            <input class="file-browse-input" type="file" multiple hidden >
+        </div>
+        <ul class="file-list">
+           
+        </ul>
+       
+        <div class="operations">
+             <button id="add_file">Add File</button>
+                <button id="sbmt_file">Upload Files</button> 
+                 <button id="clr">Clear</button>
+                <button id="cancel">Exit</button>
+        </div>
+    </div>
+</body>
+</html>
