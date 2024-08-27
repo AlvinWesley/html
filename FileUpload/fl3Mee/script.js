@@ -146,6 +146,20 @@ fileBrowserInput.addEventListener("change", (e) =>
 fileBrowserButton.addEventListener("click", () => fileBrowserInput.click());
 fileAddBtn.addEventListener("click", () => fileBrowserInput.click());
 
+clearFiles.addEventListener("click", () => {
+  // Clear the files array
+  filesToUpload = [];
+  // Clear the file input (so the user can re-select the same files if needed)
+  fileBrowserInput.value = "";
+  // Remove all file items from the display
+  fileList.innerHTML = "";
+  // Reset any other related states or UI elements
+  totalFiles = 0;
+  completed = 0;
+  fileCompletedProg.innerText = `${completed} / ${totalFiles} files Completed`;
+  // Optionally reset uploadInitiated if needed
+  uploadInitiated = false;
+});
 
 // const handleSelectedFiles=([...files])=>{
 //     if(files.length===0) return;
