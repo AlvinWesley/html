@@ -1,0 +1,93 @@
+.file-viewer-dialog {
+    width: 800px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.file-viewer-dialog h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.file-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.file-header {
+    font-weight: bold;
+    background-color: #f1f1f1;
+}
+
+.file-icon, .file-name, .file-date, .file-size, .file-uploaded-by, .file-actions {
+    padding: 0 10px;
+    flex: 1;
+    text-align: left;
+}
+
+.file-icon {
+    flex: 0 0 40px;
+    text-align: center;
+}
+
+.file-actions {
+    flex: 0 0 200px;
+    text-align: center;
+}
+
+.action-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.download {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.share {
+    background-color: #2196F3;
+    color: white;
+}
+
+.move {
+    background-color: #FFC107;
+    color: white;
+}
+
+.dialog-footer {
+    text-align: center;
+}
+
+#closeDialog {
+    padding: 10px 20px;
+    background-color: #607D8B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

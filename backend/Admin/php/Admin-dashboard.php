@@ -4,6 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Bungo Arch</title>
+      <link rel="stylesheet" href="/BUNGOARCH/html/Folders/addFolderStyle.css">
       <link rel="stylesheet" href="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadstyle.css">
       <link rel="shortcut icon" href="/BUNGOARCH/html/assets/images/favicon.ico" />
       <link rel="stylesheet" href="/BUNGOARCH/html/assets/css/backend-plugin.min.css">
@@ -51,7 +52,7 @@
                           <li class="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
                           <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
                       </ul>
-                      <dialog id="d-mdl" class="file-uploader" >
+                      <dialog id="d-mdl-fu" class="file-uploader" >
         
         <div class="uploader-header">
             <h2 class="uploader-title">File Upload</h2>
@@ -76,6 +77,21 @@
                 <button id="cancel">Exit</button>
         </div>
                              </dialog>
+                       <dialog id="d-mdl-flda" class="folder-card">
+    <h2>Add Folder</h2>
+    <div id="message-box"></div>
+    <div class="inputGroup">
+    <input type="text" id="folderName" placeholder="Enter Folder Name">
+        <div class="form-group-color">
+            <label for="folderColor">Choose Folder Color:</label>
+            <input type="color" id="folderColor" value="#ffcc00">
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="addButton">Add</button>
+        <button id="fld-add-cancl-Btn">Cancel</button>
+    </div>
+                        </dialog>
                   </div>
               </div>
               <nav class="iq-sidebar-menu">
@@ -553,8 +569,8 @@
                         <div class="card-body">                            
                                 <div class="d-flex justify-content-between">
                                     <a href="./page-alexa.html" class="folder">
-                                        <div class="icon-small bg-danger rounded mb-4">
-                                            <i class="ri-file-copy-line"></i>
+                                        <div class="icon-small rounded mb-4"style="background:green">
+                                            <i class="ri-file-copy-line" style="color:red"></i>
                                         </div>
                                     </a>
                                     <div class="card-header-toolbar">
@@ -872,7 +888,8 @@
         <script src="/BUNGOARCH/html/assets/js/Functions/index.js"></script>
     <script src="/BUNGOARCH/html/assets/js/Functions/handler.js"></script>
     <script src="AdminDash.js"></script>
-     <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js"></script>
+     <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js" defer></script>
+     <script src="/BUNGOARCH/html/folders/folder.js" defer></script>
 
      <script>
 iziToast.error({

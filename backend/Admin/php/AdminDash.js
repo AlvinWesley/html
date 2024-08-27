@@ -267,12 +267,27 @@ function loadUsersLog(e) {
   xhr.send();
 }
 // const 
-// Nwfldr = document.querySelectorAll(".nfd-ct"),
-const  Fmdl = document.querySelector("#d-mdl");
+const Nwfldr = document.querySelector(".nfd-ct");
+const  Fmdl = document.querySelector("#d-mdl-fu");
+const Fldmdl = document.querySelector("#d-mdl-flda");
 //   ShrFl = document.querySelectorAll(".nfl-ct "),
  const UplFl = document.querySelector(".upload-file-upf");
-
+ const flderBtnCancel = document.querySelector("#fld-add-cancl-Btn");
+ const Ext = document.querySelector("#cancel");
+ 
+Nwfldr.addEventListener("click", () => {
+  //alert("here we go");
+  Fldmdl.showModal();
+});
 UplFl.addEventListener("click",()=>{
-  alert("here we go");
+  //alert("here we go");
   Fmdl.showModal();
 });
+Ext.addEventListener("click",()=>{
+Fmdl.close();
+});
+flderBtnCancel.addEventListener("click", () => {
+  Fldmdl.close();
+});
+
+

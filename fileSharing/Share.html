@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ShareStyle.css">
+</head>
+<body>
+ <div class="share-file-dialog">
+    <h2>Share File</h2>
+    
+    <!-- Message Box -->
+    <div id="message-box" class="message-box"></div>
+
+    <div class="form-group">
+        <label for="fileName">File Name:</label>
+        <input type="text" id="fileName" value="Document.pdf" readonly>
+    </div>
+    <div class="form-group">
+        <label for="fromField">From:</label>
+        <input type="text" id="fromField" placeholder="Your name or email">
+    </div>
+    <div class="form-group">
+        <label for="toField">To:</label>
+        <select id="toField">
+            <option value="">Select recipient</option>
+            <option value="john.doe@example.com">John Doe</option>
+            <option value="jane.doe@example.com">Jane Doe</option>
+            <option value="admin@example.com">Admin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="notesField">Notes:</label>
+        <textarea id="notesField" placeholder="Add a note (optional)"></textarea>
+    </div>
+    <div class="dialog-footer">
+        <button id="shareButton">Share</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
+</div>
+
+<script src="share.js"></script>
+</body>
+</html>
