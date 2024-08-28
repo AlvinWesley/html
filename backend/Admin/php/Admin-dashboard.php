@@ -564,133 +564,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">                            
-                                <div class="d-flex justify-content-between">
-                                    <a href="./page-alexa.html" class="folder">
-                                        <div class="icon-small rounded mb-4"style="background:green">
-                                            <i class="ri-file-copy-line" style="color:red"></i>
-                                        </div>
-                                    </a>
-                                    <div class="card-header-toolbar">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
-                                                <i class="ri-more-2-fill"></i>
-                                            </span>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                <div class="FolderItemsWrapper">
+                    Your Folders Shall Appear Here
+                    <!-- <div class="col-md-6 col-sm-6 col-lg-3 ">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body">                            
+                                    <div class="d-flex justify-content-between">
+                                        <a href="./page-alexa.html" class="folder">
+                                            <div class="icon-small rounded mb-4"style="background:green">
+                                                <i class="ri-file-copy-line" style="color:red"></i>
+                                            </div>
+                                        </a>
+                                        <div class="card-header-toolbar">
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
+                                                    <i class="ri-more-2-fill"></i>
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <a href="./page-alexa.html" class="folder">
-                                    <h5 class="mb-2">Alexa Workshop</h5>
-                                    <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> 10 Dec, 2020</p>
-                                    <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> 08 Files</p>
-                                </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-android.html" class="folder">
-                                    <div class="icon-small bg-primary rounded mb-4">
-                                        <i class="ri-file-copy-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton3" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <a href="./page-alexa.html" class="folder">
+                                        <h5 class="mb-2">Alexa Workshop</h5>
+                                        <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> 10 Dec, 2020</p>
+                                        <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> 08 Files</p>
+                                    </a>
                             </div>
-                            <a href="./page-android.html" class="folder">
-                                <h5 class="mb-2">Android</h5>
-                                <p class="mb-2"><i class="lar la-clock text-primary mr-2 font-size-20"></i> 09 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-primary mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-brightspot.html" class="folder">
-                                    <div class="icon-small bg-info rounded mb-4">
-                                        <i class="ri-file-copy-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton4" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton4">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-brightspot.html" class="folder">
-                                <h5 class="mb-2">Brightspot</h5>
-                                <p class="mb-2"><i class="lar la-clock text-info mr-2 font-size-20"></i> 07 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-info mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-ionic.html" class="folder">
-                                    <div class="icon-small bg-success rounded mb-4">
-                                        <i class="ri-file-copy-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton5" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-ionic.html" class="folder">
-                                <h5 class="mb-2">Ionic Chat App</h5>
-                                <p class="mb-2"><i class="lar la-clock text-success mr-2 font-size-20"></i> 06 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-success mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="Ae3e" class="col-lg-12 col-xl-12"> 
                     <div class="card card-block card-stretch card-height files-table">                   

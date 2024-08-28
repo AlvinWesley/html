@@ -1,26 +1,8 @@
 <?php
-// $firstName=$_POST['firstName'];
-// $folder="uploads/".$firstName;
-// // Path to the directory you want to create
-// $directoryPath = 'path/to/your/new/folder';
+session_start();
+include "connect.php";
 
-//  //Check if the directory already exists
-// if (!file_exists($directoryPath)) {
-// //Attempt to create the directory
-//   if (mkdir($directoryPath, 0777, true)) {
-//          echo 'Directory created successfully!';
-//      } else {
-//          echo 'Failed to create directory.';
-//     }
-//  } else {
-//      echo 'Directory already exists.';
-//  }
-
-// move_uploaded_file($_FILES['file']['tmp_name'],
-//                     $folder.time().'_'.$firstName.$_FILES['file']['name']);
-               
-?>
-<?php
+if (isset($_POST['firstName'])){
 $firstName = $_POST['firstName'];
 $uploadDir = 'uploads/';
 $folder = $uploadDir . $firstName . '/'; // Path to the directory for the user's folder
@@ -53,5 +35,31 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     }
 } else {
     echo 'No file uploaded or upload error.';
+}
+}
+//Handling Saving Of Folders into the Database Here
+
+if(isset($_POST["folderName"])){
+    if(isset($_SESSION['userId'])){
+        $folderColor="orange";
+        if(isset ($_POST["folder-clr"])){
+            $folderColor=$_POST['folder-clr'];
+        }
+        $userId = $_SESSION['userId'];
+        $folderName=$_POST["folderName"];
+        $folderType="general";
+        $sql="INSERT INTO FOLDERS(folder_name,folder_type,color_label,owner_id)
+                VALUES('$folderName','$folderType','$folderColor','$userId')";
+        $execute=mysqli_query($conn,$sql);
+      if($execute){
+    echo "Folder has been added successfully";
+        }else{
+    echo "Folder add has experienced an error: " . mysqli_error($conn);
+        }
+
+    }
+   
+}else{
+    echo"Error Here";
 }
 ?>
