@@ -69,9 +69,10 @@ if (isset($_POST['signIn'])) {
         "formPrompt" => $formPrompt['form'],
         "userNamePrompt" => $inputError['userName'],
         "userPassPrompt" => $inputError['password'],
-        "sc"=>$sc,
-        "S_FN"=>$_SESSION['fName']
+        "sc"=>$sc
+        //"S_FN"=>$_SESSION['fName']
     ));
+    //echo $_SESSION['fName'];
     exit;
 }
 ?>

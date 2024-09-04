@@ -133,6 +133,25 @@ if(isset($_POST['submit'])){
             if($queryFinishUp){
                 $formPrompt['form']="User Has Been Registered with userName $email";
                 $sc=true;
+                //Making the Directory for the User here
+                //$firstName = $_POST['firstName'];
+                $uploadDir =  __DIR__ . '/../../../FileUpload/fl3Mee/uploads/';
+                $folder = $uploadDir . $userId. '/'; // Path to the directory for the user's folder
+                // Check if the "uploads" directory exists, create it if not
+                if (!file_exists($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+                // Check if the user's folder exists, create it if not
+                if (!file_exists($folder)) {
+                    if (mkdir($folder, 0777, true)) {
+                        //echo 'Directory created successfully!';
+                    } else {
+                    // echo 'Failed to create directory.';
+                    }
+                } else {
+                    //echo 'Directory already exists.';
+                }
+
             }
         }else{
             $formPrompt['form']="Error in Registering LoginDetails";
@@ -158,12 +177,4 @@ if(isset($_POST['submit'])){
         "sc"=>$sc
     ));
     exit;
-    // echo json_encode(array(
-    //     'formPrompt' => $formPrompt['form'],
-    //     'inputErrorFirstName' => $inputError['firstName'],
-    //     'inputErrorEmail' => $inputError['email'],
-    //     'inputErrorPassword' => $inputError['password'],
-    //     'inputErrorConfirmPassword' => $inputError['confirmPassword']
-    // ));
-   
 ?>

@@ -1,11 +1,14 @@
 console.log("HEllo checking JS Wald");
 var clickLoadStatus = false;
 
-window.onload = function () {
+// window.onload = function () {
+//   ItemsForm();
+//   UserItems();
+// };
+window.addEventListener("load",()=>{
   ItemsForm();
   UserItems();
-};
-
+});
 function UserItems() {
   console.log("Hello This loadusersRequest has been clicked");
 

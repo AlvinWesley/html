@@ -484,51 +484,15 @@
                                 <h4 class="card-title">Documents</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
-                                <a href="./page-folders.html" class=" view-more">View All</a>
+                                <a href="#" class=" view-more">View All</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div  class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="Terms.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="/BUNGOARCH/html/assets/images/layouts/page-1/pdf.png" class="img-fluid" alt="image1">       
-                                </div>
-                                <h6>Terms.pdf</h6> 
-                            </a>             
-                        </div>
-                    </div>
+                
+                <div class="FilesItemsWrapper">
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="New-one.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal">
-                            <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                <div class="iq-image-overlay"></div>
-                                <img src="/BUNGOARCH/html/assets/images/layouts/page-1/doc.png" class="img-fluid" alt="image1">
-                            </div>
-                            <h6>New-one.docx</h6>  
-                            </a>   
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="Woo-box.xlsx" data-load-file="file" data-load-target="#resolte-contaniner"  data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="/BUNGOARCH/html/assets/images/layouts/page-1/xlsx.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>Woo-box.xlsx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <!-- <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body image-thumb doc-text">
                             <a href="#" data-title="IOS-content.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal">
@@ -540,7 +504,7 @@
                             </a>       
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div id="Ae3r" class="col-lg-12">
                     <div class="card card-block card-stretch card-transparent">
                         <div class="card-header d-flex justify-content-between pb-0">
@@ -565,7 +529,6 @@
                     </div>
                 </div>
                 <div class="FolderItemsWrapper">
-                    Your Folders Shall Appear Here
                     <!-- <div class="col-md-6 col-sm-6 col-lg-3 ">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">                            
@@ -796,6 +759,7 @@
     <script src="/BUNGOARCH/html/assets/js/Functions/handler.js"></script>
     <script src="AdminDash.js"></script>
      <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js" defer></script>
+       <script src="/BUNGOARCH/html/FileUpload/fl3Mee/files.js" defer></script>
      <script src="/BUNGOARCH/html/folders/folder.js" defer></script>
 
      <script>

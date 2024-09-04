@@ -1,9 +1,128 @@
+const UploadFiless = document.querySelector("#sbmt_file");
+UploadFiless.addEventListener("click", fetchFolders);
+function frmtDate(dateTimeString) {
+  // Create a Date object from the input string
+  const dateObj = new Date(dateTimeString);
+
+  // Array of month names
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // Extract the day, month, and year from the Date object
+  const day = dateObj.getDate();
+  const month = monthNames[dateObj.getMonth()];
+  const year = dateObj.getFullYear();
+
+  // Format the date as 'DD-MMM-YYYY'
+  return `${day}-${month}-${year}`;
+}
+window.addEventListener("load", fetchFolders);
+function fetchFolders() {
+  //e.preventDefault();
+  const fldrDisp = document.querySelector(".FolderItemsWrapper");
+  fldrDisp.innerHTML = "";
+  let items = "";
+  var xhrr = new XMLHttpRequest();
+  xhrr.open("GET", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php", true);
+  xhrr.onload = function () {
+    if (this.status == 200) {
+      console.log("Hello This loadFolders function has executed");
+      console.log(this.responseText);
+      var resultDataArr = JSON.parse(this.responseText);
+      if (resultDataArr.length === 0) {
+        items = `
+        <div style="min-height:2cm; 
+                                width:100%; 
+                                padding:20px;
+                                background:#5E8A8B ;
+                                color:#fff;
+                                font-weight:600;
+                                border-radius:10px; 
+                                display:flex;
+                                flex-direction:column;
+                                justify-content:center;
+                                align-items:center;">
+                                <h4 style="color:#fff">Your Folders Shall Appear Here</h4>
+                                <h5 style="color:#fff">You dont have any folders at the moment click
+                                 <a class="browser_files" style="color:#3B356E; cursor:pointer;text-decoration:underline">Add Folder(s)</a>
+                                   to Upload Files</h5>
+                                </div>
+        `;
+      } else {
+        console.log(resultDataArr);
+        resultDataArr.forEach(function (folder) {
+          items += `
+    <div class="col-md-6 col-sm-6 col-lg-3">
+                        <div class="card card-block card-stretch card-height" id="folder-${
+                          folder.folder_id
+                        }">
+                            <div class="card-body" style="border:1px solid red">                            
+                                    <div class="d-flex justify-content-between">
+                                        <a class="folder"style="border:1px solid green">
+                                            <div class="icon-small rounded mb-4"style="background:${
+                                              folder.backgroundColor
+                                            }">
+                                                <i class="ri-file-copy-line" style="color:white"></i>
+                                            </div>
+                                        </a>
+                                        <div class="card-header-toolbar">
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
+                                                    <i class="ri-more-2-fill"></i>
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="folder">
+                                        <h5 class="mb-2">${
+                                          folder.folderName
+                                        }</h5>
+                                        <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> ${frmtDate(
+                                          folder.dateCreated
+                                        )}</p>
+                                        <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> ${
+                                          folder.file_count
+                                        } Files</p>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+  `;
+       
+
+});
+      }
+      fldrDisp.innerHTML = items;
+    }
+  };
+  xhrr.send();
+}
+
+
 document.getElementById("addButton").addEventListener("click", function () {
   const folderNameInput = document.getElementById("folderName");
   const folderName = folderNameInput.value.trim();
   const bgColor = document.querySelector("#folderColor").value;
-  const fldrDisp = document.querySelector(".FolderItemsWrapper");
-  let items='';
   const messageBox = document.getElementById("message-box");
 
   // Validation Rules
@@ -29,77 +148,44 @@ document.getElementById("addButton").addEventListener("click", function () {
       `Folder name is too long. Maximum ${maxLength} characters allowed.`,
       "error"
     );
-  } 
-  else {
+  } else {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append("folderName", folderName);
     formData.append("folder-clr", bgColor);
-    xhr.open("POST", "/BUNGOARCH/html/FileUpload/fl3Mee/upload2.php", true);
-    
+    xhr.open("POST", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php", true);
+
     // Handle the response
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            console.log("Response: " + xhr.responseText);
-            displayMessage("Folder added successfully!", "success");
-        } else {
-            console.log("Error: " + xhr.status);
-            displayMessage("Error adding folder.", "error");
-        }
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log("Response: " + xhr.responseText);
+        displayMessage("Folder added successfully!", "success");
+      } else {
+        console.log("Error: " + xhr.status);
+        displayMessage("Error adding folder.", "error");
+      }
     };
 
     xhr.send(formData);
     console.log("Folder: " + folderName + " Color: " + bgColor);
 
-    // Handle adding the folder logic here  
-    items =  `
-   <div class="col-md-6 col-sm-6 col-lg-3">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body">                            
-                                    <div class="d-flex justify-content-between">
-                                        <a href="./page-alexa.html" class="folder">
-                                            <div class="icon-small rounded mb-4"style="background:${bgColor}">
-                                                <i class="ri-file-copy-line" style="color:white"></i>
-                                            </div>
-                                        </a>
-                                        <div class="card-header-toolbar">
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
-                                                    <i class="ri-more-2-fill"></i>
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="./page-alexa.html" class="folder">
-                                        <h5 class="mb-2">${folderName}</h5>
-                                        <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> 10 Dec, 2020</p>
-                                        <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> 08 Files</p>
-                                    </a>
-                            </div>
-                        </div>
-                    </div>
-  `;
-  
+    // Handle adding the folder logic here
+
     console.log("Folder added:", folderName);
-    console.log(this.responseText);
+    //console.log(this.responseText);
     //console.log(items);
-    folderNameInput.value = "";  
+    folderNameInput.value = "";
   }
-fldrDisp.innerHTML += items;
 
+  fetchFolders();
 });
 
-document.getElementById("fld-add-cancl-Btn").addEventListener("click", function () {
-  document.getElementById("folderName").value = "";
-  hideMessage();
-});
+document
+  .getElementById("fld-add-cancl-Btn")
+  .addEventListener("click", function () {
+    document.getElementById("folderName").value = "";
+    hideMessage();
+  });
 
 function displayMessage(message, type) {
   const messageBox = document.getElementById("message-box");
@@ -121,5 +207,19 @@ function hideMessage() {
     messageBox.className = "";
   }, 3000);
 }
+// document.addEventListener("click", (e) => {
+//   e.target.classList.contains("folder");
+//   alert("this Item Selected has an id of ");
+//   console.log("THIS IS CLICKED MOFO");
+// });
 
-
+document.addEventListener("click",
+function(event){
+  const card = event.target.classList.contains("card-block");
+if (event.target.classList.contains("folder")) {
+  alert("folder found :"+card);
+}
+// else{
+//   alert("not Found");
+// }
+});

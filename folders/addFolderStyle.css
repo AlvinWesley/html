@@ -4,6 +4,18 @@
     width: 100%;
     /* border: 2px solid; */
     padding:10px;
+    min-height:1cm;
+    overflow-x: auto;
+}
+.FilesItemsWrapper{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 2px solid; */
+    padding:10px;
+    min-height: 1cm;
     overflow-x: auto;
 }
 .col-md-6{
