@@ -6,6 +6,7 @@
       <title>Bungo Arch</title>
       <link rel="stylesheet" href="/BUNGOARCH/html/Folders/addFolderStyle.css">
       <link rel="stylesheet" href="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadstyle.css">
+      <link rel="stylesheet" href="/BUNGOARCH/html/Folders/viewFolders/viewFolder.css">
       <link rel="shortcut icon" href="/BUNGOARCH/html/assets/images/favicon.ico" />
       <link rel="stylesheet" href="/BUNGOARCH/html/assets/css/backend-plugin.min.css">
       <link rel="stylesheet" href="/BUNGOARCH/html/assets/vendor/ui/css/iziToast.css">
@@ -92,6 +93,29 @@
         <button id="fld-add-cancl-Btn">Cancel</button>
     </div>
                         </dialog>
+        <dialog id="d-mdl-fldV" class="folder_view">
+            <h2>Files in Folder</h2>
+         <div class="file-viewer-list">
+            
+                      <div class="file-table">
+                          <div class="file-row file-header">
+                              <div class="file-icon">Icon</div>
+                              <div class="file-name">File Name</div>
+                              <div class="file-date">Date Created</div>
+                              <div class="file-size">Size</div>
+                              <div class="file-uploaded-by">Uploaded By</div>
+                              <div class="file-actions">Actions</div>
+                          </div>
+                        <div class="file-row-disp">
+            
+                         </div>
+         </div>
+         </div>
+                <div class="dialog-footer">
+                    <button id="closeDialog">Close</button>
+                </div>
+         
+        </dialog>
                   </div>
               </div>
               <nav class="iq-sidebar-menu">
@@ -761,7 +785,7 @@
      <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js" defer></script>
        <script src="/BUNGOARCH/html/FileUpload/fl3Mee/files.js" defer></script>
      <script src="/BUNGOARCH/html/folders/folder.js" defer></script>
-
+    <script src="/BUNGOARCH/html/folders/viewFolders/viewFolder.js" defer></script>
      <script>
 iziToast.error({
     title: 'Error',

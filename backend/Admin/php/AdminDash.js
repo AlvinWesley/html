@@ -273,6 +273,7 @@ function loadUsersLog(e) {
 const Nwfldr = document.querySelector(".nfd-ct");
 const  Fmdl = document.querySelector("#d-mdl-fu");
 const Fldmdl = document.querySelector("#d-mdl-flda");
+
 //   ShrFl = document.querySelectorAll(".nfl-ct "),
  const UplFl = document.querySelector(".upload-file-upf");
  const flderBtnCancel = document.querySelector("#fld-add-cancl-Btn");

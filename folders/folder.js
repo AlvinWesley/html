@@ -1,9 +1,6 @@
-const UploadFiless = document.querySelector("#sbmt_file");
-UploadFiless.addEventListener("click", fetchFolders);
 function frmtDate(dateTimeString) {
   // Create a Date object from the input string
   const dateObj = new Date(dateTimeString);
-
   // Array of month names
   const monthNames = [
     "Jan",
@@ -65,12 +62,12 @@ function fetchFolders() {
         resultDataArr.forEach(function (folder) {
           items += `
     <div class="col-md-6 col-sm-6 col-lg-3">
-                        <div class="card card-block card-stretch card-height" id="folder-${
+                        <div class="card card-block card-stretch card-height themFlders" id="folder-${
                           folder.folder_id
                         }">
-                            <div class="card-body" style="border:1px solid red">                            
+                            <div class="card-body">                            
                                     <div class="d-flex justify-content-between">
-                                        <a class="folder"style="border:1px solid green">
+                                        <a class="folder">
                                             <div class="icon-small rounded mb-4"style="background:${
                                               folder.backgroundColor
                                             }">
@@ -83,7 +80,7 @@ function fetchFolders() {
                                                     <i class="ri-more-2-fill"></i>
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                                    <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                    <a class="dropdown-item" class="folder"><i class="ri-eye-fill mr-2"></i>View</a>
                                                     <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
                                                     <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
                                                     <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
@@ -212,14 +209,86 @@ function hideMessage() {
 //   alert("this Item Selected has an id of ");
 //   console.log("THIS IS CLICKED MOFO");
 // });
+ function getFileActions(fal) {
+   if (fal === "1") {
+     return `
+            <button class="action-btn delete">Delete</button>
+            <button class="action-btn download">Download</button>
+            <button class="action-btn share">Share</button>
+            <button class="action-btn move">Move</button>
+            `;
+   } else if (fal === "2") {
+     return `
+            <button class="action-btn delete">Delete</button>
+            <button class="action-btn download">Download</button>
+            <button class="action-btn move">Move</button>
+            `;
+   }
+ }
+function frmatSize(sz) {
+  return sz >= 1024 * 1024
+    ? (sz / (1024 * 1024)).toFixed(2) + " MB" // Divide by 1024 * 1024 for MB
+    : (sz / 1024).toFixed(2) + " KB"; // Divide by 1024 for KB
+}
 
-document.addEventListener("click",
+ const shwFlrDiag = document.getElementById("d-mdl-fldV");
+ const clsFldrVw = document.getElementById("closeDialog");
+ clsFldrVw.addEventListener("click",()=>{
+shwFlrDiag.close();
+ });
+ const getItemsFromFldr = document.querySelector(".file-row-disp");
+document.addEventListener("dblclick",
 function(event){
-  const card = event.target.classList.contains("card-block");
-if (event.target.classList.contains("folder")) {
-  alert("folder found :"+card);
+  const card = event.target.closest(".themFlders").id;
+  shwFlrDiag.showModal();
+if (event.target.closest(".folder")) {
+  let folderId = card.split("-")[1];
+  //alert("folder found :"+folderId);
+  let xhrf=new XMLHttpRequest();
+  let formData = new FormData();
+  formData.append("folder_id", folderId);
+  xhrf.open(
+    "POST",
+    "/BUNGOARCH/html/folders/viewFolders/GetFolders.php",
+    true
+  );
+   xhrf.onload = function () {
+     if (xhrf.status === 200) {
+       //console.log("Response: " + xhrf.responseText);
+       let theSelectedFolder = JSON.parse(xhrf.responseText);
+       let dispTheSelected =``;
+      
+       theSelectedFolder.forEach(fileItem => {
+        console.log(fileItem.file_name);
+        
+        dispTheSelected += `
+                             <div class="file-row">
+                              <div class="file-icon"><i class="fas fa-file"></i></div>
+                              <div class="file-name">${fileItem.file_name}</div>
+                              <div class="file-date">${fileItem.date_of_upload}</div>
+                              <div class="file-size">${frmatSize(fileItem.file_size)}</div>
+                              <div class="file-uploaded-by">${fileItem.uploader_id}</div>
+                              <div class="file-actions">
+                                  ${getFileActions(fileItem.file_access_level)}
+                              </div>
+                          </div>
+        `;
+       });
+       getItemsFromFldr.innerHTML=dispTheSelected;
+       //displayMessage("Folder items Loaded!", "success");
+     } else {
+       console.log("Error: " + xhrf.status);
+       console.log("error while Sending the data");
+       //displayMessage("Error adding folder.", "error");
+     }
+   };
+
+   xhrf.send(formData);
+  
 }
 // else{
 //   alert("not Found");
 // }
 });
+// const UploadFiless = document.querySelector("#sbmt_file");
+// UploadFiless.addEventListener("click", fetchFolders);

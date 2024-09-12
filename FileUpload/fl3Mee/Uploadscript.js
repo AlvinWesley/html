@@ -249,6 +249,7 @@ UploadFiles.addEventListener("click", () => {
           currentFileItem.querySelector(".file-status").style.color = "#00B125";
           fileCompletedProg.innerText = `${completed} / ${totalFiles} files Completed`;
           LoadThemFiles();
+          fetchFolders();
         }
       });
 
@@ -258,7 +259,6 @@ UploadFiles.addEventListener("click", () => {
         currentFileItem.querySelector(".file-status").style.color = "#D40D0D";
         cnclFileUploadBtn.remove();
       });
-
       xhr.addEventListener("error", () => {
         alert("Upload Experienced an Error!");
       });

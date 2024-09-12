@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing</title>
+    <link rel="stylesheet" href="fileShare.css">
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="selectorDialog fileDialog">
+        <!-- Close Button -->
+        <button class="closeBtn">&times;</button>
+
+        <div class="mainContent">
+            <h1>Share Files</h1>
+            <div class="fileSummary">
+                <h2 id="fileCount">0 Files Selected</h2>
+                <h3 id="fileSize">Total Size: 0GB</h3>
+            </div>
+
+            <div class="fileOptions">
+                <input type="text" id="searchInput" placeholder="Search Files...">
+                <div class="sortFiles">
+                    <label for="sort">Sort By:</label>
+                    <select id="sort">
+                        <option value="date">Date</option>
+                        <option value="A-Z">A-Z</option>
+                        <option value="Z-A">Z-A</option>
+                        <option value="size">Size</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- List of files (Scrollable) -->
+            <div class="fileList" id="fileList">
+                <div class="fileBox" data-name="MyPhoto.jpg" data-size="3" data-date="2024-09-10">
+                    <input type="checkbox" class="fileCheckbox">
+                    <div class="fileIcon">📁</div>
+                    <div class="fileDetails">
+                        <p class="fileName">MyPhoto.jpg</p>
+                        <p class="fileSize">3GB</p>
+                    </div>
+                </div>
+
+                <div class="fileBox" data-name="Document.pdf" data-size="2" data-date="2024-09-08">
+                    <input type="checkbox" class="fileCheckbox">
+                    <div class="fileIcon">📁</div>
+                    <div class="fileDetails">
+                        <p class="fileName">Document.pdf</p>
+                        <p class="fileSize">2GB</p>
+                    </div>
+                </div>
+
+                <!-- More files... -->
+            </div>
+
+            <!-- Bottom Actions: Select All and Clear Buttons -->
+            <div class="actionButtons">
+                <button class="selectAllBtn" id="selectAllBtn">Select All</button>
+                <button class="clearBtn" id="clearBtn">Clear</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const fileList = document.getElementById('fileList');
+        const sortSelect = document.getElementById('sort');
+        const selectAllBtn = document.getElementById('selectAllBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const fileCheckboxes = document.querySelectorAll('.fileCheckbox');
+        const fileCount = document.getElementById('fileCount');
+        const fileSize = document.getElementById('fileSize');
+
+        // Function to update the number of files selected and their total size
+        function updateFileSummary() {
+            let selectedCount = 0;
+            let totalSize = 0;
+
+            fileCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const fileBox = checkbox.closest('.fileBox');
+                    const size = parseFloat(fileBox.getAttribute('data-size'));
+                    selectedCount++;
+                    totalSize += size;
+                }
+            });
+
+            fileCount.innerText = `${selectedCount} Files Selected`;
+            fileSize.innerText = `Total Size: ${totalSize}GB`;
+        }
+
+        // Search and highlight functionality
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const fileBoxes = document.querySelectorAll('.fileBox');
+
+            fileBoxes.forEach(fileBox => {
+                const fileName = fileBox.getAttribute('data-name').toLowerCase();
+                const fileNameElement = fileBox.querySelector('.fileName');
+
+                if (fileName.includes(query)) {
+                    fileBox.style.display = 'flex';
+                    const regex = new RegExp(`(${query})`, 'gi');
+                    fileNameElement.innerHTML = fileNameElement.innerText.replace(regex, '<span class="highlight">$1</span>');
+                } else {
+                    fileBox.style.display = 'none';
+                }
+            });
+        });
+
+        // Sort functionality
+        sortSelect.addEventListener('change', () => {
+            const option = sortSelect.value;
+            const fileBoxes = Array.from(document.querySelectorAll('.fileBox'));
+
+            let sortedFiles;
+            if (option === 'A-Z') {
+                sortedFiles = fileBoxes.sort((a, b) => a.getAttribute('data-name').localeCompare(b.getAttribute('data-name')));
+            } else if (option === 'Z-A') {
+                sortedFiles = fileBoxes.sort((a, b) => b.getAttribute('data-name').localeCompare(a.getAttribute('data-name')));
+            } else if (option === 'size') {
+                sortedFiles = fileBoxes.sort((a, b) => parseFloat(a.getAttribute('data-size')) - parseFloat(b.getAttribute('data-size')));
+            } else if (option === 'date') {
+                sortedFiles = fileBoxes.sort((a, b) => new Date(a.getAttribute('data-date')) - new Date(b.getAttribute('data-date')));
+            }
+
+            fileList.innerHTML = '';
+            sortedFiles.forEach(fileBox => {
+                fileList.appendChild(fileBox);
+            });
+        });
+
+        // Select all functionality
+        selectAllBtn.addEventListener('click', () => {
+            fileCheckboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            updateFileSummary();
+        });
+
+        // Clear all functionality
+        clearBtn.addEventListener('click', () => {
+            fileCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            updateFileSummary();
+        });
+
+        // Event listener for each checkbox to update file count and size
+        fileCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateFileSummary);
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Users</title>
+    <link rel="stylesheet" href="userShare.css">
+    <style>
+        /* Basic styling for the 'User not found' message */
+        .userNotFound {
+            display: none;
+            color: rgb(133, 123, 123);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Highlight the matching text */
+        .highlight {
+            background-color: rgb(77, 200, 238);
+        }
+
+        /* Styling for the selected count */
+        .selectedCount {
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="selectorDialog userDialog">
+        <!-- Close Button -->
+        <button class="closeBtn">&times;</button>
+
+        <div class="mainContent">
+            <h1>Select Users</h1>
+            <div class="selectedCount" id="selectedCount">0 users selected</div>
+            <!-- Search Bar -->
+            <div class="userOptions">
+                <input type="text" id="userSearch" placeholder="Search Users...">
+            </div>
+
+            <!-- 'User not found' message -->
+            <div class="userNotFound" id="userNotFound">No users found.</div>
+
+            <!-- Selected users count -->
+            
+
+            <!-- List of users (Scrollable) -->
+            <div class="userList" id="userList">
+                <div class="userBox">
+                    <input type="checkbox" class="userCheckbox" id="user1">
+                    <div class="userAvatar">👤</div>
+                    <div class="userDetails">
+                        <p class="userName">John Doe</p>
+                        <p class="userEmail">john.doe@example.com</p>
+                    </div>
+                </div>
+
+                <div class="userBox">
+                    <input type="checkbox" class="userCheckbox" id="user2">
+                    <div class="userAvatar">👤</div>
+                    <div class="userDetails">
+                        <p class="userName">Jane Smith</p>
+                        <p class="userEmail">jane.smith@example.com</p>
+                    </div>
+                </div>
+
+                <div class="userBox">
+                    <input type="checkbox" class="userCheckbox" id="user3">
+                    <div class="userAvatar">👤</div>
+                    <div class="userDetails">
+                        <p class="userName">Michael Johnson</p>
+                        <p class="userEmail">michael.j@example.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Actions: Select All and Clear Buttons -->
+            <div class="actionButtons">
+                <button class="selectAllBtn">Select All</button>
+                <button class="clearBtn">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Search Functionality with Enhancements and User Selection Count -->
+    <script>
+        const searchInput = document.getElementById('userSearch');
+        const userList = document.getElementById('userList');
+        const userBoxes = userList.getElementsByClassName('userBox');
+        const userNotFound = document.getElementById('userNotFound');
+        const selectedCount = document.getElementById('selectedCount');
+        const userCheckboxes = document.getElementsByClassName('userCheckbox');
+
+        // Debouncing utility function to limit search trigger rate
+        function debounce(func, delay) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, arguments), delay);
+            };
+        }
+
+        // Function to highlight matched text
+        function highlightMatch(text, query) {
+            const regExp = new RegExp(`(${query})`, 'gi'); // Create a regular expression for the query
+            return text.replace(regExp, '<span class="highlight">$1</span>'); // Wrap matched text in a span
+        }
+
+        // Function to search and filter users
+        function searchUsers() {
+            const filter = searchInput.value.toLowerCase();
+            let foundAny = false;
+
+            // Loop through all userBox items
+            for (let i = 0; i < userBoxes.length; i++) {
+                const userNameElement = userBoxes[i].querySelector('.userName');
+                const userEmailElement = userBoxes[i].querySelector('.userEmail');
+                const userName = userNameElement.textContent.toLowerCase();
+                const userEmail = userEmailElement.textContent.toLowerCase();
+
+                // Check if the search input matches either name or email
+                if (userName.includes(filter) || userEmail.includes(filter)) {
+                    userBoxes[i].style.display = '';
+                    foundAny = true;
+
+                    // Highlight the matched text in both name and email
+                    userNameElement.innerHTML = highlightMatch(userBoxes[i].querySelector('.userName').textContent, searchInput.value);
+                    userEmailElement.innerHTML = highlightMatch(userBoxes[i].querySelector('.userEmail').textContent, searchInput.value);
+                } else {
+                    userBoxes[i].style.display = 'none';
+                }
+            }
+
+            // Show or hide 'No users found' message
+            if (!foundAny) {
+                userNotFound.style.display = 'block';
+            } else {
+                userNotFound.style.display = 'none';
+            }
+        }
+
+        // Debounce the search function to limit how often it's triggered
+        const debouncedSearch = debounce(searchUsers, 300);
+
+        // Listen to the input event on the search bar and run the debounced search function
+        searchInput.addEventListener('input', debouncedSearch);
+
+        // Function to update the selected user count
+        function updateSelectedCount() {
+            let count = 0;
+            for (let checkbox of userCheckboxes) {
+                if (checkbox.checked) {
+                    count++;
+                }
+            }
+            selectedCount.textContent = `${count} users selected`;
+        }
+
+        // Add event listener to each checkbox to update count when checked/unchecked
+        for (let checkbox of userCheckboxes) {
+            checkbox.addEventListener('change', updateSelectedCount);
+        }
+
+        // Select all users
+        document.querySelector('.selectAllBtn').addEventListener('click', () => {
+            for (let checkbox of userCheckboxes) {
+                checkbox.checked = true;
+            }
+            updateSelectedCount();
+        });
+
+        // Clear all selected users
+        document.querySelector('.clearBtn').addEventListener('click', () => {
+            for (let checkbox of userCheckboxes) {
+                checkbox.checked = false;
+            }
+            updateSelectedCount();
+        });
+    </script>
+</body>
+</html>
