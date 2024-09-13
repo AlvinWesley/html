@@ -1,0 +1,27 @@
+<?php
+session_start();
+include "connect.php";
+$user_id = '';
+
+if (isset($_SESSION['userId'])) {
+    $user_id = $_SESSION['userId'];
+
+    // Use aggregate functions for columns that are not grouped
+    $sqlFetchFiles = "
+    SELECT file_name, MAX(file_id) AS file_id,
+    MAX(file_path_directory) AS file_path_directory ,
+    MAX(folder_id) AS folder_id,
+    MAX(file_size) AS file_size, 
+    MAX(file_extension) AS file_extension, 
+    MAX(date_of_upload) AS date_of_upload
+    FROM FILES_TBL 
+    WHERE uploader_id = '$user_id' 
+    AND file_access_level = 1 
+    GROUP BY file_name 
+    ORDER BY file_id DESC"; // Orders by the most recent file_id
+
+    $sqlFileRun = mysqli_query($conn, $sqlFetchFiles);
+    $sqlGetThem = mysqli_fetch_all($sqlFileRun, MYSQLI_ASSOC);
+
+    echo json_encode($sqlGetThem);
+}

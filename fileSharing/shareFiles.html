@@ -9,10 +9,11 @@
    <link rel="stylesheet" href="shareFiles.css"> 
 </head>
 <body>
+    <div class="flShrDiag">
     <!--The select users dialog Starts here guys-->
-     <div class="selectorDialog userDialog">
+     <dialog class="selectorDialog userDialog">
         <!-- Close Button -->
-        <button class="closeBtn">&times;</button>
+        <button class="closeBtn" id="cls_usr_dg">&times;</button>
 
         <div class="mainContent">
             <h1>Select Users</h1>
@@ -30,45 +31,20 @@
 
             <!-- List of users (Scrollable) -->
             <div class="userList" id="userList">
-                <div class="userBox">
-                    <input type="checkbox" class="userCheckbox" id="user1">
-                    <div class="userAvatar">👤</div>
-                    <div class="userDetails">
-                        <p class="userName">John Doe</p>
-                        <p class="userEmail">john.doe@example.com</p>
-                    </div>
-                </div>
-
-                <div class="userBox">
-                    <input type="checkbox" class="userCheckbox" id="user2">
-                    <div class="userAvatar">👤</div>
-                    <div class="userDetails">
-                        <p class="userName">Jane Smith</p>
-                        <p class="userEmail">jane.smith@example.com</p>
-                    </div>
-                </div>
-
-                <div class="userBox">
-                    <input type="checkbox" class="userCheckbox" id="user3">
-                    <div class="userAvatar">👤</div>
-                    <div class="userDetails">
-                        <p class="userName">Michael Johnson</p>
-                        <p class="userEmail">michael.j@example.com</p>
-                    </div>
-                </div>
             </div>
 
             <!-- Bottom Actions: Select All and Clear Buttons -->
             <div class="actionButtons">
+                <button class="choose" id="users_chosen">Select</button>
                 <button class="selectAllBtn">Select All</button>
                 <button class="clearBtn">Clear</button>
             </div>
         </div>
-    </div>
+    </dialog>
     <!-- The Share files Dialog Shows itself here -->
-     <div class="selectorDialog fileDialog">
+     <dialog class="selectorDialog fileDialog">
         <!-- Close Button -->
-        <button class="closeBtn">&times;</button>
+        <button class="closeBtn" id="cls_fl_dg">&times;</button>
 
         <div class="mainContent">
             <h1>Share Files</h1>
@@ -92,75 +68,57 @@
 
             <!-- List of files (Scrollable) -->
             <div class="fileList" id="fileList">
-                <div class="fileBox" data-name="MyPhoto.jpg" data-size="3" data-date="2024-09-10">
-                    <input type="checkbox" class="fileCheckbox">
-                    <div class="fileIcon">📁</div>
-                    <div class="fileDetails">
-                        <p class="fileName">MyPhoto.jpg</p>
-                        <p class="fileSize">3GB</p>
-                    </div>
-                </div>
-
-                <div class="fileBox" data-name="Document.pdf" data-size="2" data-date="2024-09-08">
-                    <input type="checkbox" class="fileCheckbox">
-                    <div class="fileIcon">📁</div>
-                    <div class="fileDetails">
-                        <p class="fileName">Document.pdf</p>
-                        <p class="fileSize">2GB</p>
-                    </div>
-                </div>
+               
 
                 <!-- More files... -->
             </div>
 
             <!-- Bottom Actions: Select All and Clear Buttons -->
             <div class="actionButtons">
+                <button class="choose" id="files_chosen">Select</button>
                 <button class="selectAllBtn" id="selectAllBtn">Select All</button>
                 <button class="clearBtn" id="clearBtn">Clear</button>
             </div>
 
         </div>
-    </div>
+    </dialog>
     <div class="shareFilesBox">
         <h2>Share Your Files to users</h2>
         <div class="text_Box">
-            <h3>Select files and The Users to share the files with</h3>
-
         </div>
         <div class="thisContainer">
-            <h4>Files To Share</h4>
+            <div>
+            <h4 id="fl_cnt">Files To Share(0)</h4>
+            </div>
             <div class="file_box">
-                <div class="file_item">
-                    file1.jpg
-                </div>
+                
             </div>
             <div class="addBox">
-                <button>Add Files</button>
+                <button id="add_file_btn">Add Files</button>
             </div>
         </div>
         
         <div class="thisContainer">
-            <h4>Recipients</h4>
+            <h4 id="usr_cnt">Recipients(0)</h4>
             <div class="users_box">
-                <div class="user_item">
-                    <div class="user_avator">
-                        AW
-                    </div>
-                    <div class="user_Name">
-                        ALVIN WESLEY
-                    </div>
-                </div>            
+                           
             </div>
             <div class="addBox">
-                <button>Add users</button>
+                <button id="add_user_btn">Add users</button>
             </div>
         </div>
+        <div class="commentsflshr">
+            <label for="share description"> Add Comments</label>
+            <textarea name="share description" id="fl_shr_desc" cols="30"></textarea>
+
+        </div>
         <div class="actions">
-            <button>Share items</button>
-            <button>Clear Selection</button>
-            <button>Exit</button>
+            <button class="shr_files">Share items</button>
+            <button class="clr_selection">Clear Selection</button>
+            <button class="cls_shr_diag">Exit</button>
         </div>
     </div>
+</div>
     <script src="share.js"></script>
 </body>
 </html>
