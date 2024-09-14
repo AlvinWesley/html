@@ -38,6 +38,8 @@ userItem.innerHTML=`<p style="color:grey">There are no selected recipients. Clic
 //The three buttons Actions are here not down there dont bother looking too much tho😂
 clearSelection.addEventListener("click",()=>{
   //console.log("Clearing now now");
+const userCheckboxes = userList.getElementsByClassName("userCheckbox");
+const fileCheckboxes = document.querySelectorAll(".fileCheckbox");
 filesSelect=[];
 fileItem.innerHTML = `<p style="color:grey">There are no selected files. Click add to Add Files</p>`;
 userItem.innerHTML = `<p style="color:grey">There are no selected recipients. Click add users to add users</p>`;
@@ -48,6 +50,8 @@ Array.from(userCheckboxes).forEach((checkbox) => (checkbox.checked = false));
 updateSelectedCount();
 fileCheckboxes.forEach((checkbox) => (checkbox.checked = false));
 updateFileSummary();
+updateNoOfFiles();
+updateNoOfUsers();
 });
 chooseFiles.addEventListener("click", listTheItems);
  function listTheItems() {
@@ -347,6 +351,7 @@ addFiles.addEventListener("click", () => {
                         data-date="${fileEl.date_of_upload}"
                         data-fileId="${fileEl.file_id}"
                         data-filedir="${fileEl.file_path_directory}"
+                        data-pseudoName="${fileEl.file_pseudo_name}"
                         >
               <input type="checkbox" class="fileCheckbox" ${isChecked ? 'checked' : ''}>
               <div class="fileIcon">📁</div>
@@ -391,14 +396,25 @@ function updateFileSummary() {
     const fileIdd = fileBox.getAttribute("data-fileId");
     const filePath = fileBox.getAttribute("data-filedir");
     const size = parseFloat(fileBox.getAttribute("data-size"));
+    const file_pseudo_name = fileBox.getAttribute("data-pseudoName");
 
     if (checkbox.checked) {
       // Add the file if it isn't already included
-      if (!filesSelect.some((file) => file.FileName === fileName && file.Size === size && file.FileDir=== filePath && file.FileId===fileIdd)) {
-        filesSelect.push({ FileName: fileName, Size: size,FileDir:filePath,FileId:fileIdd });
+      if (!filesSelect.some((file) => file.FileName === fileName && 
+                                      file.Size === size &&
+                                      file.FileDir=== filePath && 
+                                      file.FileId===fileIdd&&
+                                      file.PseudoName===file_pseudo_name))
+        {
+        filesSelect.push({ FileName: fileName,
+                          Size: size,
+                          FileDir:filePath,
+                          FileId:fileIdd ,
+                          PseudoName:file_pseudo_name 
+                        });
+        }
       }
       totalSize += size;
-    }
   });
 
   fileCount.textContent = `${filesSelect.length} Files Selected`;
@@ -462,6 +478,14 @@ clearBtn.addEventListener("click", () => {
 
 //Nop were not yet done with everything were can now send the selected filed to users frome here now 
 //first check if the arrays have something before you continue ok
+function splitDir(dir){
+ let firstSlashIndex = dir.indexOf("/");
+ let result = dir.substring(firstSlashIndex);
+  return result
+}
+function formatUserName(userName){
+  return userName.replace(/\s+/g, "").toUpperCase();
+}
 confirmShare.addEventListener("click", () => {
   //console.log(filesSelect.length);
   //console.log(usersSelect.length);
@@ -469,12 +493,59 @@ confirmShare.addEventListener("click", () => {
   // If both filesSelect and usersSelect have at least one item, run the else block
   if (filesSelect.length === 0 || usersSelect.length === 0) {
     shrtxtBx.innerHTML = `<h3 id="shr_prmt" style="color:orange">You've got to send at least one file to one user</h3>`;
+   
     //console.log(filesSelect);
     //console.log(usersSelect);
   } else {
     shrtxtBx.innerHTML = `<h3 id="shr_prmt" style="color:green">Files Sharing Init</h3>`;
-    //console.log(filesSelect);
-    //console.log(usersSelect);
+    let formData = new FormData();
+
+    // Append all users and their files to formData in a structured manner
+    usersSelect.forEach((user, userIndex) => {
+      filesSelect.forEach((file, fileIndex) => {
+        // Group user and file data in a structured way
+        formData.append(`users[${userIndex}][recipient_id]`, user.UserID);
+        formData.append(
+          `users[${userIndex}][receiver]`,
+          formatUserName(user.UserName)
+        );
+        formData.append(
+          `users[${userIndex}][files][${fileIndex}][filePseudoName]`,
+          file.PseudoName
+        );
+        formData.append(
+          `users[${userIndex}][files][${fileIndex}][fileName]`,
+          file.FileName
+        );
+        formData.append(
+          `users[${userIndex}][files][${fileIndex}][dir]`,
+          splitDir(file.FileDir)
+        );
+
+        // For debugging/logging purposes
+        console.log(
+          `Sending file ${file.FileName} (Pseudo: ${file.PseudoName}) to user ${user.UserName} (${user.UserID})`
+        );
+      });
+    });
+
+    // Create and send the XMLHttpRequest
+    let xhrfs = new XMLHttpRequest();
+    xhrfs.open("POST", "/BUNGOARCH/html/fileSharing/php/shareFiles.php", true);
+
+    // Handle the response
+    xhrfs.onload = function () {
+      if (xhrfs.status === 200) {
+       // console.log("Transfer successful");
+        console.log(xhrfs.responseText); // Success response from PHP
+      } else {
+        console.error("Error: " + xhrfs.responseText); // Error response
+      }
+    };
+
+    // Send formData
+    xhrfs.send(formData);
+
   }
 });
 

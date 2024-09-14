@@ -13,7 +13,8 @@ if (isset($_SESSION['userId'])) {
     MAX(folder_id) AS folder_id,
     MAX(file_size) AS file_size, 
     MAX(file_extension) AS file_extension, 
-    MAX(date_of_upload) AS date_of_upload
+    MAX(date_of_upload) AS date_of_upload,
+    MAX(file_pseudo_name) AS file_pseudo_name
     FROM FILES_TBL 
     WHERE uploader_id = '$user_id' 
     AND file_access_level = 1 

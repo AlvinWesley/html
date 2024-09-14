@@ -1,11 +1,98 @@
 <?php
-//now guys here is the procudure to move 
-$source = 'path/to/folderA/filename.ext'; // Path to the file in folder A
-$destination = 'path/to/folderB/filename.ext'; // Path to the file in folder B
+session_start();
+// Ensure the user is authenticated
+if (!isset($_SESSION['userId'])) {
+    echo "Error: User not authenticated.";
+    exit;
+}
 
-if (rename($source, $destination)) {
-    echo "File moved successfully.";
+// Base upload directory
+$uploadDir = __DIR__ . '/../../FileUpload/fl3Mee/uploads/';
+
+// Ensure the base directory exists
+if (!file_exists($uploadDir)) {
+    mkdir($uploadDir, 0755, true);
+}else{
+    echo "failed to create main dir coz its already there😂";
+}
+
+// Get current user ID
+$user_id = $_SESSION['userId'];
+
+// Process each user and their respective files
+if (isset($_POST['users'])) {
+    foreach ($_POST['users'] as $user) {
+        $recipient_id = $user['recipient_id'];
+        $receiver_name = $user['receiver'];
+
+   // Create the recipient's directory if it doesn't exist
+$recipientFolder = $uploadDir . $recipient_id . '/SharedFiles/';
+if (!file_exists($recipientFolder)) {
+    // Attempt to create the directory
+    if (!mkdir($recipientFolder, 0755, true)) {
+        echo "Failed to create directory for user: $receiver_name.";
+        continue;
+    } else {
+        // Check if the folder for the recipient's ID as the owner exists in the database
+        $sqlLookForFolder = "SELECT folder_name, folder_type, owner_id 
+                             FROM folders 
+                             WHERE folder_name = 'SharedFiles' 
+                             AND folder_type = 'sharedFilesFolder' 
+                             AND owner_id = ?";
+
+        // Use a prepared statement to avoid SQL injection
+        if ($stmt = $conn->prepare($sqlLookForFolder)) {
+            $stmt->bind_param("i", $recipient_id); // Bind the recipient_id as an integer
+            $stmt->execute();
+            $result = $stmt->get_result();
+            // If no rows are returned, the folder doesn't exist, so insert it
+            if ($result->num_rows == 0) {
+                $insertFolderSql = "INSERT INTO folders (folder_name, color_label, folder_type, owner_id, can_be_deleted) 
+                                    VALUES ('SharedFiles', '#cfeea4', 'sharedFilesFolder', ?, false)";
+                
+                if ($insertStmt = $conn->prepare($insertFolderSql)) {
+                    $insertStmt->bind_param("i", $recipient_id); // Bind recipient_id
+                    if ($insertStmt->execute()) {
+                        echo "Folder successfully created and saved in the database.";
+                    } else {
+                        // Log errors instead of displaying them in production
+                        echo "Error while inserting folder: " . $conn->error;
+                    }
+                    $insertStmt->close();
+                }
+            } else {
+                echo "Folder already exists in the database.";
+            }
+
+            $stmt->close();
+        } else {
+            // Log or handle errors with preparing the SQL statement
+            echo "Error preparing the SQL statement: " . $conn->error;
+        }
+    }
+}
+        // Process files for this recipient
+        foreach ($user['files'] as $file) {
+            $filePseudoName = $file['filePseudoName'];
+            $fileName = $file['fileName'];
+            $dir = $file['dir'];
+
+            // Construct source and destination paths
+            $source = __DIR__ . '/../../FileUpload/fl3Mee' . $dir . $filePseudoName;
+            $recipientFileName = time() . '_' . uniqid() . '_' . $receiver_name . '_Shr_' . $user_id . '_' . $fileName;
+            $destination = $recipientFolder . $recipientFileName;
+
+            // Move/copy the file to the recipient's folder
+            if (copy($source, $destination)) {
+                echo "File $fileName successfully copied to $receiver_name's folder.\n";
+            } else {
+                // Log more detailed errors if file copying fails
+                $error = error_get_last();
+                echo "Error copying $fileName to $receiver_name's folder: " . $error['message'] . "\n";
+            }
+        }
+    }
 } else {
-    echo "Failed to move the file.";
+    echo "Error: No users or files provided.";
 }
 ?>
