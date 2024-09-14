@@ -1,6 +1,7 @@
 <?php
 session_start();
 // Ensure the user is authenticated
+include_once "connect.php";
 if (!isset($_SESSION['userId'])) {
     echo "Error: User not authenticated.";
     exit;
@@ -24,6 +25,7 @@ if (isset($_POST['users'])) {
     foreach ($_POST['users'] as $user) {
         $recipient_id = $user['recipient_id'];
         $receiver_name = $user['receiver'];
+        $receiverInits=$user['recipient_Inits'];
 
    // Create the recipient's directory if it doesn't exist
 $recipientFolder = $uploadDir . $recipient_id . '/SharedFiles/';
@@ -34,7 +36,7 @@ if (!file_exists($recipientFolder)) {
         continue;
     } else {
         // Check if the folder for the recipient's ID as the owner exists in the database
-        $sqlLookForFolder = "SELECT folder_name, folder_type, owner_id 
+        $sqlLookForFolder = "SELECT folder_id,folder_name, folder_type, owner_id 
                              FROM folders 
                              WHERE folder_name = 'SharedFiles' 
                              AND folder_type = 'sharedFilesFolder' 
@@ -47,9 +49,8 @@ if (!file_exists($recipientFolder)) {
             $result = $stmt->get_result();
             // If no rows are returned, the folder doesn't exist, so insert it
             if ($result->num_rows == 0) {
-                $insertFolderSql = "INSERT INTO folders (folder_name, color_label, folder_type, owner_id, can_be_deleted) 
+                $insertFolderSql = "INSERT INTO folders (folder_name, color_label, folder_type, owner_id, can_be_deleated) 
                                     VALUES ('SharedFiles', '#cfeea4', 'sharedFilesFolder', ?, false)";
-                
                 if ($insertStmt = $conn->prepare($insertFolderSql)) {
                     $insertStmt->bind_param("i", $recipient_id); // Bind recipient_id
                     if ($insertStmt->execute()) {
@@ -63,7 +64,6 @@ if (!file_exists($recipientFolder)) {
             } else {
                 echo "Folder already exists in the database.";
             }
-
             $stmt->close();
         } else {
             // Log or handle errors with preparing the SQL statement
@@ -85,6 +85,39 @@ if (!file_exists($recipientFolder)) {
             // Move/copy the file to the recipient's folder
             if (copy($source, $destination)) {
                 echo "File $fileName successfully copied to $receiver_name's folder.\n";
+            //SQL Code To Save The Files Into The Database Now
+            //First fetch the Destination Folder id 
+            $sqlGetFolderId = "SELECT folder_id FROM folders WHERE folder_name = ? AND owner_id = ? AND folder_type = ?";
+                    if ($stmt = $conn->prepare($sqlGetFolderId)) {
+                        $folderName = 'SharedFiles';
+                        $folderType = 'sharedFilesFolder';
+                        $stmt->bind_param("sis", $folderName, $recipient_id, $folderType);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $row = $result->fetch_assoc();
+                        $stmt->close();
+                    }
+
+            $folder_id=$row['folder_id'];
+            $file_name=$file['fileName']."(shrd)(".$receiverInits.")";
+            $file_type=$file['fileType'];
+            $file_extension=$file['fileExtension'];
+            $file_description="This Is Shared file from ".$receiver_name;
+            $file_size=$file['fileSize'];
+            $uploader_id=$file['uploaderId'];
+          $sqlInsertFile = "INSERT INTO FILES_TBL (folder_id, file_name, file_pseudo_name, file_type, file_extension, file_description, file_size, file_path_directory, uploader_id)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    if ($stmt = $conn->prepare($sqlInsertFile)) {
+                        $stmt->bind_param("isssssisi", $folder_id, $file_name, $recipientFileName, $file_type, $file_extension, $file_description, $file_size, $recipientFolder, $uploader_id);
+                        if ($stmt->execute()) {
+                            echo "Shared Files Added To the Database";
+                            //now RECORD the Shared files  INTO THE FILE_SHARING_TABLE Table
+                            //$sqlUpdateSharedFiles = "INSERT INTO FILE_SHARING_TABLE";
+                        } else {
+                            echo "Error Saving the Shared Files into the Database: " . $conn->error;
+                        }
+                        $stmt->close();
+                    }
             } else {
                 // Log more detailed errors if file copying fails
                 $error = error_get_last();

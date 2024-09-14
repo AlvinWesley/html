@@ -352,8 +352,13 @@ addFiles.addEventListener("click", () => {
                         data-fileId="${fileEl.file_id}"
                         data-filedir="${fileEl.file_path_directory}"
                         data-pseudoName="${fileEl.file_pseudo_name}"
+                        data-filetype="${fileEl.file_type}"
+                        data-fileExt="${fileEl.file_extension}"
+                        data-uploaderId="${fileEl.uploader_id}"
                         >
-              <input type="checkbox" class="fileCheckbox" ${isChecked ? 'checked' : ''}>
+              <input type="checkbox" class="fileCheckbox" ${
+                isChecked ? "checked" : ""
+              }>
               <div class="fileIcon">📁</div>
               <div class="fileDetails">
                   <p class="fileName">${fileEl.file_name}</p>
@@ -397,6 +402,9 @@ function updateFileSummary() {
     const filePath = fileBox.getAttribute("data-filedir");
     const size = parseFloat(fileBox.getAttribute("data-size"));
     const file_pseudo_name = fileBox.getAttribute("data-pseudoName");
+    const file_type=fileBox.getAttribute("data-filetype");
+    const fileExtension=fileBox.getAttribute("data-fileExt");
+    const uploader_id=fileBox.getAttribute("data-uploaderId");
 
     if (checkbox.checked) {
       // Add the file if it isn't already included
@@ -404,13 +412,20 @@ function updateFileSummary() {
                                       file.Size === size &&
                                       file.FileDir=== filePath && 
                                       file.FileId===fileIdd&&
-                                      file.PseudoName===file_pseudo_name))
+                                      file.PseudoName===file_pseudo_name &&
+                                      file.FileType===file_type &&
+                                      file.FileExt===fileExtension &&
+                                      file.UploaderId===uploader_id
+                                      ))
         {
-        filesSelect.push({ FileName: fileName,
-                          Size: size,
-                          FileDir:filePath,
-                          FileId:fileIdd ,
-                          PseudoName:file_pseudo_name 
+        filesSelect.push({FileName: fileName,//
+                          Size: size,//
+                          FileDir:filePath,//
+                          FileId:fileIdd ,//Not Neededd
+                          PseudoName:file_pseudo_name,//
+                          FileType:file_type,//
+                          FileExt:fileExtension,//
+                          UploaderId:uploader_id
                         });
         }
       }
@@ -505,6 +520,7 @@ confirmShare.addEventListener("click", () => {
       filesSelect.forEach((file, fileIndex) => {
         // Group user and file data in a structured way
         formData.append(`users[${userIndex}][recipient_id]`, user.UserID);
+        formData.append(`users[${userIndex}][recipient_Inits]`, user.UserInits);
         formData.append(
           `users[${userIndex}][receiver]`,
           formatUserName(user.UserName)
@@ -517,6 +533,22 @@ confirmShare.addEventListener("click", () => {
           `users[${userIndex}][files][${fileIndex}][fileName]`,
           file.FileName
         );
+         formData.append(
+           `users[${userIndex}][files][${fileIndex}][fileSize]`,
+           file.Size
+         );
+         formData.append(
+           `users[${userIndex}][files][${fileIndex}][fileType]`,
+           file.FileType
+         );
+         formData.append(
+           `users[${userIndex}][files][${fileIndex}][fileExtension]`,
+           file.FileExt
+         );
+         formData.append(
+           `users[${userIndex}][files][${fileIndex}][uploaderId]`,
+           file.UploaderId
+         );
         formData.append(
           `users[${userIndex}][files][${fileIndex}][dir]`,
           splitDir(file.FileDir)
