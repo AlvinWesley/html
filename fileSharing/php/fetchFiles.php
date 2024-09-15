@@ -18,7 +18,7 @@ if (isset($_SESSION['userId'])) {
     MAX(date_of_upload) AS date_of_upload,
     MAX(file_pseudo_name) AS file_pseudo_name
     FROM FILES_TBL 
-    WHERE uploader_id = '$user_id' 
+    WHERE owner_id = '$user_id' 
     AND file_access_level = 1 
     GROUP BY file_name 
     ORDER BY file_id DESC"; // Orders by the most recent file_id

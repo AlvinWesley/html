@@ -1,4 +1,3 @@
-//code for file sharing starts here
 const fileShareDialog = document.querySelector(".flShrDiag");
 const addFiles = document.getElementById("add_file_btn");
 const addUsers = document.getElementById("add_user_btn");
@@ -315,7 +314,7 @@ addUsers.addEventListener("click", () => {
 
 // File Sharing Section
 const searchInput = document.getElementById("searchInput");
-const fileList = document.getElementById("fileList");
+const fl_lst = document.getElementById("fl_lst");
 const sortSelect = document.getElementById("sort");
 const selectAllBtn = document.getElementById("selectAllBtn");
 const clearBtn = document.getElementById("clearBtn");
@@ -367,8 +366,8 @@ addFiles.addEventListener("click", () => {
           </div>
         `;
       });
-
-      fileList.innerHTML = fileLoadText;
+      //console.log(fileLoadText);
+      fl_lst.innerHTML = fileLoadText;
 
       // Re-query the checkboxes after loading files
       updateFileCheckboxListeners();
@@ -428,12 +427,15 @@ function updateFileSummary() {
                           UploaderId:uploader_id
                         });
         }
+       totalSize+=size; 
       }
-      totalSize += size;
+      
   });
 
   fileCount.textContent = `${filesSelect.length} Files Selected`;
   fileSize.textContent = `Total Size: ${formatFileSize(totalSize)}`;
+  //console.log(filesSelect);
+  //fileSize.textContent = `Total Size: ${totalSize}`;
 }
 
 // Search and highlight files
@@ -471,8 +473,8 @@ sortSelect.addEventListener("change", () => {
     sortedFiles = fileBoxes.sort((a, b) => new Date(a.getAttribute("data-date")) - new Date(b.getAttribute("data-date")));
   }
 
-  fileList.innerHTML = "";
-  sortedFiles.forEach((fileBox) => fileList.appendChild(fileBox));
+  fl_lst.innerHTML = "";
+  sortedFiles.forEach((fileBox) => fl_lst.appendChild(fileBox));
 });
 
 // Select all files
@@ -504,7 +506,8 @@ function formatUserName(userName){
 confirmShare.addEventListener("click", () => {
   //console.log(filesSelect.length);
   //console.log(usersSelect.length);
-
+ ItemsForm();
+ UserItems();
   // If both filesSelect and usersSelect have at least one item, run the else block
   if (filesSelect.length === 0 || usersSelect.length === 0) {
     shrtxtBx.innerHTML = `<h3 id="shr_prmt" style="color:orange">You've got to send at least one file to one user</h3>`;
@@ -553,14 +556,14 @@ confirmShare.addEventListener("click", () => {
           `users[${userIndex}][files][${fileIndex}][dir]`,
           splitDir(file.FileDir)
         );
-
         // For debugging/logging purposes
         console.log(
           `Sending file ${file.FileName} (Pseudo: ${file.PseudoName}) to user ${user.UserName} (${user.UserID})`
         );
       });
     });
-
+    let comments =document.getElementById("fl_shr_desc").value;
+    formData.append("senderComments",comments);
     // Create and send the XMLHttpRequest
     let xhrfs = new XMLHttpRequest();
     xhrfs.open("POST", "/BUNGOARCH/html/fileSharing/php/shareFiles.php", true);
@@ -569,6 +572,8 @@ confirmShare.addEventListener("click", () => {
     xhrfs.onload = function () {
       if (xhrfs.status === 200) {
        // console.log("Transfer successful");
+        ItemsForm();
+        UserItems();
         console.log(xhrfs.responseText); // Success response from PHP
       } else {
         console.error("Error: " + xhrfs.responseText); // Error response

@@ -17,7 +17,7 @@ if (!file_exists($uploadDir)) {
 
 // Get current user ID
 $user_id = $_SESSION['userId'];
-
+$comments=$_POST['senderComments'];
 // Process each user and their respective files
 if (isset($_POST['users'])) {
     foreach ($_POST['users'] as $user) {
@@ -91,10 +91,10 @@ if (isset($_POST['users'])) {
                 $file_size = $file['fileSize'];
                 $uploader_id = $file['uploaderId'];
 
-                $sqlInsertFile = "INSERT INTO FILES_TBL (folder_id, file_name, file_pseudo_name, file_type, file_extension, file_description, file_size, file_path_directory, uploader_id)
-                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sqlInsertFile = "INSERT INTO FILES_TBL (folder_id, file_name, file_pseudo_name, file_type, file_extension, file_description, file_size, file_path_directory, uploader_id,owner_id)
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
                 if ($stmt = $conn->prepare($sqlInsertFile)) {
-                    $stmt->bind_param("isssssisi", $folder_id, $file_name, $recipientFileName, $file_type, $file_extension, $file_description, $file_size, $recipientFolder, $uploader_id);
+                    $stmt->bind_param("isssssisii", $folder_id, $file_name, $recipientFileName, $file_type, $file_extension, $file_description, $file_size, $recipientFolder, $uploader_id,$recipient_id);
                     if ($stmt->execute()) {
                         echo "Shared Files Added To the Database";
 
@@ -103,9 +103,10 @@ if (isset($_POST['users'])) {
 
                         // Now record the shared file into the FILE_SHARING_TBL table
                         $sqlInsertSharing = "INSERT INTO FILE_SHARING_TBL (file_id, receiver_id, sender_id, sender_comments, sharing_status)
-                                             VALUES (?, ?, ?, '', 'pending')";
+                                             VALUES (?, ?, ?, ?, 'shared')";
                         if ($shareStmt = $conn->prepare($sqlInsertSharing)) {
-                            $shareStmt->bind_param("iii", $file_id, $recipient_id, $user_id);
+
+                            $shareStmt->bind_param("iiis", $file_id, $recipient_id, $user_id,$comments);
                             if ($shareStmt->execute()) {
                                 echo "File sharing event recorded successfully.";
                             } else {

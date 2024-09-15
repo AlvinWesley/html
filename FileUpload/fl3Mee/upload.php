@@ -70,10 +70,11 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
                                             file_description,
                                             file_size,
                                             file_path_directory,
-                                            uploader_id)
+                                            uploader_id,
+                                            owner_id)
                     VALUES('$folder_id','$file_name','$filePseudoName',
                             '$file_type','$file_extension','$file_description',
-                            '$file_size','$d_filePath','$user_id')";
+                            '$file_size','$d_filePath','$user_id','$user_id')";
     $sqlFileExecute=mysqli_query($conn,$sqlInsertFile);
     if($sqlFileExecute){
         echo 'File upload saved to database successfully!';

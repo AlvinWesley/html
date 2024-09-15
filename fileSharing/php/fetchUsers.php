@@ -2,6 +2,7 @@
 include "connect.php";
 session_start();
 if (isset($_SESSION['userId'])) {
+    $user_id=$_SESSION['userId'];
 $sqlGetUsers=
 "SELECT 
     USER_DETAILS_TBL.user_id, 
@@ -14,7 +15,7 @@ FROM
     USER_DETAILS_TBL 
 INNER JOIN 
     USER_LOGIN_TBL ON USER_DETAILS_TBL.user_id = USER_LOGIN_TBL.user_id
-WHERE USER_DETAILS_TBL.regStatus=1;
+WHERE USER_DETAILS_TBL.regStatus=1 and USER_DETAILS_TBL.user_id<>'$user_id';
 ";
 $sqlRun=mysqli_query($conn,$sqlGetUsers);
 $sqlFetchThem=mysqli_fetch_all($sqlRun,MYSQLI_ASSOC);
