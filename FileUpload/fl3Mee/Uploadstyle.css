@@ -82,13 +82,25 @@ margin-top: 23px;
 .file-list .file-item .file-info {
     display: flex;
     gap:5px;
+    flex-direction: column;
+    
 }
-.file-list .file-item .file-info small{
+.file-smalls{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+.file-list .file-item .file-info .file-smalls small{
     color:#5c5c5c;
     margin-top: 5px;
     display: block;
     font-size: 0.9rem;
     font-weight: 500; 
+}
+.file_choose{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
 }
 .file-list .file-item .file-info .file-status{
     color:#5145ba;

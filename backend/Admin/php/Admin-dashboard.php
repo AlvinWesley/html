@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Bungo Arch</title>
       <link rel="stylesheet" href="/BUNGOARCH/html/fileSharing/shareFiles.css"> 
+      <link rel="stylesheet" href="/BUNGOARCH/html/notifications/notification.css"> 
       <link rel="stylesheet" href="/BUNGOARCH/html/Folders/addFolderStyle.css">
       <link rel="stylesheet" href="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadstyle.css">
       <link rel="stylesheet" href="/BUNGOARCH/html/Folders/viewFolders/viewFolder.css">
@@ -119,6 +120,7 @@
                         </dialog>
                         <dialog class="flShrDiag" id="d-mdl-flShr">
                             <!--The select users dialog Starts here guys-->
+                            <dialog class="filesSharedPromt"></dialog>
                             <dialog class="selectorDialog userDialog">
                                 <!-- Close Button -->
                                 <button class="closeBtn" id="cls_usr_dg">&times;</button>
@@ -190,10 +192,12 @@
 
                                 </div>
                             </dialog>
+
+                            <div class="text_Box" style="color:#ffffff">
+                                </div>
                             <div class="shareFilesBox">
                                 <h2>Share Your Files to users</h2>
-                                <div class="text_Box" style="color:#ffffff">
-                                </div>
+                                
                                 <div class="thisContainer">
                                     <div>
                                     <h4 id="fl_cnt">Files To Share(0)</h4>
@@ -461,12 +465,28 @@
                             <i class="ri-notification-line"></i>
                             </a>
                             <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton02">
-                                <div class="card shadow-none m-0">
+                                <div class="card shadow-none m-0" style="width:fit-content">
                                     <div class="card-body p-0 ">
-                                        <div class="p-3">
-                                            <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i>Notification</a>
+                                        <div class="p-0 ">
+                                               <div class="notification-container">
+                                                    <div class="header">
+                                                        <h2>Notifications</h2>
+                                                        <div class="search-unread">
+                                                            <input type="text" id="search-bar" class="search-bar" placeholder="Search notifications...">
+                                                            <div class="unread-count">
+                                                                <span id="unread-count">New: 5</span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="notifications" class="notifications">
+                                                    
+                                                    </div>
+                                                </div>
+                                            <!-- <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i>Notification</a>
                                             <a href="#" class="iq-sub-card"><i class="ri-edit-line"></i>Manage notifications</a>
-                                            <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> View notifications</a>
+                                            <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> View notifications</a> -->
                                         </div>                                
                                     </div>
                                 </div>
@@ -898,6 +918,7 @@
      <script src="/BUNGOARCH/html/folders/folder.js" defer></script>
     <script src="/BUNGOARCH/html/folders/viewFolders/viewFolder.js" defer></script>
      <script src="/BUNGOARCH/html/fileSharing/share.js" defer></script>
+     <script src="/BUNGOARCH/html/notifications/notification.js" defer></script>
      <script>
 iziToast.error({
     title: 'Error',

@@ -1,12 +1,19 @@
 <?php
 session_start();
 // Ensure the user is authenticated
+//shida😂😂
 include_once "connect.php";
 if (!isset($_SESSION['userId'])) {
     echo "Error: User not authenticated.";
     exit;
-}
-
+}// Get current user ID
+$user_id = $_SESSION['userId'];
+$sqlFetchUserName="SELECT f_name,l_name from USER_DETAILS_TBL where user_id='$user_id'";
+$sqlRunFetch=mysqli_query($conn,$sqlFetchUserName);
+$namesAssoc=mysqli_fetch_assoc($sqlRunFetch);
+$u_firstName=ucwords($namesAssoc['f_name']);
+$u_lastName=ucwords($namesAssoc['l_name']);
+$u_inits=ucwords($u_firstName[0].$u_lastName[0]);
 // Base upload directory
 $uploadDir = __DIR__ . '/../../FileUpload/fl3Mee/uploads/';
 
@@ -15,15 +22,14 @@ if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }
 
-// Get current user ID
-$user_id = $_SESSION['userId'];
+
 $comments=$_POST['senderComments'];
 // Process each user and their respective files
 if (isset($_POST['users'])) {
     foreach ($_POST['users'] as $user) {
         $recipient_id = $user['recipient_id'];
         $receiver_name = $user['receiver'];
-        $receiverInits = $user['recipient_Inits'];
+        $senderInits = $u_inits;
 
         // Create the recipient's directory if it doesn't exist
         $recipientFolder = $uploadDir . $recipient_id . '/SharedFiles/';
@@ -81,22 +87,22 @@ if (isset($_POST['users'])) {
 
             // Move/copy the file to the recipient's folder
             if (copy($source, $destination)) {
-                echo "File $fileName successfully copied to $receiver_name's folder.\n";
+                //echo "File $fileName successfully copied to $receiver_name's folder.\n";
 
                 // Insert file into the database
-                $file_name = $file['fileName'] . "(shrd)(" . $receiverInits . ")";
+                $file_name = $file['fileName'] . "(shrd)(" . $senderInits . ")";
                 $file_type = $file['fileType'];
                 $file_extension = $file['fileExtension'];
                 $file_description = "This Is Shared file from " . $receiver_name;
                 $file_size = $file['fileSize'];
                 $uploader_id = $file['uploaderId'];
 
-                $sqlInsertFile = "INSERT INTO FILES_TBL (folder_id, file_name, file_pseudo_name, file_type, file_extension, file_description, file_size, file_path_directory, uploader_id,owner_id)
-                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+                $sqlInsertFile = "INSERT INTO FILES_TBL (folder_id, file_name, file_pseudo_name, file_type, file_extension, file_description, file_size, file_path_directory, uploader_id,owner_id,file_access_level)
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,2)";
                 if ($stmt = $conn->prepare($sqlInsertFile)) {
                     $stmt->bind_param("isssssisii", $folder_id, $file_name, $recipientFileName, $file_type, $file_extension, $file_description, $file_size, $recipientFolder, $uploader_id,$recipient_id);
                     if ($stmt->execute()) {
-                        echo "Shared Files Added To the Database";
+                       // echo "Shared Files Added To the Database";
 
                         // Get the file_id of the newly inserted file
                         $file_id = $stmt->insert_id;
@@ -108,7 +114,26 @@ if (isset($_POST['users'])) {
 
                             $shareStmt->bind_param("iiis", $file_id, $recipient_id, $user_id,$comments);
                             if ($shareStmt->execute()) {
-                                echo "File sharing event recorded successfully.";
+                                echo "File successfully shared to $receiver_name <br>";
+                                $share_id=$shareStmt->insert_id;
+                                $notification_name='File Shared: '.$file_name;
+                                $notification_type='file_share_info';
+                                $notification_sentTo=$recipient_id;
+                                $sender_name=$u_firstName." ".$u_lastName;
+                                $notification_message=$sender_name.' has shared a file to you. Please acknowledge the file and check the shared folder to view';
+                                $insertNotification = 
+                                 "INSERT INTO NOTIFICATIONS (n_name, n_type,n_sent_to, n_message,n_id_tags)
+                                             VALUES (?, ?, ?, ?, ?)";
+                                if ($notificationStmt = $conn->prepare($insertNotification)) {
+                                    $notificationStmt->bind_param("ssssi", $notification_name, $notification_type, $notification_sentTo,$notification_message,$share_id);
+                                    if($notificationStmt->execute()){
+                                        echo "Notification sent to $receiver_name";
+                                    }else{
+                                        echo "notification sending ran into an error " .$conn->error;
+                                    }
+                                }else{
+                                    echo "error sending the notification to $receiver_name";
+                                }
                             } else {
                                 echo "Error recording the file sharing event: " . $conn->error;
                             }

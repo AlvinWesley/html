@@ -1,180 +1,169 @@
 <?php
-session_start();
-//echo "<br> Hell";
 include "connect.php";
-$sc=false;
-$formPrompt=array(
-    'form'=>'Hello There'
+$sc = false;
+$formPrompt = array(
+    'form' => 'Hello There'
 );
-$inputError=array(
-    'firstName'=>'',
-    'lastName'=>'',
-    'phone'=>'',
-    'email'=>'',
-    'password'=>'',
-    'confirmPassword'=>'',
-    'agreement'=>''
+$inputError = array(
+    'firstName' => '',
+    'lastName' => '',
+    'phone' => '',
+    'email' => '',
+    'password' => '',
+    'confirmPassword' => '',
+    'agreement' => ''
 );
-$firstName='';
-$lastName='';
-$email='';
-$phone='';
-$password='';
-$confirmPassword='';
-$userId='';
-$userName='';
-$termsOfAgreement='';
-$sql="SELECT email FROM USER_DETAILS_TBL ";
-$results=mysqli_query($conn,$sql);
-$systUsersEmail=mysqli_fetch_all($results,MYSQLI_ASSOC);
+$firstName = '';
+$lastName = '';
+$email = '';
+$phone = '';
+$password = '';
+$confirmPassword = '';
+$userId = '';
+$termsOfAgreement = '';
 
-function checkUniqueEmail($name){
+$sql = "SELECT email FROM USER_DETAILS_TBL";
+$results = mysqli_query($conn, $sql);
+$systUsersEmail = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+function checkUniqueEmail($name) {
     global $systUsersEmail;
-    foreach($systUsersEmail as $emp){
-    if($name==$emp['email']){
-    // echo"<br> Found Match <br>";
-        return true;
-    }
+    foreach ($systUsersEmail as $emp) {
+        if ($name == $emp['email']) {
+            return true;
+        }
     }
 }
-$sql="SELECT phone_number FROM USER_DETAILS_TBL ";
-$results=mysqli_query($conn,$sql);
-$systUsersPhone=mysqli_fetch_all($results,MYSQLI_ASSOC);
-function checkUniquePhone($name){
-    global $systUsersPhone;
-    foreach($systUsersPhone as $emp){
-    if($name==$emp['phone_number']){
-    // echo"<br> Found Match <br>";
-        return true;
-    }
-    }
-}
-if(isset($_POST['submit'])){
-        if(empty($_POST['firstName'])){
-            $inputError['firstName']="The FirstName field Cannot be Empty";
-           // echo "<br>Empty Field FN<br> ";
-        }else{
-            $firstName=$_POST['firstName'];
-        }
-        if(empty($_POST["email"])){
-            $inputError['email']="Email is Empty";
-           // echo "<br>Empty Field email<br>";
-        }else{
-            if(checkUniqueEmail($_POST["email"])){
-                $inputError['email']="Email Already Exists";
-            }else{
-                $email=$_POST['email'];
-            }
-            
-        }
-        
-        if(empty($_POST['lastName'])){
-            $inputError['lastName']="Last Name is Empty";
-            //echo "<br>Empty Field Password<br>";
-        }else{
-            $lastName=$_POST['lastName'];
-        }
-        if(empty($_POST['phone'])){
-            $inputError['phone']="Phone Number is Empty";
 
-            //echo "<br>Empty Field Password<br>";
-        }else{
-            if(checkUniquePhone($_POST['phone'])){
-                $inputError['phone']="Phone Number Already Exists";
-            }else{
-                $phone=$_POST['phone'];
-            }
-           
+$sql = "SELECT phone_number FROM USER_DETAILS_TBL";
+$results = mysqli_query($conn, $sql);
+$systUsersPhone = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+function checkUniquePhone($name) {
+    global $systUsersPhone;
+    foreach ($systUsersPhone as $emp) {
+        if ($name == $emp['phone_number']) {
+            return true;
         }
-    
-       
-            if(empty($_POST["password"])){
-                $inputError['password']="Password is Empty";
-                //echo "<br>Empty Field Password<br>";
-            }else{
-                $password=$_POST['password'];
-            }
-        if(empty($_POST['confirmPassword'])){
-            $inputError['confirmPassword']="Confirm Password is Empty";
-            //echo "<br>Empty Field LN<br>";
-        }else{
-            $confirmPassword=$_POST['confirmPassword'];
-            if($confirmPassword!=$password){
-                $inputError['confirmPassword']="Input Does Not Match";
-               // echo "<br>Unequall Field FN<br>";
-            }
+    }
+}
+
+if (isset($_POST['submit'])) {
+    if (empty($_POST['firstName'])) {
+        $inputError['firstName'] = "The FirstName field Cannot be Empty";
+    } else {
+        $firstName = $_POST['firstName'];
+    }
+
+    if (empty($_POST["email"])) {
+        $inputError['email'] = "Email is Empty";
+    } else {
+        if (checkUniqueEmail($_POST["email"])) {
+            $inputError['email'] = "Email Already Exists";
+        } else {
+            $email = $_POST['email'];
         }
-        if(empty($_POST['termsOfAgreement'])){
-            $inputError['agreement']="Please Confirm to agreement before you proceed";
+    }
+
+    if (empty($_POST['lastName'])) {
+        $inputError['lastName'] = "Last Name is Empty";
+    } else {
+        $lastName = $_POST['lastName'];
+    }
+
+    if (empty($_POST['phone'])) {
+        $inputError['phone'] = "Phone Number is Empty";
+    } else {
+        if (checkUniquePhone($_POST['phone'])) {
+            $inputError['phone'] = "Phone Number Already Exists";
+        } else {
+            $phone = $_POST['phone'];
         }
-        $formPrompt['form']="Welcome to sign Up";
-   if(!array_filter($inputError)){
-    $formPrompt['form']="Good To Go";
-    $_SESSION['email']=$email;
-    $sql="INSERT INTO USER_DETAILS_TBL (f_name,l_name,email,phone_number) 
-    VALUES ('$firstName','$lastName','$email','$phone')";
-    $query=mysqli_query($conn,$sql);
-    //echo "<br> Normal".$email;
-    if($query){
-        $email=$_SESSION['email'];
-        //echo"<br> Session Email: ".$email;
-        //echo"<br> Run Successfully Q1";
-        $sqlGetUserId="SELECT user_id FROM USER_DETAILS_TBL where email= '$email'";
-        $sqlRun=mysqli_query($conn,$sqlGetUserId);
-        $fetchResult=mysqli_fetch_assoc($sqlRun);
-        if($sqlRun){
-            //echo"<br> Run Q2 P1";
-            $userId=$fetchResult['user_id'];
-            $_SESSION['userId']=$userId;
-            //$newUserName=$username
-            $sqlFinishUp="INSERT INTO USER_lOGIN_TBL (user_id,department_id,user_name,user_password)
-                                 VALUES ('$userId','1','$email','$password')";
-            $queryFinishUp=mysqli_query($conn,$sqlFinishUp);
-            if($queryFinishUp){
-                $formPrompt['form']="User Has Been Registered with userName $email";
-                $sc=true;
-                //Making the Directory for the User here
-                //$firstName = $_POST['firstName'];
-                $uploadDir =  __DIR__ . '/../../../FileUpload/fl3Mee/uploads/';
-                $folder = $uploadDir . $userId. '/'; // Path to the directory for the user's folder
+    }
+
+    if (empty($_POST["password"])) {
+        $inputError['password'] = "Password is Empty";
+    } else {
+        $password = $_POST['password'];
+    }
+
+    if (empty($_POST['confirmPassword'])) {
+        $inputError['confirmPassword'] = "Confirm Password is Empty";
+    } else {
+        $confirmPassword = $_POST['confirmPassword'];
+        if ($confirmPassword != $password) {
+            $inputError['confirmPassword'] = "Input Does Not Match";
+        }
+    }
+
+    if (empty($_POST['termsOfAgreement'])) {
+        $inputError['agreement'] = "Please Confirm the agreement before you proceed";
+    }
+
+    $formPrompt['form'] = "Welcome to sign Up";
+
+    // Check if no errors
+    if (!array_filter($inputError)) {
+        $formPrompt['form'] = "Good To Go";
+
+        // Prepared statement to insert into USER_DETAILS_TBL
+        $stmt = $conn->prepare("INSERT INTO USER_DETAILS_TBL (f_name, l_name, email, phone_number) 
+                                        VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $firstName, $lastName, $email, $phone);
+
+        if ($stmt->execute()) {
+            // Get the last inserted user_id
+            $userId = mysqli_insert_id($conn);
+
+            // Now insert into USER_LOGIN_TBL using the newly inserted user_id
+            $stmtLogin = $conn->prepare("INSERT INTO USER_LOGIN_TBL (user_id, department_id, user_name, user_password) 
+                                                VALUES (?, ?, ?, ?)");
+            $departmentId = 1; // Assuming department ID is 1
+            $stmtLogin->bind_param("iiss", $userId, $departmentId, $email, $password);
+
+            if ($stmtLogin->execute()) {
+                $formPrompt['form'] = "User Has Been Registered with userName $email";
+                $sc = true;
+
+                // Making the directory for the user
+                $uploadDir = __DIR__ . '/../../../FileUpload/fl3Mee/uploads/';
+                $folder = $uploadDir . $userId . '/'; // Path to the directory for the user's folder
+                
                 // Check if the "uploads" directory exists, create it if not
                 if (!file_exists($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
+                
                 // Check if the user's folder exists, create it if not
                 if (!file_exists($folder)) {
-                    if (mkdir($folder, 0777, true)) {
-                        //echo 'Directory created successfully!';
-                    } else {
-                    // echo 'Failed to create directory.';
-                    }
-                } else {
-                    //echo 'Directory already exists.';
+                    mkdir($folder, 0777, true);
                 }
-
+            } else {
+                $formPrompt['form'] = "Error in Registering Login Details";
             }
-        }else{
-            $formPrompt['form']="Error in Registering LoginDetails";
+
+            $stmtLogin->close();
+        } else {
+            $formPrompt['form'] = "Error in Registering User Details";
         }
-    }else{
-        $formPrompt['form']="Error in Registering UserDetails";
+
+        $stmt->close();
+    } else {
+        $formPrompt['form'] = "There's an error somewhere";
     }
-   }
-   else{
-    $formPrompt['form']="There's an error somewhere";
-    //echo "<br>Empty Field Last Last<br>";
-   }
-}
+
     echo json_encode(array(
-        "formPrompt"=>$formPrompt['form'],
-        "firstNamePrompt"=>$inputError['firstName'],
-        "lastNamePrompt"=>$inputError['lastName'],
-        "phonePrompt"=>$inputError['phone'],
-        "emailPrompt"=>$inputError['email'],
-        "passwordPrompt"=>$inputError['password'],
-        "confirmPasswordPrompt"=>$inputError['confirmPassword'],
-        "agreementPrompt"=>$inputError['agreement'],
-        "sc"=>$sc
+        "formPrompt" => $formPrompt['form'],
+        "firstNamePrompt" => $inputError['firstName'],
+        "lastNamePrompt" => $inputError['lastName'],
+        "phonePrompt" => $inputError['phone'],
+        "emailPrompt" => $inputError['email'],
+        "passwordPrompt" => $inputError['password'],
+        "confirmPasswordPrompt" => $inputError['confirmPassword'],
+        "agreementPrompt" => $inputError['agreement'],
+        "sc" => $sc
     ));
+
     exit;
+}
 ?>

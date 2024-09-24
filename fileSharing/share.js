@@ -13,6 +13,7 @@ const confirmShare=document.querySelector(".shr_files");
 const clearSelection= document.querySelector(".clr_selection");
 const closeShrDialog= document.querySelector(".cls_shr_diag");
 const shrtxtBx = document.querySelector(".text_Box");
+const containersThem = document.querySelector(".filesSharedPromt");
 var theUsers=``;
 var theFiles=``;
 let filesSelect = []; // Array to store selected files
@@ -35,23 +36,23 @@ fileItem.innerHTML = `<p style="color:grey">There are no selected files. Click a
 userItem.innerHTML=`<p style="color:grey">There are no selected recipients. Click add users to add users</p>`;
 
 //The three buttons Actions are here not down there dont bother looking too much tho😂
-clearSelection.addEventListener("click",()=>{
-  //console.log("Clearing now now");
+clearSelection.addEventListener("click",clearTheArrays);
+function clearTheArrays(){
 const userCheckboxes = userList.getElementsByClassName("userCheckbox");
 const fileCheckboxes = document.querySelectorAll(".fileCheckbox");
-filesSelect=[];
+filesSelect = [];
 fileItem.innerHTML = `<p style="color:grey">There are no selected files. Click add to Add Files</p>`;
 userItem.innerHTML = `<p style="color:grey">There are no selected recipients. Click add users to add users</p>`;
-usersSelect=``;
+usersSelect = ``;
 //console.log(filesSelect);
-usersSelect=[];
+usersSelect = [];
 Array.from(userCheckboxes).forEach((checkbox) => (checkbox.checked = false));
 updateSelectedCount();
 fileCheckboxes.forEach((checkbox) => (checkbox.checked = false));
 updateFileSummary();
 updateNoOfFiles();
 updateNoOfUsers();
-});
+}
 chooseFiles.addEventListener("click", listTheItems);
  function listTheItems() {
    theFiles = ``;
@@ -515,7 +516,7 @@ confirmShare.addEventListener("click", () => {
     //console.log(filesSelect);
     //console.log(usersSelect);
   } else {
-    shrtxtBx.innerHTML = `<h3 id="shr_prmt" style="color:green">Files Sharing Init</h3>`;
+    shrtxtBx.innerHTML = `<h3 id="shr_prmt" style="color:white">Sharing Files Please Wait ....</h3>`;
     let formData = new FormData();
 
     // Append all users and their files to formData in a structured manner
@@ -574,6 +575,13 @@ confirmShare.addEventListener("click", () => {
        // console.log("Transfer successful");
         ItemsForm();
         UserItems();
+        containersThem.showModal();
+        containersThem.innerHTML = `<p style="color:white; font-size: 14px;">${xhrfs.responseText}</p>`;
+         setTimeout(() => {
+           containersThem.close();
+           shrtxtBx.innerHTML = `<h3 id="shr_prmt">Files Sent Succesfully...</h3>`;
+           clearTheArrays();
+         }, 3000);
         console.log(xhrfs.responseText); // Success response from PHP
       } else {
         console.error("Error: " + xhrfs.responseText); // Error response

@@ -223,6 +223,10 @@ function hideMessage() {
             <button class="action-btn download">Download</button>
             <button class="action-btn move">Move</button>
             `;
+   }else{
+    return `
+            <button class="action-btn move">Move</button>
+            `;
    }
  }
 function frmatSize(sz) {

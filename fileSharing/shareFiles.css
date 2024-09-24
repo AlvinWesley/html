@@ -65,13 +65,22 @@ body {
 .text_Box h3{
     padding: 0;
     margin: 0;
+    font-size: 17px;
 }
 .thisContainer {
     width: 100%;
     padding: 10px;
      /* box-shadow: 0 1px 4px 1px rgb(182, 177, 177); */
 }
-
+.filesSharedPromt{
+    padding: 20px;
+    border:none;
+    background: rgb(6, 173, 6);
+    border-radius: 15px;
+    max-width: 10cm;
+    max-height: 8cm;
+    overflow-y: auto;
+}
 .thisContainer h4 {
     padding: 0;
     margin: 0;

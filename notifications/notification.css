@@ -1,0 +1,135 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+    padding: 20px;
+} */
+
+.notification-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.search-unread {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.unread-count {
+    background-color: #f34d4d;
+    color: #fff;
+    padding: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+     max-height: 200px;
+    overflow-y: auto;
+    width: fit-content;
+}
+
+.notification {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.notification .icon {
+    font-size: 30px;
+    margin-right: 15px;
+    color: #666;
+}
+
+.notification.system-info {
+    border-left: 5px solid #f39c12;
+}
+
+.notification.file-share {
+    border-left: 5px solid #2980b9;
+}
+
+.notification .content {
+    flex-grow: 1;
+}
+
+.notification .content h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.notification .content p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.notification .acknowledge-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.notification .acknowledge-btn {
+    padding: 8px 12px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.notification .acknowledge-btn:hover {
+    background-color: #2ecc71;
+}
+
+.notification .time {
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    font-size: 12px;
+    color: #888;
+    margin-left:10px;
+    padding-bottom:30px;
+}
