@@ -1,13 +1,14 @@
 <?php
-session_start();
+//session_start();
 // Ensure the user is authenticated
 //shida😂😂
 include_once "connect.php";
-if (!isset($_SESSION['userId'])) {
-    echo "Error: User not authenticated.";
-    exit;
-}// Get current user ID
-$user_id = $_SESSION['userId'];
+$session_id='';
+$user_Id='';
+$session_id = $_POST['ses_id'];
+if($session_id){
+   $user_Id=getUserId($session_id);
+}
 $sqlFetchUserName="SELECT f_name,l_name from USER_DETAILS_TBL where user_id='$user_id'";
 $sqlRunFetch=mysqli_query($conn,$sqlFetchUserName);
 $namesAssoc=mysqli_fetch_assoc($sqlRunFetch);

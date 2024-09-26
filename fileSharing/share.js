@@ -14,6 +14,7 @@ const clearSelection= document.querySelector(".clr_selection");
 const closeShrDialog= document.querySelector(".cls_shr_diag");
 const shrtxtBx = document.querySelector(".text_Box");
 const containersThem = document.querySelector(".filesSharedPromt");
+let sessionId = sessionStorage.getItem("sessionId");
 var theUsers=``;
 var theFiles=``;
 let filesSelect = []; // Array to store selected files
@@ -163,7 +164,7 @@ const selectedCount = document.getElementById("selectedCount");
 function fetchAndDisplayUsers() {
   let theListOfUsers = ``;
   let xhrfs = new XMLHttpRequest();
-  xhrfs.open("GET", "/BUNGOARCH/html/fileSharing/php/fetchUsers.php", true);
+  xhrfs.open("GET", "/BUNGOARCH/html/fileSharing/php/fetchUsers.php?ses_id=" + sessionId, true);
   xhrfs.onload = function () {
     if (xhrfs.status === 200) {
       let accumulatedUsers = JSON.parse(this.responseText);
@@ -334,7 +335,7 @@ addFiles.addEventListener("click", () => {
   fileSelectDialog.showModal();
 
   let xhrfs = new XMLHttpRequest();
-  xhrfs.open("GET", "/BUNGOARCH/html/fileSharing/php/fetchFiles.php", true);
+  xhrfs.open("GET", "/BUNGOARCH/html/fileSharing/php/fetchFiles.php?ses_id=" + sessionId, true);
 
   xhrfs.onload = function () {
     if (this.status == 200) {
@@ -565,6 +566,7 @@ confirmShare.addEventListener("click", () => {
     });
     let comments =document.getElementById("fl_shr_desc").value;
     formData.append("senderComments",comments);
+    formData.append("ses_id",sessionId);
     // Create and send the XMLHttpRequest
     let xhrfs = new XMLHttpRequest();
     xhrfs.open("POST", "/BUNGOARCH/html/fileSharing/php/shareFiles.php", true);

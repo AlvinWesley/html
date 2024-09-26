@@ -8,6 +8,7 @@ const fileCompletedProg = document.querySelector(".file-completed-status");
 const UploadFiles = document.querySelector("#sbmt_file");
 const clearFiles = document.querySelector("#clr");
 const addFilesBtn = document.querySelector("#addButton");
+let sessionId = sessionStorage.getItem("sessionId");
 addFilesBtn.addEventListener("click",()=>{
   loadThemFolders();
 });
@@ -31,7 +32,7 @@ function loadThemFolders(){
   myFolders="";
   let thisTempFlder="";
 var xhrr = new XMLHttpRequest();
-xhrr.open("GET", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php", true);
+xhrr.open("GET", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php?ses_id="+sessionId, true);
 xhrr.onload = function () {
   if (this.status == 200) {
     console.log("Hello This loadFolders for each File function has executed");
@@ -52,7 +53,7 @@ function LoadThemFiles(){
   const fileDisp = document.querySelector(".FilesItemsWrapper");
   let xhrf = new XMLHttpRequest();
   let dispFiles = ``;
-  xhrf.open("GET", "/BUNGOARCH/html/FileUpload/fl3Mee/handleFiles.php", true);
+  xhrf.open("GET", "/BUNGOARCH/html/FileUpload/fl3Mee/handleFiles.php?ses_id="+sessionId, true);
   xhrf.onload = function () {
     if (this.status == 200) {
       console.log("Hello This loadFiles function has executed");

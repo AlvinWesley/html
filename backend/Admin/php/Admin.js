@@ -1,4 +1,5 @@
 console.log("HEllo checking JS Wald");
+let sessionId = sessionStorage.getItem("sessionId");
 //document.getElementById("U_Details_update").addEventListener("load",ItemsForm);
 window.onload=ItemsForm();
 function ItemsForm(){
@@ -14,9 +15,9 @@ function ItemsForm(){
        console.log(items.log);
        if(items.log){
         console.log("this Function excectued");
-        setTimeout(function() {
-           window.location.href = '/BungoArch/html/backend/php/signin/auth-sign-in.php';
-       }, 3000);
+    //     setTimeout(function() {
+    //        window.location.href = '/BungoArch/html/backend/php/signin/auth-sign-in.php';
+    //    }, 3000);
       }else{
         function formatDate(dateString) {
             const [datePart, timePart] = dateString.split(' ');
@@ -70,7 +71,8 @@ function updateItems(e){
                  "&dateOfBirth="+dateOfBirth+
                  "&employeeNumber="+employeeNumber+
                  "&nationalId="+nationalId+
-                 "&dateOfBirth="+dateOfBirth
+                 "&dateOfBirth="+dateOfBirth+
+                 "&ses_id="+sessionId
                  ;
     xhr.open("POST","AdminFiles.php",true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");

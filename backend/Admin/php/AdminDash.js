@@ -1,4 +1,5 @@
 console.log("HEllo checking JS Wald");
+let sessionId = sessionStorage.getItem("sessionId");
 var clickLoadStatus = false;
 
 // window.onload = function () {
@@ -11,14 +12,15 @@ window.addEventListener("load",()=>{
 });
 function UserItems() {
   console.log("Hello This loadusersRequest has been clicked");
-
+  //let formData= new FormData();
+  //formData.append("ses_id",sessionId);
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "usersList.php", true);
+  xhr.open("GET", "usersList.php?ses_id=" + sessionId, true);
 
   xhr.onload = function () {
     if (this.status == 200) {
       console.log("Hello This loadusers function has executed");
-
+      console.log(this.responseText);
       var resultData = JSON.parse(this.responseText);
       var users=resultData["results"];
       var departments=resultData[ "departments"];
@@ -194,6 +196,8 @@ function u_Updates(event,input) {
 
 function ItemsForm() {
   console.log("HEllo Wald");
+  let formData= new FormData();
+  formData.append("ses_id", sessionId);
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "AdminFiles.php", true);
   xhr.onload = function () {
@@ -202,10 +206,10 @@ function ItemsForm() {
     console.log(items.log);
     if (items.log) {
       console.log("this Function executed");
-      setTimeout(function () {
-        window.location.href =
-          "/BungoArch/html/backend/php/signin/auth-sign-in.php";
-      }, 3000);
+      // setTimeout(function () {
+      //   window.location.href =
+      //     "/BungoArch/html/backend/php/signin/auth-sign-in.php";
+      // }, 3000);
     } else {
       function formatDate(dateString) {
         const [datePart, timePart] = dateString.split(" ");
@@ -224,7 +228,7 @@ function ItemsForm() {
       document.getElementById("profile_email").textContent = items.email;
     }
   };
-  xhr.send();
+  xhr.send(formData);
 }
 
 document
@@ -238,6 +242,7 @@ function loadUsersLog(e) {
   xhr.onload = function () {
     if (this.status == 200) {
       console.log("Hello This loadusers function has executed");
+      console.log(this.responseText);
       var users = JSON.parse(this.responseText);
        var users = users["results"];
       console.log(users);

@@ -3,10 +3,14 @@ session_start();
 include "connect.php";
 
 $user_id = '';
+include_once  "../../php/signin/sessions.php";
 
-if (isset($_SESSION['userId'])) {
-    $user_id = $_SESSION['userId'];
-
+$session_id='';
+$user_Id='';
+$session_id = $_GET['ses_id']?? null;
+if($session_id){
+   $user_Id=getUserId($session_id);
+}
     // Use aggregate functions for columns that are not grouped
     $sqlFetchFiles = "
     SELECT file_name, MAX(file_id) AS file_id,
@@ -28,4 +32,4 @@ if (isset($_SESSION['userId'])) {
     $sqlGetThem = mysqli_fetch_all($sqlFileRun, MYSQLI_ASSOC);
 
     echo json_encode($sqlGetThem);
-}
+

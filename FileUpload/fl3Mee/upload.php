@@ -1,11 +1,13 @@
 <?php
-session_start();
-$user_id='';
-if(isset($_SESSION['userId'])){
-    $user_id = $_SESSION['userId'];
-    
-}
 include "connect.php";
+include_once  "../../php/signin/sessions.php";
+
+$session_id='';
+$user_Id='';
+$session_id = $_GET['ses_id']?? null;
+if($session_id){
+   $user_Id=getUserId($session_id);
+}
 //$sqlFetchFolders="SELECT folder_id,folder_name,date_created,is_active,max_numberOf_items,color_label FROM folders where owner_id='$user_id'";
 $sqlFetchFolders="
 SELECT
