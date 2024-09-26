@@ -1,9 +1,13 @@
 <?php
 include "connect.php";
-session_start();
+include_once  "../../html/backend/php/signin/sessions.php";
 
-if (isset($_SESSION['userId'])) {
-    $user_id = $_SESSION['userId'];
+$session_id='';
+$user_id='';
+$session_id = $_GET['ses_id']??null;
+if($session_id){
+   $user_id=getUserId($session_id);
+}
 
     $sqlGetNotifications = "
         SELECT 
@@ -23,13 +27,18 @@ if (isset($_SESSION['userId'])) {
     $sqlRun = mysqli_query($conn, $sqlGetNotifications);
     $sqlFetchThem = mysqli_fetch_all($sqlRun, MYSQLI_ASSOC);
     echo json_encode($sqlFetchThem);
-}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['receiverComments']) && isset($_POST['sharing_id'])) {
+
+        $session_id = $_POST['ses_id'];
+                if($session_id){
+                $user_id=getUserId($session_id);
+                }
         $sharing_id = $_POST['sharing_id'];
         $receiverComments = $_POST['receiverComments'];
-        $user_id = $_SESSION['userId'];
+        
         $sqlUpdateRecepientComment = "
             UPDATE FILE_SHARING_TBL 
             SET receiver_comments = '$receiverComments'

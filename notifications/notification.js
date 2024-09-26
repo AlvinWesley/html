@@ -1,3 +1,4 @@
+//let sessionId = sessionStorage.getItem("sessionId");
 function frmtDate(dateTimeString) {
   // Create a Date object from the input string
   const dateObj = new Date(dateTimeString);
@@ -21,9 +22,9 @@ function frmtDate(dateTimeString) {
   const day = dateObj.getDate();
   const month = monthNames[dateObj.getMonth()];
   const year = dateObj.getFullYear();
-  const time =dateObj.getHours();
+  const time = dateObj.getHours();
   const mins = dateObj.getMinutes();
-  const secs= dateObj.getSeconds();
+  const secs = dateObj.getSeconds();
 
   // Format the date as 'DD-MMM-YYYY'
   return `${day}-${month}-${year} : ${time}-${mins}-${secs}`;
@@ -37,11 +38,12 @@ function fetchNotifications() {
   let xhrn = new XMLHttpRequest();
   xhrn.open(
     "get",
-    "/BungoArch/html/notifications/fetchNotifications.php",
+    "/BungoArch/html/notifications/fetchNotifications.php?ses_id="+sessionId,
     true
   );
   xhrn.onload = function () {
     if (xhrn.status === 200) {
+      console.log(this.responseText);
       let loadedNotifications = JSON.parse(xhrn.responseText);
 
       // Compare the current notifications with the previous set
@@ -51,6 +53,7 @@ function fetchNotifications() {
         notificationsSyst = ""; // Clear old notifications
 
         // Rebuild notifications UI
+
         loadedNotifications.forEach((notification) => {
           if (notification.n_type === "file_share_info") {
             notificationsSyst += `
@@ -65,7 +68,9 @@ function fetchNotifications() {
                       <input type="text" class="acknowledge-input" placeholder="Add a comment to acknowledge...">
                       <button class="acknowledge-btn">Acknowledge</button>
                   </div>
-                  <span class="time">${frmtDate(notification.n_time_sent)}</span>
+                  <span class="time">${frmtDate(
+                    notification.n_time_sent
+                  )}</span>
               </div>
             `;
           } else {
@@ -78,7 +83,9 @@ function fetchNotifications() {
                       <h3>${notification.n_name}</h3>
                       <p>${notification.n_message}</p>
                   </div>
-                  <span class="time">${frmtDate(notification.n_time_sent)}</span>
+                  <span class="time">${frmtDate(
+                    notification.n_time_sent
+                  )}</span>
               </div>
             `;
           }
@@ -142,13 +149,13 @@ function bindAcknowledgmentButtons() {
 
         updateUnreadCount();
       } else {
-        comment=`file has been acknowledged`;
-         const notification = e.target.closest(".notification");
-         acknowledgeNotification(notification.dataset.tagid, comment);
-         notification.setAttribute("data-read", "1");
-         notification.querySelector(".acknowledge-input").disabled = true;
-         e.target.disabled = true;
-         e.target.textContent = "Acknowledged";
+        comment = `file has been acknowledged`;
+        const notification = e.target.closest(".notification");
+        acknowledgeNotification(notification.dataset.tagid, comment);
+        notification.setAttribute("data-read", "1");
+        notification.querySelector(".acknowledge-input").disabled = true;
+        e.target.disabled = true;
+        e.target.textContent = "Acknowledged";
         //alert("Please enter a comment before acknowledging.");
       }
     });
@@ -160,6 +167,7 @@ function acknowledgeNotification(tagId, comment) {
   let formData = new FormData();
   formData.append("sharing_id", tagId);
   formData.append("receiverComments", comment);
+  formData.append("ses_id", sessionId);
   let xhrn = new XMLHttpRequest();
   xhrn.open(
     "POST",

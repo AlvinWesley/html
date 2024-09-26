@@ -8,7 +8,7 @@ const fileCompletedProg = document.querySelector(".file-completed-status");
 const UploadFiles = document.querySelector("#sbmt_file");
 const clearFiles = document.querySelector("#clr");
 const addFilesBtn = document.querySelector("#addButton");
-let sessionId = sessionStorage.getItem("sessionId");
+//let sessionId = sessionStorage.getItem("sessionId");
 addFilesBtn.addEventListener("click",()=>{
   loadThemFolders();
 });

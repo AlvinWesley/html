@@ -1,12 +1,12 @@
 <?php
 include "connect.php";
-include_once  "../../php/signin/sessions.php";
+include_once  "../../../html/backend/php/signin/sessions.php";
 
 $session_id='';
-$user_Id='';
+$user_id='';
 $session_id = $_GET['ses_id']?? null;
 if($session_id){
-   $user_Id=getUserId($session_id);
+   $user_id=getUserId($session_id);
 }
 //$sqlFetchFolders="SELECT folder_id,folder_name,date_created,is_active,max_numberOf_items,color_label FROM folders where owner_id='$user_id'";
 $sqlFetchFolders="

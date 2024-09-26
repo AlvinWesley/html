@@ -1,12 +1,11 @@
 <?php
 include "connect.php";
-include_once  "../../php/signin/sessions.php";
-
+include_once  "../../../html/backend/php/signin/sessions.php";
 $session_id='';
-$user_Id='';
+$user_id='';
 $session_id = $_GET['ses_id']?? null;
 if($session_id){
-   $user_Id=getUserId($session_id);
+   $user_id=getUserId($session_id);
 }
 $sqlFetchFiles="SELECT  file_id ,folder_id,file_name,file_extension from FILES_TBL where owner_id='$user_id'" ;
 $sqlFileRun=mysqli_query($conn,$sqlFetchFiles);

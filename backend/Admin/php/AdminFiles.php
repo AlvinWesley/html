@@ -5,10 +5,10 @@ include "connect.php";
 include_once  "../../php/signin/sessions.php";
 
 $session_id='';
-$user_Id='';
+$user_id='';
 $session_id = $_POST['ses_id'];
 if($session_id){
-   $user_Id=getUserId($session_id);
+   $user_id=getUserId($session_id);
 }
 //session_start();
 $employeeNumber='';
@@ -31,19 +31,19 @@ $lgb=true;
     $sqlGetUserDetails="SELECT f_name, l_name,email,
                                 employee_number,date_of_birth,date_of_reg,gender,
                                 national_id,region,phone_number 
-                                from USER_DETAILS_TBL where user_id='$user_Id'";
+                                from USER_DETAILS_TBL where user_id='$user_id'";
     $queryDetails=mysqli_query($conn,$sqlGetUserDetails);
     $fetchResultDetails=mysqli_fetch_all($queryDetails,MYSQLI_ASSOC);
-    $firstName=$_SESSION['fName']=$fetchResultDetails[0]['f_name'];
-    $lastName=$_SESSION['lName']=$fetchResultDetails[0]['l_name'];
-    $email=$_SESSION['email']=$fetchResultDetails[0]['email'];
-    $employeeNumber=$_SESSION['employeeNumber']=$fetchResultDetails[0]['employee_number'];
-    $dateOfBirth=$_SESSION['dateOfBirth']=$fetchResultDetails[0]['date_of_birth'];
-    $dateOfReg=$_SESSION['dateOfReg']=$fetchResultDetails[0]['date_of_reg'];
-    $gender=$_SESSION['gender']=$fetchResultDetails[0]['gender'];
-    $nationalID=$_SESSION['nationalId']=$fetchResultDetails[0]['national_id'];
-    $region=$_SESSION['region']=$fetchResultDetails[0]['region'];
-    $phoneNumber=$_SESSION['phoneNumber']=$fetchResultDetails[0]['phone_number'];
+    $firstName=$fetchResultDetails[0]['f_name'];
+    $lastName=$fetchResultDetails[0]['l_name'];
+    $email=$fetchResultDetails[0]['email'];
+    $employeeNumber=$fetchResultDetails[0]['employee_number'];
+    $dateOfBirth=$fetchResultDetails[0]['date_of_birth'];
+    $dateOfReg=$fetchResultDetails[0]['date_of_reg'];
+    $gender=$fetchResultDetails[0]['gender'];
+    $nationalID=$fetchResultDetails[0]['national_id'];
+    $region=$fetchResultDetails[0]['region'];
+    $phoneNumber=$fetchResultDetails[0]['phone_number'];
     //SQL TO UPDATE THE USER CREDENTIALS
     //Stating the items needed to be updated
     //JSON ENCODING FOR THE CREDENTIALS
@@ -104,13 +104,12 @@ if(isset($_POST['submitUserDetails'])){
                                 SET 
                                 f_name='$firstName',
                                 l_name='$lastName',
-                                employee_number='$employeeNumber',
                                 gender='$gender',
-                                national_id='$nationalID',
-                                Region='$region',
-                                date_of_birth='$dateOfBirth'
+                                Region='$region'
                                 WHERE user_id='$user_id'";
-    
+    //national_id='$nationalID',
+    // date_of_birth='$dateOfBirth'
+    //employee_number='$employeeNumber',
     $queryUpdateUserDetails=mysqli_query($conn,$sqlUpdateUserDetails);
     if($queryUpdateUserDetails){
        // echo "User Details Updated Successfully";

@@ -1,4 +1,4 @@
-function frmtDate(dateTimeString) {
+function formatDate(dateTimeString) {
   // Create a Date object from the input string
   const dateObj = new Date(dateTimeString);
   // Array of month names
@@ -16,7 +16,6 @@ function frmtDate(dateTimeString) {
     "Nov",
     "Dec",
   ];
-
   // Extract the day, month, and year from the Date object
   const day = dateObj.getDate();
   const month = monthNames[dateObj.getMonth()];
@@ -32,7 +31,11 @@ function fetchFolders() {
   fldrDisp.innerHTML = "";
   let items = "";
   var xhrr = new XMLHttpRequest();
-  xhrr.open("GET", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php", true);
+  xhrr.open(
+    "GET",
+    "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php?ses_id=" + sessionId,
+    true
+  );
   xhrr.onload = function () {
     if (this.status == 200) {
       console.log("Hello This loadFolders function has executed");
@@ -93,7 +96,7 @@ function fetchFolders() {
                                         <h5 class="mb-2">${
                                           folder.folderName
                                         }</h5>
-                                        <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> ${frmtDate(
+                                        <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> ${formatDate(
                                           folder.dateCreated
                                         )}</p>
                                         <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> ${
@@ -150,6 +153,7 @@ document.getElementById("addButton").addEventListener("click", function () {
     const formData = new FormData();
     formData.append("folderName", folderName);
     formData.append("folder-clr", bgColor);
+    formData.append("ses_id",sessionId);
     xhr.open("POST", "/BUNGOARCH/html/FileUpload/fl3Mee/upload.php", true);
 
     // Handle the response

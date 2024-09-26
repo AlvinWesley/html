@@ -8,6 +8,8 @@ function ItemsForm(){
    //I shall declare xml object here
    var xhr=new XMLHttpRequest();
    xhr.open("POST","AdminFiles.php",true);
+   let formData= new FormData();
+   formData.append("ses_id",sessionId);
    //console.log(this.responseText);
    xhr.onload=function(){
        console.log(this.responseText);
@@ -49,7 +51,7 @@ function ItemsForm(){
     }
        
     }
-   xhr.send();
+   xhr.send(formData);
 }
 document.getElementById("U_Details_update").addEventListener("submit",updateItems);
 function updateItems(e){
