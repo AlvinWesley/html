@@ -48,6 +48,10 @@ if (!file_exists($folder)) {
 
 // Move the uploaded file to the user's folder
 if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+$session_id = $_POST['ses_id'];
+if($session_id){
+   $user_id=getUserId($session_id);
+}
     $firstName = trim($_POST['firstName']);
     $file_name = trim($_FILES['file']['name']);
     $filePseudoName = time() . '_' . $firstName . '_' .$file_name;

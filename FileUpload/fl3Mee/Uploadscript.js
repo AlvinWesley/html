@@ -182,6 +182,7 @@ const handleFileUploading=(file,uniqueId)=>{
     formData.append("folder_id",folder_id);
     formData.append("file_description",file_description);
     formData.append("file-extension",file_extension);
+    formData.append("ses_id",sessionId);
     xhr.upload.addEventListener("progress",(e)=>{
         const fileProgress=document.querySelector(`#file-item-${uniqueId} .file-progress`);
            const fileSize = document.querySelector(

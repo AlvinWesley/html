@@ -215,6 +215,55 @@ function hideMessage() {
 //   alert("this Item Selected has an id of ");
 //   console.log("THIS IS CLICKED MOFO");
 // });
+function splitDir(dir) {
+  let firstSlashIndex = dir.indexOf("/");
+  let result = dir.substring(firstSlashIndex);
+  return result;
+}
+function formatUserName(userName) {
+  return userName.replace(/\s+/g, "").toUpperCase();
+}
+//file download shall happen hereee
+   document.addEventListener("click", function (event) {
+     if (event.target.classList.contains("download")) {
+       const fileRow = event.target.closest(".file-row");
+       const filePath = fileRow.getAttribute("data-filedir");
+       const fileName = fileRow.getAttribute("data-fileName");
+
+       // Create a temporary form to send the request
+       const form = document.createElement("form");
+       form.method = "POST";
+       form.action = "/BUNGOARCH/html/folders/viewFolders/downloadFile.php";
+
+       // Create hidden input fields for filePath and fileName
+       const filePathInput = document.createElement("input");
+       filePathInput.type = "hidden";
+       filePathInput.name = "filePath";
+       filePathInput.value = filePath;
+
+       const fileNameInput = document.createElement("input");
+       fileNameInput.type = "hidden";
+       fileNameInput.name = "fileName";
+       fileNameInput.value = fileName;
+
+       // Append inputs to the form
+       form.appendChild(filePathInput);
+       form.appendChild(fileNameInput);
+
+       // Append form to body and submit
+       document.body.appendChild(form);
+       form.submit();
+
+       // Remove form after submission
+       document.body.removeChild(form);
+     }
+   });
+
+
+
+
+
+///download done
  function getFileActions(fal) {
    if (fal === "1") {
      return `
@@ -272,12 +321,26 @@ if (event.target.closest(".folder")) {
         console.log(fileItem.file_name);
         
         dispTheSelected += `
-                             <div class="file-row">
+                             <div class="file-row"
+                             data-filedir="${
+                               splitDir(fileItem.file_path_directory) +
+                               fileItem.file_pseudo_name
+                             }"
+                             data-fileName="${
+                              fileItem.file_name
+                             }"
+                             >
                               <div class="file-icon"><i class="fas fa-file"></i></div>
                               <div class="file-name">${fileItem.file_name}</div>
-                              <div class="file-date">${fileItem.date_of_upload}</div>
-                              <div class="file-size">${frmatSize(fileItem.file_size)}</div>
-                              <div class="file-uploaded-by">${fileItem.uploader_id}</div>
+                              <div class="file-date">${
+                                fileItem.date_of_upload
+                              }</div>
+                              <div class="file-size">${frmatSize(
+                                fileItem.file_size
+                              )}</div>
+                              <div class="file-uploaded-by">${
+                                fileItem.uploader_id
+                              }</div>
                               <div class="file-actions">
                                   ${getFileActions(fileItem.file_access_level)}
                               </div>
