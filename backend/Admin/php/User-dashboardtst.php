@@ -34,13 +34,12 @@
     </id>
     <div class="wrapper" id="po-tedax">     
       <?php
-      include "test/adminLayout/sideNav.php";
-      ?>      
-       <?php
-      include "test/adminLayout/header.php";
-      ?>      
+      include "test/userLayout/sidenav.php";
+      include "test/userLayout/header.php";
+      ?>
+             
       
-       <div class="content-page">
+      <div class="content-page">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -49,13 +48,14 @@
                             <div class="select-dropdown input-prepend input-append">
                                 <div class="btn-group">
                                     <div data-toggle="dropdown">
-                                    <div class="dropdown-toggle search-query" >Admin<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
+                                        <!-- onclick="myFunction()" -->
+                                    <div class="dropdown-toggle search-query" >USER<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
                                     <span class="caret"><!--icon--></span>
                                     </div>
                                     <ul class="dropdown-menu">
-                                        <li><div class="item" id="new_flr_2"><i class="ri-folder-add-line pr-3" ></i>New Folder</div></li>
-                                        <li><div class="item" id="upl_fl_2" ><i class="ri-file-upload-line pr-3"></i>Upload Files</div></li>
-                                        <li><div class="item" id="shr_fl_2"><i class="ri-folder-upload-line pr-3"></i>Share Files</div></li>
+                                        <li><div class="item" id="new_flr_2"><i class="ri-folder-add-line pr-3 new_flr_2" ></i>New Folder</div></li>
+                                        <li><div class="item" id="upl_fl_2" ><i class="ri-file-upload-line pr-3 upl_fl_2"></i>Upload Files</div></li>
+                                        <li><div class="item" id="shr_fl_2"><i class="ri-folder-upload-line pr-3 shr_fl_3"></i>Share Files</div></li>
                                     </ul>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="d-flex flex-wrap align-items-center">
                                 <div class="col-lg-6 col-sm-6 p-0">
                                     <h3 class="mb-3" id="fname"></h3>
-                                    <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
+                                    <p class="mb-5">You can view Your Files and Folders in one Place or share and Upload Files</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                 <h4 class="card-title">Quick Access</h4>
                             </div>
                         </div>
-                         <div class="card-body">
+                        <div class="card-body">
                             <ul class="list-inline p-0 mb-0 row align-items-center">
                                 <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0" id="shr_fl_3"> 
                                     <div style="cursor: pointer;" class="p-2 text-center border rounded ">
@@ -142,6 +142,7 @@
                                 <h4 class="card-title">Documents</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
+                                 <button style="margin: 2px; border:none; padding:5px; border-radius:5px; background:#C2C3CCFF" href="#" class=" view-more" id="upload_fl_ease">Upload New Files</button>
                                 <a href="#" class=" view-more">View All</a>
                             </div>
                         </div>
@@ -168,6 +169,12 @@
                         <div class="card-header d-flex justify-content-between pb-0">
                             <div class="header-title">
                                 <h4 class="card-title">Folders</h4>
+                            </div>
+                            <div class="addNewFlder">
+                                <button style="padding:10px; border:none; border-radius:5px; outline :none">
+                                    Add New Folder
+                                </button>
+                                
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
                                 <div class="dropdown">
@@ -220,7 +227,8 @@
                         </div>
                     </div> -->
                 </div>
-                <div id="Ae3e" class="col-lg-12 col-xl-12"> 
+                <!-- Deactivated UserReQuests -->
+                <!-- <div id="Ae3e" class="col-lg-12 col-xl-12"> 
                     <div class="card card-block card-stretch card-height files-table">                   
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
@@ -249,7 +257,7 @@
                                 </thead>
                                 <tbody id="U_R_list">
                                    
-                                    <!-- <tr class="active">
+                                     <tr class="active">
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="icon-small bg-danger rounded mr-3">
@@ -278,18 +286,18 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr> -->
+                                    </tr> 
                                 </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- <div class="col-lg-4">
+                </div> -->
+                <div class="col-lg-4">
                     <div class="card card-block card-stretch card-height ">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Statistic</h4>
+                                <h4 class="card-title" id="Statistic">Statistic</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -320,7 +328,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- <div class="col-lg-4">
                     <div class="card card-block card-stretch card-height  plan-bg">
                         <div class="card-body">
@@ -337,7 +345,7 @@
                         </div>
                     </div>
                 </div> -->
-                <!-- <div class="col-lg-8">
+                <div class="col-lg-8">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-header d-flex justify-content-between pb-0">
                             <div class="header-title">
@@ -368,7 +376,7 @@
                             <div id="layout-1-chart2"></div>                
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
       </div>
@@ -416,12 +424,12 @@
         <script src="/BUNGOARCH/html/assets/js/Functions/index.js"></script>
     <script src="/BUNGOARCH/html/assets/js/Functions/handler.js"></script>
     <script src="AdminDash.js"></script>
-     <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js" defer></script>
-       <script src="/BUNGOARCH/html/FileUpload/fl3Mee/files.js" defer></script>
-     <script src="/BUNGOARCH/html/folders/folder.js" defer></script>
-    <script src="/BUNGOARCH/html/folders/viewFolders/viewFolder.js" defer></script>
-     <script src="/BUNGOARCH/html/fileSharing/share.js" defer></script>
-     <script src="/BUNGOARCH/html/notifications/notification.js" defer></script>
+     <script src="/BUNGOARCH/html/FileUpload/fl3Mee/Uploadscript.js" ></script>
+       <script src="/BUNGOARCH/html/FileUpload/fl3Mee/files.js" ></script>
+     <script src="/BUNGOARCH/html/folders/folder.js" ></script>
+    <script src="/BUNGOARCH/html/folders/viewFolders/viewFolder.js" ></script>
+     <script src="/BUNGOARCH/html/fileSharing/share.js" ></script>
+     <script src="/BUNGOARCH/html/notifications/notification.js" ></script>
      <script>
 iziToast.error({
     title: 'Error',

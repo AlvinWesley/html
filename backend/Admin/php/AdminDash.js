@@ -310,6 +310,8 @@ const ShrFl = document.querySelector("#nfl-ct ");
 const UplFl = document.querySelector("#upload-file-upf");
 const flderBtnCancel = document.querySelector("#fld-add-cancl-Btn");
 const Ext = document.querySelector("#cancel");
+const Upl_Fld4 = document.getElementById("upload_fl_ease");
+const new_flr_4 = document.querySelector("#newFolder_e");
 // d = "new_flr_2";
 // id = "upl_fl_2";
 // id = "shr_fl_2";
@@ -318,6 +320,10 @@ newFldr2.addEventListener("click",()=>{
  Fldmdl.showModal();
  console.log("the second newFolder2");
 })
+new_flr_4.addEventListener("click", () => {
+  Fldmdl.showModal();
+  console.log("the second newFolder2");
+});
 const newFldr3 = document.querySelector("#nw_fldr_3");
   newFldr3.addEventListener("click", () => {
   Fldmdl.showModal();
@@ -325,6 +331,11 @@ const newFldr3 = document.querySelector("#nw_fldr_3");
 });
 const Upl_Fld3 = document.querySelector("#upl_fl_3");
 Upl_Fld3.addEventListener("click", () => {
+  //alert("here we go");
+  Fmdl.showModal();
+  loadThemFolders();
+});
+Upl_Fld4.addEventListener("click", () => {
   //alert("here we go");
   Fmdl.showModal();
   loadThemFolders();

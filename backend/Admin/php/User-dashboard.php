@@ -51,9 +51,9 @@
                       <span class="caret"><!--icon--></span>
                       </div>
                       <ul class="dropdown-menu">
-                          <li class="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
-                          <li class="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
-                          <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
+                          <li class="upload-file-upf" id="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
+                          <li class="nfd-ct" id="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
+                          <li class="nfl-ct" id="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
                       </ul>
                         <dialog id="d-mdl-fu" class="file-uploader" >
         
@@ -663,7 +663,9 @@
                                 <h4 class="card-title">Documents</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
+                                <button style="margin: 2px;background:#C2C3CCFF; border:none; padding:5px; border-radius:5px" href="#" class=" view-more" id="upload_fl_ease">Upload New Files</button>
                                 <a href="#" class=" view-more">View All</a>
+
                             </div>
                         </div>
                     </div>
@@ -689,12 +691,20 @@
                         <div class="card-header d-flex justify-content-between pb-0">
                             <div class="header-title">
                                 <h4 class="card-title">Folders</h4>
+                                <div class="addNewFlder">
+                                
+                                
                             </div>
+                            </div>
+                            
                             <div class="card-header-toolbar d-flex align-items-center">
                                 <div class="dropdown">
                                     <span class="dropdown-toggle dropdown-bg btn bg-white" id="dropdownMenuButton1"
                                         data-toggle="dropdown">
                                         Name<i class="ri-arrow-down-s-line ml-1"></i>
+                                        <button id="newFolder_e" style="padding:5px; border:none; border-radius:5px; outline :none">
+                                    Add New Folder
+                                </button>
                                     </span>
                                     <div class="dropdown-menu dropdown-menu-right shadow-none"
                                         aria-labelledby="dropdownMenuButton1">
