@@ -129,8 +129,21 @@
                                     <h1>Select Users</h1>
                                     <div class="selectedCount" id="selectedCount">0 users selected</div>
                                     <!-- Search Bar -->
-                                    <div class="userOptions">
+                                    <div class="userOptions" 
+                                    >
                                         <input type="text" id="userSearch" placeholder="Search Users...">
+                                        <select name="select" id="filterUsers" style="
+                                                        outline:none;
+                                                        border: none;
+                                                        border-radius:10px;
+                                                        padding: 5px;
+                                                        width: 50%;
+                                                                    ">
+                                            <option value="nan">All Users</option>
+                                            <option value="us_01">Users</option>
+                                            <option value="sp_01">Supervisor</option>
+                                            <option value="Adm_01">Admin</option>
+                                        </select>
                                     </div>
 
                                     <!-- 'User not found' message -->

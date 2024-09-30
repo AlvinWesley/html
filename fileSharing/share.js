@@ -15,6 +15,7 @@ const closeShrDialog= document.querySelector(".cls_shr_diag");
 const shrtxtBx = document.querySelector(".text_Box");
 const containersThem = document.querySelector(".filesSharedPromt");
 //let sessionId = sessionStorage.getItem("sessionId");
+var filterr = "nan";
 var theUsers=``;
 var theFiles=``;
 let filesSelect = []; // Array to store selected files
@@ -159,14 +160,32 @@ const searchInput1 = document.getElementById("userSearch");
 const userList = document.getElementById("userList");
 const userNotFound = document.getElementById("userNotFound");
 const selectedCount = document.getElementById("selectedCount");
+const userFilter = document.getElementById("filterUsers");
+//now get the items of the selected options from userFilter
+//const selectedItem = userFil;
+//add an event listener that will console.log the value of the selected item when selected
 
+userFilter.addEventListener("change", function () {
+  //console.log(userFilter.value);
+  filterr = userFilter.value;
+  fetchAndDisplayUsers(filterr);
+});
 // Function to fetch and display users
 function fetchAndDisplayUsers() {
   let theListOfUsers = ``;
   let xhrfs = new XMLHttpRequest();
-  xhrfs.open("GET", "/BUNGOARCH/html/fileSharing/php/fetchUsers.php?ses_id=" + sessionId, true);
+        
+
+  xhrfs.open(
+    "GET",
+    `/BUNGOARCH/html/fileSharing/php/fetchUsers.php?filt=${filterr} && ses_id=${sessionId}`,
+    true
+  );
+  console.log(filterr);
   xhrfs.onload = function () {
     if (xhrfs.status === 200) {
+      console.log(this.responseText);
+      //console.log(filterUser);
       let accumulatedUsers = JSON.parse(this.responseText);
       accumulatedUsers.forEach((UsersEl) => {
         theListOfUsers += `
@@ -310,7 +329,7 @@ document.querySelector(".clearBtn").addEventListener("click", () => {
 
 // Trigger fetching users when the addUsers button is clicked
 addUsers.addEventListener("click", () => {
-  fetchAndDisplayUsers();
+  fetchAndDisplayUsers(filterr);
   userSelectDialog.showModal();
 });
 

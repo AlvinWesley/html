@@ -4,12 +4,11 @@ include "connect.php";
 
 $user_id = '';
 include_once  "../../backend/php/signin/sessions.php";
-
 $session_id='';
 $user_Id='';
 $session_id = $_GET['ses_id']?? null;
 if($session_id){
-   $user_Id=getUserId($session_id);
+   $user_id=getUserId($session_id);
 }
     // Use aggregate functions for columns that are not grouped
     $sqlFetchFiles = "

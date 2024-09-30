@@ -3,11 +3,12 @@
 // Ensure the user is authenticated
 //shida😂😂
 include_once "connect.php";
+include_once  "../../backend/php/signin/sessions.php";
 $session_id='';
-$user_Id='';
+$user_id='';
 $session_id = $_POST['ses_id'];
 if($session_id){
-   $user_Id=getUserId($session_id);
+   $user_id=getUserId($session_id);
 }
 $sqlFetchUserName="SELECT f_name,l_name from USER_DETAILS_TBL where user_id='$user_id'";
 $sqlRunFetch=mysqli_query($conn,$sqlFetchUserName);
