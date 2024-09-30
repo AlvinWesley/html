@@ -46,7 +46,7 @@ function signUpForm(e) {
           window.location.href="/BungoArch/html/backend/Admin/php/admin_dashboardtst.php";
         }else{
           window.location.href =
-            "/BungoArch/html/backend/Admin/php/User-dashboard.php";
+            "/BungoArch/html/backend/Admin/php/User-dashboardtst.php";
         }
     }, 2000);
 }

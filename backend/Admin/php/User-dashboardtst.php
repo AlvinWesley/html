@@ -143,7 +143,7 @@
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
                                  <button style="margin: 2px; border:none; padding:5px; border-radius:5px; background:#C2C3CCFF" href="#" class=" view-more" id="upload_fl_ease">Upload New Files</button>
-                                <a href="#" class=" view-more">View All</a>
+                                <a href="foldersNFiles.php" class=" view-more">View All</a>
                             </div>
                         </div>
                     </div>

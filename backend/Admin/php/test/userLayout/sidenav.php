@@ -214,7 +214,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                        <li class="active">
-                              <a href="/BungoArch/html/backend/Admin/php/User-dashboard.php" class="">
+                              <a href="/BungoArch/html/backend/Admin/php/User-dashboardtst.php" class="">
                                   <i class="las la-home iq-arrow-left"></i><span>Dashboard</span>
                               </a>
                           <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
@@ -294,7 +294,7 @@
                     </ul>
                  </li>
                        <li class=" ">
-                              <a href="/BUNGOARCH/html/backend/page-folders.html" class="">
+                              <a href="/BUNGOARCH/html/backend/Admin/php/foldersNFiles.php" class="">
                                   <i class="lar la-file-alt iq-arrow-left"></i><span>MyFiles and Folders</span>
                               </a>
                           <ul id="page-files" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">

@@ -3,7 +3,7 @@
               <nav class="navbar navbar-expand-lg navbar-light p-0">
               <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                   <i class="ri-menu-line wrapper-menu"></i>
-                  <a href="Admin-dashboard.html" class="header-logo">
+                  <a href="/BungoArch/html/backend/Admin/php/User-dashboardtst.php" class="header-logo">
                       <img src="/BUNGOARCH/html/assets/images/logo/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
                       <img src="/BUNGOARCH/html/assets/images/logo/logo.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
                   </a>
@@ -144,12 +144,12 @@
                                               <div class="cover-container text-center">
                                                   <div class="rounded-circle profile-icon bg-primary mx-auto d-block" >
                                                                                                      
-                                                      <a href="Admin-profile-edit.php" id="profile_name_init" style="text-decoration:none; color:white;" >
+                                                      <a href="/BungoArch/html/backend/Admin/php/Admin-profile-edit.php" id="profile_name_init" style="text-decoration:none; color:white;" >
                                                           
                                                       </a>
                                                   </div>
                                                   <div class="profile-detail mt-3">
-                                                  <h5 ><a href="Admin-profile-edit.php" id="profile_name"></a></h5>
+                                                  <h5 ><a href="/BungoArch/html/backend/Admin/php/Admin-profile-edit.php" id="profile_name"></a></h5>
                                                   <p id="profile_email"></p>
                                                   </div>
                                                   <a href="/BungoArch/html/backend/php/signin/auth-sign-in.php" class="btn btn-primary">Sign Out</a>
