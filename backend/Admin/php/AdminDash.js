@@ -31,7 +31,21 @@ function UserItems() {
          myDept += `<option value="${dept.department_id}" ${isSelected}>${dept.department_name}</option>`;
        });
        return myDept;
-     }
+      }
+       function getAccessLevelOptions(selectedLevel) {
+         let options = `
+            <option value="#us_01#" ${
+              selectedLevel == "#us_01#" ? "selected" : ""
+            }>User</option>
+            <option value="#sp_01#" ${
+              selectedLevel == "#sp_01#" ? "selected" : ""
+            }>Supervisor</option>
+            <option value="#Adm_01#" ${
+              selectedLevel == "#Adm_01#" ? "selected" : ""
+            }>Administrator</option>
+        `;
+         return options;
+       }
       var output = "";
       function regStatusDisp(status) {
         if (status == 1) {
@@ -54,13 +68,21 @@ function UserItems() {
               </div>
             </td>
             <td class="user-id">${user.user_id}</td>
-            <td>${user.f_name + " " + user.l_name}</td>
-            <td>${user.email}</td>
-            <td>${user.date_of_reg}</td>
+            <td style="width:30px">${user.f_name + " " + user.l_name}</td>
+            <td style="max-width:150px">${user.email}</td>
+            <td style="max-width:50px">${formatDate(user.date_of_reg)}</td>
             <td>
               <form id="userDeptTbl">
-              <select class="form-control" id="exampleFormControlSelect4">
+              <select class="form-control control_dept" id="exampleFormControlSelect4">
                                            ${getinDeparts(user.department_id)}
+                                       </select>
+              </form>
+              
+            </td>
+            <td>
+             <form id="userAccessLvl">
+              <select class="form-control control_lvl" id="exampleFormControlSelect5">
+                                         ${getAccessLevelOptions(user.user_type)}
                                        </select>
               </form>
             </td>
@@ -138,8 +160,11 @@ function u_Updates(event,input) {
     //alert("This is the 2'nd users Client side says: " + input);
     var userId = userRow.querySelector(".user-id").textContent.trim();
     //alert("This is the 2'nd users Client side says: " + userId);
-    var deptSelect = userRow.querySelector("select");
+    var deptSelect = userRow.querySelector(".control_dept");
     var selectedOption = deptSelect.options[deptSelect.selectedIndex];
+    var UserLevelSelect = userRow.querySelector(".control_lvl");
+    var selectedLevelOption = UserLevelSelect.options[UserLevelSelect.selectedIndex];
+    var level_type=selectedLevelOption.value;
     var dept_Id = selectedOption.value;
     var dept_Name = selectedOption.textContent.trim();
     var userStat = userRow.querySelector(".user-status").textContent.trim();
@@ -174,7 +199,9 @@ function u_Updates(event,input) {
        "&userStatus=" +
        newStats +
        "&deptID=" +
-       dept_Id;
+       dept_Id+
+       "&accessLvl="
+       +level_type;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "usersList.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -279,11 +306,28 @@ const Nwfldr = document.querySelector(".nfd-ct");
 const  Fmdl = document.querySelector("#d-mdl-fu");
 const Fldmdl = document.querySelector("#d-mdl-flda");
 const FlShrmdl = document.getElementById("d-mdl-flShr");
- const ShrFl = document.querySelector(".nfl-ct ");
- const UplFl = document.querySelector(".upload-file-upf");
- const flderBtnCancel = document.querySelector("#fld-add-cancl-Btn");
- const Ext = document.querySelector("#cancel");
- ShrFl.addEventListener("click",()=>{
+const ShrFl = document.querySelector(".nfl-ct ");
+const UplFl = document.querySelector(".upload-file-upf");
+const flderBtnCancel = document.querySelector("#fld-add-cancl-Btn");
+const Ext = document.querySelector("#cancel");
+// d = "new_flr_2";
+// id = "upl_fl_2";
+// id = "shr_fl_2";
+const newFldr2 = document.querySelector("#new_flr_2");
+newFldr2.addEventListener("click",()=>{
+ Fldmdl.showModal();
+});
+const Upl_Fldr2 = document.querySelector("#upl_fl_2");
+Upl_Fldr2.addEventListener("click", () => {
+  //alert("here we go");
+  Fmdl.showModal();
+});
+const Shr_Fl2=document.querySelector("#shr_fl_2");
+Shr_Fl2.addEventListener("click", () => {
+  FlShrmdl.showModal();
+});
+
+ShrFl.addEventListener("click",()=>{
 FlShrmdl.showModal();
  });
 Nwfldr.addEventListener("click", () => {
@@ -298,7 +342,9 @@ Ext.addEventListener("click",()=>{
 Fmdl.close();
 });
 flderBtnCancel.addEventListener("click", () => {
+  fetchFolders();
   Fldmdl.close();
+  
 });
 
 

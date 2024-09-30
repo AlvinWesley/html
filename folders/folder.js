@@ -20,7 +20,6 @@ function formatDate(dateTimeString) {
   const day = dateObj.getDate();
   const month = monthNames[dateObj.getMonth()];
   const year = dateObj.getFullYear();
-
   // Format the date as 'DD-MMM-YYYY'
   return `${day}-${month}-${year}`;
 }
@@ -120,6 +119,7 @@ function fetchFolders() {
 
 
 document.getElementById("addButton").addEventListener("click", function () {
+  fetchFolders();
   const folderNameInput = document.getElementById("folderName");
   const folderName = folderNameInput.value.trim();
   const bgColor = document.querySelector("#folderColor").value;
@@ -186,10 +186,12 @@ document
   .addEventListener("click", function () {
     document.getElementById("folderName").value = "";
     hideMessage();
+    fetchFolders();
   });
 
 function displayMessage(message, type) {
   const messageBox = document.getElementById("message-box");
+  fetchFolders();
   messageBox.textContent = message;
   messageBox.className = `show ${type}`;
   messageBox.style.visibility = "visible";

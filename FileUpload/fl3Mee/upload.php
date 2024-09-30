@@ -94,16 +94,22 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
 //Handling Saving Of Folders into the Database Here
 
 if(isset($_POST["folderName"])){
-    if(isset($_SESSION['userId'])){
+   // if(isset($_SESSION['userId'])){
+   $session_id = $_POST['ses_id'];
+if($session_id){
+   $user_id=getUserId($session_id);
+}
         $folderColor="orange";
         if(isset ($_POST["folder-clr"])){
             $folderColor=$_POST['folder-clr'];
         }
-        $userId = $_SESSION['userId'];
+        //$userId = $_SESSION['userId'];
         $folderName=$_POST["folderName"];
+        // $user_id=(int)$user_id;
+        //echo $user_id;
         $folderType="general";
         $sql="INSERT INTO FOLDERS(folder_name,folder_type,color_label,owner_id)
-                VALUES('$folderName','$folderType','$folderColor','$userId')";
+                VALUES('$folderName','$folderType','$folderColor','$user_id')";
         $execute=mysqli_query($conn,$sql);
       if($execute){
     //echo "Folder has been added successfully";
@@ -111,7 +117,7 @@ if(isset($_POST["folderName"])){
     //echo "Folder add has experienced an error: " . mysqli_error($conn);
         }
 
-    }
+    //}
    
 }else{
     //echo"Error Here";

@@ -236,7 +236,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                        <li class="active">
-                              <a href="/BungoArch/html/backend/Admin/php/Admin-dashboard.php" class="">
+                              <a href="/BungoArch/html/backend/Admin/php/User-dashboard.php" class="">
                                   <i class="las la-home iq-arrow-left"></i><span>Dashboard</span>
                               </a>
                           <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
@@ -244,12 +244,13 @@
                        </li>
                        
                        <li class=" ">
-                        <a href="#otherpage" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <!-- deactivated Manage Users -->
+                        <!-- <a href="#otherpage" class="collapsed" data-toggle="collapse" aria-expanded="false">
                             <i class="lab la-wpforms iq-arrow-left"></i><span>Manage Users</span>
                             <i class="las la-angle-right iq-arrow-right arrow-active"></i>
                             <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
-                        </a>
-                        <ul id="otherpage" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        </a> -->
+                        <!-- <ul id="otherpage" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                 <li class=" ">
                                     <a href="#user" class="collapsed" data-toggle="collapse" aria-expanded="false">
                                         <i class="las la-user-cog"></i><span>User Details</span>
@@ -269,9 +270,9 @@
                                             </li>
                                     </ul>
                                 </li>
-                        </ul>
+                        </ul> -->
                      </li>
-                       <li class=" ">
+                       <!-- <li class=" ">
                           <a href="#mydrive" class="collapsed" data-toggle="collapse" aria-expanded="false">
                               <i class="las la-hdd"></i><span>Admin</span>
                               <i class="las la-angle-right iq-arrow-right arrow-active"></i>
@@ -305,30 +306,30 @@
                                           </a>
                                   </li>
                           </ul>
-                       </li>
+                       </li> -->
                        
                        <li class=" ">
-                        <a href="settings.html" class="">
+                        <a href="/BUNGOARCH/html/backend/Admin/php/admin-profile-edit.php" class="">
                             <i class="ri-settings-3-line"></i><span>Settings</span>
                         </a>
                     <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                  </li>
                        <li class=" ">
-                              <a href="/BUNGOARCH/html/backend/page-files.html" class="">
-                                  <i class="lar la-file-alt iq-arrow-left"></i><span>Files</span>
+                              <a href="/BUNGOARCH/html/backend/page-folders.html" class="">
+                                  <i class="lar la-file-alt iq-arrow-left"></i><span>MyFiles and Folders</span>
                               </a>
                           <ul id="page-files" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                           </ul>
                        </li>
                        <li class=" ">
-                        <a hr="/BUNGOARCH/html/ad-analytics.html" class="">
+                        <a href="#Statistic" class="">
                             <i class="las la-heart"></i><span>Analytics</span>
                         </a>
                     <ul id="page-folders" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                  </li>                      
-                       <li class=" ">
+                       <!-- <li class=" ">
                               <a href="/BUNGOARCH/html/backend/page-folders.html" class="">
                                   <i class="las la-stopwatch iq-arrow-left"></i><span>Recent</span>
                               </a>
@@ -341,14 +342,14 @@
                               </a>
                           <ul id="page-fevourite" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                           </ul>
-                       </li>
-                       <li class=" ">
+                       </li> -->
+                       <!-- <li class=" ">
                               <a href="Trash.html" class="">
                                   <i class="las la-trash-alt iq-arrow-left"></i><span>Trash</span>
                               </a>
                           <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                           </ul>
-                       </li>
+                       </li> -->
                   </ul>
               </nav>
               <div class="sidebar-bottom">
@@ -555,7 +556,8 @@
                             <div class="select-dropdown input-prepend input-append">
                                 <div class="btn-group">
                                     <div data-toggle="dropdown">
-                                    <div class="dropdown-toggle search-query" onclick="myFunction()">Admin<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
+                                        <!-- onclick="myFunction()" -->
+                                    <div class="dropdown-toggle search-query" >USER<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
                                     <span class="caret"><!--icon--></span>
                                     </div>
                                     <ul class="dropdown-menu">
@@ -595,7 +597,7 @@
                             <div class="d-flex flex-wrap align-items-center">
                                 <div class="col-lg-6 col-sm-6 p-0">
                                     <h3 class="mb-3" id="fname"></h3>
-                                    <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
+                                    <p class="mb-5">You can view Your Files and Folders in one Place or share and Upload Files</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
                             </div>
@@ -616,7 +618,7 @@
                                         <div>
                                             <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-1.png" class="img-fluid mb-1" alt="image1">
                                         </div>
-                                        <p class="mb-0">Planning</p>
+                                        <p class="mb-0">Share Files</p>
                                     </div>
                                 </li>
                                 <li class="col-lg-6 col-sm-6"> 
@@ -624,7 +626,7 @@
                                         <div>
                                             <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
                                         </div>
-                                        <p class="mb-0">Wireframe</p>
+                                        <p class="mb-0">Upload Files </p>
                                     </div>
              
                                 </li>
@@ -717,7 +719,8 @@
                         </div>
                     </div> -->
                 </div>
-                <div id="Ae3e" class="col-lg-12 col-xl-12"> 
+                <!-- Deactivated UserReQuests -->
+                <!-- <div id="Ae3e" class="col-lg-12 col-xl-12"> 
                     <div class="card card-block card-stretch card-height files-table">                   
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
@@ -746,7 +749,7 @@
                                 </thead>
                                 <tbody id="U_R_list">
                                    
-                                    <!-- <tr class="active">
+                                     <tr class="active">
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="icon-small bg-danger rounded mr-3">
@@ -775,18 +778,18 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr> -->
+                                    </tr> 
                                 </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4">
                     <div class="card card-block card-stretch card-height ">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Statistic</h4>
+                                <h4 class="card-title" id="Statistic">Statistic</h4>
                             </div>
                         </div>
                         <div class="card-body">

@@ -12,10 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($_POST['submitUserEdits'])){
             if($_POST['submitUserEdits']==='submit'){
                         if (isset($_POST['userId']) && isset($_POST['userStatus'])) {
+                            
                         $userId = $_POST['userId'];
                         $userStatus = $_POST['userStatus'];
+                        
                         //echo $_POST['submitUserEdits'];
-                        $query2 = "UPDATE USER_DETAILS_TBL SET regStatus='$userStatus' WHERE user_id='$userId'";
+                        $query2 = "UPDATE USER_DETAILS_TBL SET regStatus='$userStatus'  WHERE user_id='$userId'";
                         $exe = mysqli_query($conn, $query2);
                         
                         if ($exe) {
@@ -27,16 +29,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
             }
             else if($_POST['submitUserEdits']==='click'){ 
-                if(isset($_POST['deptID'])&&isset($_POST['userId'])){
-                    $deptID = $_POST['deptID'];
-                    $userId= $_POST['userId'];
-                    $query22 = " UPDATE USER_LOGIN_TBL 
-                                SET  department_id='$deptID'
-                                WHERE user_id='$userId'";
-                    $exe22 = mysqli_query($conn, $query22);
-                    
-                    if ($exe22) {
-                        echo "User Department updated successfully";
+                if(isset($_POST['deptID'])&&isset($_POST['userId']) &&isset($_POST['accessLvl'])){
+                   // First, update the USER_LOGIN_TBL
+                        $deptID = $_POST['deptID'];
+                        $userId = $_POST['userId'];
+                        $user_type = $_POST['accessLvl'];
+
+                        // Update department_id in USER_LOGIN_TBL
+                        $query1 = "UPDATE USER_LOGIN_TBL 
+                                SET department_id = '$deptID'
+                                WHERE user_id = '$userId'";
+
+                        // Execute the first query
+                        $exe1 = mysqli_query($conn, $query1);
+
+                        // Then, update the user_type in USER_DETAILS_TBL
+                        $query2 = "UPDATE USER_DETAILS_TBL 
+                                SET user_type = '$user_type' 
+                                WHERE user_id = '$userId'";
+                        // Execute the second query
+                        $exe2 = mysqli_query($conn, $query2);
+                    if ($exe2 && $exe1) {
+                        echo "User Department and Access Level updated successfully";
                     } else {
                         echo "Error updating user status: " . mysqli_error($conn);
                     }
@@ -87,7 +101,8 @@ else {
     USER_DETAILS_TBL.phone_number, 
     USER_DETAILS_TBL.date_of_reg, 
     USER_LOGIN_TBL.department_id, 
-    DEPARTMENT_TBL.department_name
+    DEPARTMENT_TBL.department_name,
+    USER_DETAILS_TBL.user_type
 FROM 
     USER_DETAILS_TBL 
 INNER JOIN 

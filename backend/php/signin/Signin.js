@@ -39,7 +39,15 @@ function signUpForm(e) {
     
     // Redirect to the Admin dashboard
     setTimeout(function () {
-        window.location.href = `/BungoArch/html/backend/Admin/php/Admin-dashboard.php`;
+        if(response.userType==="#Adm_01#"){
+          window.location.href =
+            "/BungoArch/html/backend/Admin/php/Admin-dashboard.php";
+        }else if(response.userType==="#sp_01#"){
+          window.location.href="/BungoArch/html/backend/Admin/php/admin_dashboard.php";
+        }else{
+          window.location.href =
+            "/BungoArch/html/backend/Admin/php/User-dashboard.php";
+        }
     }, 2000);
 }
   };
