@@ -73,25 +73,69 @@ function LoadThemFiles(){
                                 align-items:center;">
                                 <h4 style="color:#fff">Your Files Shall Appear Here</h4>
                                 <h5 style="color:#fff">You dont have any files at the moment click
-                                 <a class="browser_files" style="color:#3B356E; cursor:pointer;text-decoration:underline">Browse</a>
+                                 <a class="browser_files" style="color:#3B356E; cursor:pointer;text-decoration:underline" id="upl_br"> Upload </a>
                                    to Upload Files</h5>
                                 </div>`;
       }else{
       console.log(resultDataArr2);
       resultDataArr2.forEach(function (files) {
-        var fileExt="pdf";
-        let f_ext=files.file_extension;
-       if (f_ext === "docx" || f_ext === "doc"){
-        fileExt="doc";
-       }else if (f_ext === "xls"||f_ext==="xlsx"){
-        fileExt="xlsx";
-       }else if(f_ext==="ppt"||f_ext==="pptx"){
-        fileExt="ppt"
-       }else if(f_ext==="pdf"){
-        fileExt="pdf";
-       }else{
-        fileExt="03";
-       }
+      var fileExt = "pdf";
+      let f_ext = files.file_extension;
+
+      if (f_ext === "docx" || f_ext === "doc") {
+        fileExt = "doc.png";
+      } else if (f_ext === "xls" || f_ext === "xlsx") {
+        fileExt = "xlsx.png";
+      } else if (f_ext === "ppt" || f_ext === "pptx") {
+        fileExt = "ppt.png";
+      } else if (f_ext === "pdf") {
+        fileExt = "pdf.png";
+      } else if (
+        f_ext === "jpg" ||
+        f_ext === "jpeg" ||
+        f_ext === "png" ||
+        f_ext === "gif" ||
+        f_ext === "bmp" ||
+        f_ext === "tiff"
+      ) {
+        fileExt = "images.png"; // Image icon for common image formats
+      } else if (
+        f_ext === "mp4" ||
+        f_ext === "avi" ||
+        f_ext === "mkv" ||
+        f_ext === "mov" ||
+        f_ext === "wmv" ||
+        f_ext === "flv"
+      ) {
+        fileExt = "video.png"; // Video icon for common video formats
+      } else if (
+        f_ext === "mp3" ||
+        f_ext === "wav" ||
+        f_ext === "flac" ||
+        f_ext === "aac"
+      ) {
+        fileExt = "audio.jpg"; // Audio icon for common audio formats
+      } else if (f_ext === "mdb" || f_ext === "accdb") {
+        fileExt = "accdb.png"; // Microsoft Access database icon
+      } else if (f_ext === "exe" || f_ext === "bat" || f_ext === "sh") {
+        fileExt = "exe.png"; // Executable file icon
+      } else if (
+        f_ext === "zip" ||
+        f_ext === "rar" ||
+        f_ext === "7z" ||
+        f_ext === "tar" ||
+        f_ext === "gz"
+      ) {
+        fileExt = "zip.jpg"; // Archive file icon for compressed formats
+      }
+      else if(
+        f_ext==="txt"
+      ){
+        fileExt="txt.png";
+      } else {
+        fileExt = "other.jpg"; // Default for other unknown formats
+      }
+
          dispFiles += `
 <div  class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-block card-stretch card-height">
@@ -99,7 +143,7 @@ function LoadThemFiles(){
                             <a href="#" data-title="Terms.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal">
                                 <div class="mb-4 text-center p-3 rounded iq-thumb">
                                     <div class="iq-image-overlay"></div>
-                                    <img src="/BUNGOARCH/html/assets/images/layouts/page-1/${fileExt}.png" class="img-fluid" alt="image1">       
+                                    <img src="/BUNGOARCH/html/assets/images/layouts/page-1/${fileExt}" class="img-fluid" alt="image1">       
                                 </div>
                                 <h6>${files.file_name}</h6> 
                             </a>             
@@ -316,4 +360,11 @@ clearFiles.addEventListener("click", () => {
   fileCompletedProg.innerText = `${completed} / ${totalFiles} files Completed`;
   // Optionally reset uploadInitiated if needed
   uploadInitiated = false;
+});
+document.addEventListener("click", (e) => {
+  const Upl_Fld4 = e.target.closest("#upl_br"); // Check if the clicked target is #upl_br
+  if (Upl_Fld4) {
+    // If #upl_br was clicked, trigger the modal
+    Fmdl.showModal(); // Assuming Fmdl is a valid reference
+  }
 });

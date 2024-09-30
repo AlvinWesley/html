@@ -55,7 +55,7 @@ function fetchFolders() {
                                 align-items:center;">
                                 <h4 style="color:#fff">Your Folders Shall Appear Here</h4>
                                 <h5 style="color:#fff">You dont have any folders at the moment click
-                                 <a class="browser_files" style="color:#3B356E; cursor:pointer;text-decoration:underline">Add Folder(s)</a>
+                                 <a class="browser_files" style="color:#3B356E; cursor:pointer;text-decoration:underline" id="fldr_br">Add Folder(s)</a>
                                    to Upload Files</h5>
                                 </div>
         `;
@@ -362,6 +362,13 @@ if (event.target.closest(".folder")) {
 // else{
 //   alert("not Found");
 // }
+});
+document.addEventListener("click", (e) => {
+  const Upl_Fld4 = e.target.closest("#fldr_br"); // Check if the clicked target is #upl_br
+  if (Upl_Fld4) {
+    // If #upl_br was clicked, trigger the modal
+    Fldmdl.showModal();; // Assuming Fmdl is a valid reference
+  }
 });
 // const UploadFiless = document.querySelector("#sbmt_file");
 // UploadFiless.addEventListener("click", fetchFolders);

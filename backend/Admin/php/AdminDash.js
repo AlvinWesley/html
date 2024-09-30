@@ -317,6 +317,16 @@ const newFldr2 = document.querySelector("#new_flr_2");
 newFldr2.addEventListener("click",()=>{
  Fldmdl.showModal();
 });
+const newFldr3 = document.querySelector("#nw_fldr_3");
+  newFldr3.addEventListener("click", () => {
+  Fldmdl.showModal();
+});
+const Upl_Fld3 = document.querySelector("#upl_fl_3");
+Upl_Fld3.addEventListener("click", () => {
+  //alert("here we go");
+  Fmdl.showModal();
+  loadThemFolders();
+});
 const Upl_Fldr2 = document.querySelector("#upl_fl_2");
 Upl_Fldr2.addEventListener("click", () => {
   //alert("here we go");
@@ -325,6 +335,11 @@ Upl_Fldr2.addEventListener("click", () => {
 const Shr_Fl2=document.querySelector("#shr_fl_2");
 Shr_Fl2.addEventListener("click", () => {
   FlShrmdl.showModal();
+});
+const Shr_Fl3 = document.querySelector("#shr_fl_3");
+Shr_Fl3.addEventListener("click", () => {
+  FlShrmdl.showModal();
+  console.log("tell me why");
 });
 
 ShrFl.addEventListener("click",()=>{
@@ -338,6 +353,7 @@ UplFl.addEventListener("click",()=>{
   //alert("here we go");
   Fmdl.showModal();
 });
+
 Ext.addEventListener("click",()=>{
 Fmdl.close();
 });

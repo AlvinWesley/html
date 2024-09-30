@@ -561,9 +561,9 @@
                                     <span class="caret"><!--icon--></span>
                                     </div>
                                     <ul class="dropdown-menu">
-                                        <li><div class="item" id="new_flr_2"><i class="ri-folder-add-line pr-3" ></i>New Folder</div></li>
-                                        <li><div class="item" id="upl_fl_2" ><i class="ri-file-upload-line pr-3"></i>Upload Files</div></li>
-                                        <li><div class="item" id="shr_fl_2"><i class="ri-folder-upload-line pr-3"></i>Share Files</div></li>
+                                        <li><div class="item" id="new_flr_2"><i class="ri-folder-add-line pr-3 new_flr_2" ></i>New Folder</div></li>
+                                        <li><div class="item" id="upl_fl_2" ><i class="ri-file-upload-line pr-3 upl_fl_2"></i>Upload Files</div></li>
+                                        <li><div class="item" id="shr_fl_2"><i class="ri-folder-upload-line pr-3 shr_fl_3"></i>Share Files</div></li>
                                     </ul>
                                 </div>
                             </div>
@@ -613,20 +613,29 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-inline p-0 mb-0 row align-items-center">
-                                <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0"> 
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Product-planning.pdf" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
+                                <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0" id="shr_fl_3"> 
+                                    <div style="cursor: pointer;" class="p-2 text-center border rounded ">
+                                        <div class="">
                                             <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-1.png" class="img-fluid mb-1" alt="image1">
                                         </div>
-                                        <p class="mb-0">Share Files</p>
+                                        <p class="mb-0 " >Share Files</p>
                                     </div>
                                 </li>
-                                <li class="col-lg-6 col-sm-6"> 
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="Wireframe.docx" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
+                                <li class="col-lg-6 col-sm-6" id="upl_fl_3"> 
+                                    <div  style="cursor: pointer;" class="p-2 text-center border rounded">
+                                        <div class="upl_fl_2">
                                             <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
                                         </div>
                                         <p class="mb-0">Upload Files </p>
+                                    </div>
+             
+                                </li>
+                                 <li class="col-lg-6 col-sm-6" id="nw_fldr_3"> 
+                                    <div  style="cursor: pointer;" class="p-2 text-center border rounded">
+                                        <div class="upl_fl_2">
+                                            <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
+                                        </div>
+                                        <p class="mb-0">New Folder</p>
                                     </div>
              
                                 </li>

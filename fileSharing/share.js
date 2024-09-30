@@ -340,6 +340,7 @@ addFiles.addEventListener("click", () => {
   xhrfs.onload = function () {
     if (this.status == 200) {
       //console.log("The files loaded");
+      console.log(this.responseText);
       let resultFilesLoad = JSON.parse(this.responseText);
       let fileLoadText = ``;
 
