@@ -302,12 +302,12 @@ function loadUsersLog(e) {
   xhr.send();
 }
 // const 
-const Nwfldr = document.querySelector(".nfd-ct");
+const Nwfldr = document.querySelector("#nfd-ct");
 const  Fmdl = document.querySelector("#d-mdl-fu");
 const Fldmdl = document.querySelector("#d-mdl-flda");
 const FlShrmdl = document.getElementById("d-mdl-flShr");
-const ShrFl = document.querySelector(".nfl-ct ");
-const UplFl = document.querySelector(".upload-file-upf");
+const ShrFl = document.querySelector("#nfl-ct ");
+const UplFl = document.querySelector("#upload-file-upf");
 const flderBtnCancel = document.querySelector("#fld-add-cancl-Btn");
 const Ext = document.querySelector("#cancel");
 // d = "new_flr_2";
@@ -316,10 +316,12 @@ const Ext = document.querySelector("#cancel");
 const newFldr2 = document.querySelector("#new_flr_2");
 newFldr2.addEventListener("click",()=>{
  Fldmdl.showModal();
-});
+ console.log("the second newFolder2");
+})
 const newFldr3 = document.querySelector("#nw_fldr_3");
   newFldr3.addEventListener("click", () => {
   Fldmdl.showModal();
+  console.log("the third newFolder3");
 });
 const Upl_Fld3 = document.querySelector("#upl_fl_3");
 Upl_Fld3.addEventListener("click", () => {
@@ -330,7 +332,8 @@ Upl_Fld3.addEventListener("click", () => {
 const Upl_Fldr2 = document.querySelector("#upl_fl_2");
 Upl_Fldr2.addEventListener("click", () => {
   //alert("here we go");
-  Fmdl.showModal();
+  console.log("swaeaeaw");
+ Fmdl.showModal();
 });
 const Shr_Fl2=document.querySelector("#shr_fl_2");
 Shr_Fl2.addEventListener("click", () => {
@@ -348,6 +351,7 @@ FlShrmdl.showModal();
 Nwfldr.addEventListener("click", () => {
   //alert("here we go");
   Fldmdl.showModal();
+  console.log("the first newFolder1");
 });
 UplFl.addEventListener("click",()=>{
   //alert("here we go");
@@ -358,9 +362,8 @@ Ext.addEventListener("click",()=>{
 Fmdl.close();
 });
 flderBtnCancel.addEventListener("click", () => {
-  fetchFolders();
   Fldmdl.close();
-  
+  fetchFolders();
 });
 
 

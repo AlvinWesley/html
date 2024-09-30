@@ -51,9 +51,9 @@
                       <span class="caret"><!--icon--></span>
                       </div>
                       <ul class="dropdown-menu">
-                          <li class="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
-                          <li class="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
-                          <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
+                          <li class="upload-file-upf" id="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
+                          <li class="nfd-ct" id="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
+                          <li class="nfl-ct" id="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
                       </ul>
                         <dialog id="d-mdl-fu" class="file-uploader" >
         
@@ -131,6 +131,18 @@
                                     <!-- Search Bar -->
                                     <div class="userOptions">
                                         <input type="text" id="userSearch" placeholder="Search Users...">
+                                         <select name="select" id="filterUsers" style="
+                                                        outline:none;
+                                                        border: none;
+                                                        border-radius:10px;
+                                                        padding: 5px;
+                                                        width: 50%;
+                                                                    ">
+                                            <option value="nan">All Users</option>
+                                            <option value="us_01">Users</option>
+                                            <option value="sp_01">Supervisor</option>
+                                            <option value="Adm_01">Admin</option>
+                                        </select>
                                     </div>
 
                                     <!-- 'User not found' message -->
@@ -555,7 +567,7 @@
                             <div class="select-dropdown input-prepend input-append">
                                 <div class="btn-group">
                                     <div data-toggle="dropdown">
-                                    <div class="dropdown-toggle search-query" onclick="myFunction()">Admin<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
+                                    <div class="dropdown-toggle search-query" >Admin<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
                                     <span class="caret"><!--icon--></span>
                                     </div>
                                     <ul class="dropdown-menu">
@@ -609,22 +621,31 @@
                                 <h4 class="card-title">Quick Access</h4>
                             </div>
                         </div>
-                        <div class="card-body">
+                         <div class="card-body">
                             <ul class="list-inline p-0 mb-0 row align-items-center">
-                                <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0"> 
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Product-planning.pdf" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
+                                <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0" id="shr_fl_3"> 
+                                    <div style="cursor: pointer;" class="p-2 text-center border rounded ">
+                                        <div class="">
                                             <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-1.png" class="img-fluid mb-1" alt="image1">
                                         </div>
-                                        <p class="mb-0">Planning</p>
+                                        <p class="mb-0 " >Share Files</p>
                                     </div>
                                 </li>
-                                <li class="col-lg-6 col-sm-6"> 
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="Wireframe.docx" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
+                                <li class="col-lg-6 col-sm-6" id="upl_fl_3"> 
+                                    <div  style="cursor: pointer;" class="p-2 text-center border rounded">
+                                        <div class="upl_fl_2">
                                             <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
                                         </div>
-                                        <p class="mb-0">Wireframe</p>
+                                        <p class="mb-0">Upload Files </p>
+                                    </div>
+             
+                                </li>
+                                 <li class="col-lg-6 col-sm-6" id="nw_fldr_3"> 
+                                    <div  style="cursor: pointer;" class="p-2 text-center border rounded">
+                                        <div class="upl_fl_2">
+                                            <img src="/BUNGOARCH/html/assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
+                                        </div>
+                                        <p class="mb-0">New Folder</p>
                                     </div>
              
                                 </li>

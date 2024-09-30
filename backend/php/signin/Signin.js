@@ -41,9 +41,9 @@ function signUpForm(e) {
     setTimeout(function () {
         if(response.userType==="#Adm_01#"){
           window.location.href =
-            "/BungoArch/html/backend/Admin/php/Admin-dashboard.php";
+            "/BungoArch/html/backend/Admin/php/Admin-dashboardtst.php";
         }else if(response.userType==="#sp_01#"){
-          window.location.href="/BungoArch/html/backend/Admin/php/admin_dashboard.php";
+          window.location.href="/BungoArch/html/backend/Admin/php/admin_dashboardtst.php";
         }else{
           window.location.href =
             "/BungoArch/html/backend/Admin/php/User-dashboard.php";

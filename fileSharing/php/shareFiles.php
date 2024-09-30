@@ -92,7 +92,7 @@ if (isset($_POST['users'])) {
                 //echo "File $fileName successfully copied to $receiver_name's folder.\n";
 
                 // Insert file into the database
-                $file_name = $file['fileName'] . "(shrd)(" . $senderInits . ")";
+                $file_name = "(shrd)(" . $senderInits . ")".$file['fileName'];
                 $file_type = $file['fileType'];
                 $file_extension = $file['fileExtension'];
                 $file_description = "This Is Shared file from " . $receiver_name;
