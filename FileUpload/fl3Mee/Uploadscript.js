@@ -8,6 +8,12 @@ const fileCompletedProg = document.querySelector(".file-completed-status");
 const UploadFiles = document.querySelector("#sbmt_file");
 const clearFiles = document.querySelector("#clr");
 const addFilesBtn = document.querySelector("#addButton");
+function trimName(name) {
+  if (name.length > 15) {
+    return name.substring(0, 15) + "...";
+  }
+  return name;
+}
 //let sessionId = sessionStorage.getItem("sessionId");
 addFilesBtn.addEventListener("click",()=>{
   loadThemFolders();
@@ -47,6 +53,26 @@ xhrr.onload = function () {
 xhrr.send();
 
 };
+function checkFileAccessLvl(fal){
+  let dispActions=``;
+  if(fal==='1'){
+dispActions = `
+                                <a class="dropdown-item download2" style="cursor:pointer" >
+                                <i class="fas fa-download mr-2 download2" style="color:rgb(117, 70, 99)"></i> 
+                              </a>        
+                                <a class="dropdown-item "style="cursor:pointer" >
+                                <i class="fas fa-share-alt mr-2"style="color:rgb(41, 101, 124)"></i> 
+                              </a> 
+`;
+  }else{
+dispActions = `
+                              <a class="dropdown-item download2"style="cursor:pointer">
+                                <i class="fas fa-download mr-2 download2" style="color:rgb(117, 70, 99)"></i> 
+                              </a>        
+`;
+  }
+  return dispActions;
+}
 function LoadThemFiles(){
    loadThemFolders();
   console.log("here Comes the Files");
@@ -137,16 +163,28 @@ function LoadThemFiles(){
       }
 
          dispFiles += `
-<div  class="col-lg-3 col-md-6 col-sm-6">
+<div  class="col-lg-3 col-md-6 col-sm-6 file-row"
+                    data-filedir="${
+                      splitDir(files.file_path_directory) +
+                      files.file_pseudo_name
+                    }"
+                    data-fileName="${files.file_name}">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body image-thumb">
-                            <a href="#" data-title="Terms.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal">
+                            <a href="#" data-title="${
+                              files.file_name
+                            }" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/BUNGOARCH/html/FileUpload/fl3Mee/${
+           splitDir(files.file_path_directory) + files.file_pseudo_name
+         }" data-toggle="modal" data-target="#exampleModal">
                                 <div class="mb-4 text-center p-3 rounded iq-thumb">
                                     <div class="iq-image-overlay"></div>
                                     <img src="/BUNGOARCH/html/assets/images/layouts/page-1/${fileExt}" class="img-fluid" alt="image1">       
                                 </div>
-                                <h6>${files.file_name}</h6> 
-                            </a>             
+                                <h6>${trimName(files.file_name)}</h6> 
+                                <div class="fileActions" style="display: flex ;color:pink">
+                                ${checkFileAccessLvl(files.file_access_level)}
+                                </div>
+                                  
                         </div>
                     </div>
                 </div>

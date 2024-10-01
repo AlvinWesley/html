@@ -96,7 +96,7 @@ fldrDisp.innerHTML = "";
                                     </div>
                                     <a class="folder">
                                         <h5 class="mb-2">${
-                                          folder.folderName
+                                         trimName( folder.folderName)
                                         }</h5>
                                         <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> ${formatDate(
                                           folder.dateCreated
@@ -230,40 +230,46 @@ function formatUserName(userName) {
   return userName.replace(/\s+/g, "").toUpperCase();
 }
 //file download shall happen hereee
-   document.addEventListener("click", function (event) {
-     if (event.target.classList.contains("download")) {
-       const fileRow = event.target.closest(".file-row");
-       const filePath = fileRow.getAttribute("data-filedir");
-       const fileName = fileRow.getAttribute("data-fileName");
+   document.addEventListener("click", dealWithDownload );
+function dealWithDownload(event){
+ if (
+   event.target.classList.contains("download") ||
+   event.target.classList.contains("download2")
+ ) {
+   const fileRow = event.target.closest(".file-row");
+   const filePath = fileRow.getAttribute("data-filedir");
+   const fileName = fileRow.getAttribute("data-fileName");
 
-       // Create a temporary form to send the request
-       const form = document.createElement("form");
-       form.method = "POST";
-       form.action = "/BUNGOARCH/html/folders/viewFolders/downloadFile.php";
+   // Create a temporary form to send the request
+   const form = document.createElement("form");
+   form.method = "POST";
+   form.action = "/BUNGOARCH/html/folders/viewFolders/downloadFile.php";
 
-       // Create hidden input fields for filePath and fileName
-       const filePathInput = document.createElement("input");
-       filePathInput.type = "hidden";
-       filePathInput.name = "filePath";
-       filePathInput.value = filePath;
+   // Create hidden input fields for filePath and fileName
+   const filePathInput = document.createElement("input");
+   filePathInput.type = "hidden";
+   filePathInput.name = "filePath";
+   filePathInput.value = filePath;
 
-       const fileNameInput = document.createElement("input");
-       fileNameInput.type = "hidden";
-       fileNameInput.name = "fileName";
-       fileNameInput.value = fileName;
+   const fileNameInput = document.createElement("input");
+   fileNameInput.type = "hidden";
+   fileNameInput.name = "fileName";
+   fileNameInput.value = fileName;
 
-       // Append inputs to the form
-       form.appendChild(filePathInput);
-       form.appendChild(fileNameInput);
+   // Append inputs to the form
+   form.appendChild(filePathInput);
+   form.appendChild(fileNameInput);
 
-       // Append form to body and submit
-       document.body.appendChild(form);
-       form.submit();
+   // Append form to body and submit
+   document.body.appendChild(form);
+   form.submit();
 
-       // Remove form after submission
-       document.body.removeChild(form);
-     }
-   });
+   // Remove form after submission
+   document.body.removeChild(form);
+ }
+    }
+    
+  
 
 
 
@@ -307,11 +313,13 @@ function(event){
   const card = event.target.closest(".themFlders").id;
   shwFlrDiag.showModal();
 if (event.target.closest(".folder")) {
-  let folderId = card.split("-")[1];
-  //alert("folder found :"+folderId);
-  let xhrf=new XMLHttpRequest();
-  let formData = new FormData();
-  formData.append("folder_id", folderId);
+   let formData = new FormData();
+  if(card){
+    let folderId = card.split("-")[1];
+    //alert("folder found :"+folderId);
+    formData.append("folder_id", folderId);
+  }
+  let xhrf = new XMLHttpRequest();
   xhrf.open(
     "POST",
     "/BUNGOARCH/html/folders/viewFolders/GetFolders.php",
@@ -337,7 +345,7 @@ if (event.target.closest(".folder")) {
                              }"
                              >
                               <div class="file-icon"><i class="fas fa-file"></i></div>
-                              <div class="file-name">${fileItem.file_name}</div>
+                              <div class="file-name">${trimName(fileItem.file_name)}</div>
                               <div class="file-date">${
                                 fileItem.date_of_upload
                               }</div>
