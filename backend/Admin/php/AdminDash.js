@@ -329,11 +329,13 @@ newFldr2.addEventListener("click", () => {
   console.log("the second newFolder2");
 });
 }
-
+if(new_flr_4){
 new_flr_4.addEventListener("click", () => {
   Fldmdl.showModal();
   console.log("the second newFolder2");
 });
+}
+
 const newFldr3 = document.querySelector("#nw_fldr_3");
 if(newFldr3){
  newFldr3.addEventListener("click", () => {
@@ -350,11 +352,14 @@ if(Upl_Fld3){
     loadThemFolders();
   });
 }
+if(Upl_Fld4){
 Upl_Fld4.addEventListener("click", () => {
   //alert("here we go");
   Fmdl.showModal();
   loadThemFolders();
 });
+}
+
 const Upl_Fldr2 = document.querySelector("#upl_fl_2");
 if(Upl_Fldr2){
 Upl_Fldr2.addEventListener("click", () => {

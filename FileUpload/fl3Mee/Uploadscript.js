@@ -155,7 +155,9 @@ function LoadThemFiles(){
         
       });
      }
-     fileDisp.innerHTML = dispFiles;
+     if(fileDisp){
+      fileDisp.innerHTML = dispFiles;
+     }
     } else {
       console.log("Error in Files:" + xhrf.status);
     }

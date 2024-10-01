@@ -34,6 +34,7 @@ let previousNotifications = []; // To store the previous notifications
 // Fetch notifications from the server and update the UI if needed
 function fetchNotifications() {
   const notificationsContent = document.getElementById("notifications");
+  const notificationsContentMain = document.getElementById("notifications2");
   let notificationsSyst = ``;
   let xhrn = new XMLHttpRequest();
   xhrn.open(
@@ -92,6 +93,7 @@ function fetchNotifications() {
         });
 
         notificationsContent.innerHTML = notificationsSyst;
+        notificationsContentMain.innerHTML=notificationsSyst;
 
         // Bind the acknowledgment buttons
         bindAcknowledgmentButtons();
@@ -188,6 +190,7 @@ function acknowledgeNotification(tagId, comment) {
 function updateUnreadCount() {
   const notifications = document.getElementById("notifications").children;
   const unreadCountElement = document.getElementById("unread-count");
+  const unreadCountElement2 = document.getElementById("unread-count2");
   let unreadCount = 0;
   for (let notification of notifications) {
     if (notification.getAttribute("data-read") === "0") {
@@ -195,13 +198,18 @@ function updateUnreadCount() {
     }
   }
   unreadCountElement.textContent = `New: ${unreadCount}`;
+  if(unreadCountElement2){
+    unreadCountElement2.textContent = `New: ${unreadCount}`;
+  }
+  
 }
 
 // Function to search and highlight notifications
 function searchNotifications() {
   const searchBar = document.getElementById("search-bar");
+  const searchBar2 = document.getElementById("search-bar2");
   const notifications = document.getElementById("notifications").children;
-
+  const notifications2 = document.getElementById("notifications2").children;
   searchBar.addEventListener("input", () => {
     const searchQuery = searchBar.value.toLowerCase();
     for (let notification of notifications) {
@@ -226,6 +234,44 @@ function searchNotifications() {
       }
     }
   });
+  if (searchBar2) {
+    searchBar2.addEventListener("input", () => {
+      const searchQuery2 = searchBar2.value.toLowerCase();
+      for (let notification2 of notifications2) {
+        const titleElement2 = notification2.querySelector("h3");
+        const messageElement2 = notification2.querySelector("p");
+        const title2 = titleElement2.textContent.toLowerCase();
+        const message2 = messageElement2.textContent.toLowerCase();
+
+        // Check if search query matches the title or message
+        if (title2.includes(searchQuery2) || message2.includes(searchQuery2)) {
+          notification2.style.display = "flex";
+
+          // Highlight the search query in title
+          titleElement2.innerHTML = highlightText(
+            titleElement2.textContent,
+            searchQuery2
+          );
+
+          // Highlight the search query in message
+          messageElement2.innerHTML = highlightText(
+            messageElement2.textContent,
+            searchQuery2
+          );
+        } else {
+          notification2.style.display = "none";
+        }
+      }
+    });
+  }
+
+  // Function to safely highlight the text
+  function highlightText(text, searchQuery2) {
+    if (!searchQuery2) return text; // If no search query, return original text
+    const regex = new RegExp(`(${searchQuery2})`, "gi");
+    return text.replace(regex, `<mark>$1</mark>`);
+  }
+
 }
 
 // Initialize on DOM content loaded

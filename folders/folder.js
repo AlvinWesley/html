@@ -27,7 +27,10 @@ window.addEventListener("load", fetchFolders);
 function fetchFolders() {
   //e.preventDefault();
   const fldrDisp = document.querySelector(".FolderItemsWrapper");
-  fldrDisp.innerHTML = "";
+  if(fldrDisp){
+fldrDisp.innerHTML = "";
+  }
+  
   let items = "";
   var xhrr = new XMLHttpRequest();
   xhrr.open(
@@ -111,7 +114,10 @@ function fetchFolders() {
 
 });
       }
-      fldrDisp.innerHTML = items;
+      if(fldrDisp){
+        fldrDisp.innerHTML = items;
+      }
+      
     }
   };
   xhrr.send();

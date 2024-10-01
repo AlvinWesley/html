@@ -106,17 +106,18 @@
                                                <div class="notification-container">
                                                     <div class="header">
                                                         <h2>Notifications</h2>
+                                                        <a href="notifications.php">View all</a>
                                                         <div class="search-unread">
                                                             <input type="text" id="search-bar" class="search-bar" placeholder="Search notifications...">
                                                             <div class="unread-count">
-                                                                <span id="unread-count">New: 5</span>
+                                                                <span id="unread-count">New: 0</span>
                                                             </div>
                                                             
                                                         </div>
                                                     </div>
 
                                                     <div id="notifications" class="notifications">
-                                                    
+                                                    You dont have any notifications at the moment
                                                     </div>
                                                 </div>
                                             <!-- <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i>Notification</a>
