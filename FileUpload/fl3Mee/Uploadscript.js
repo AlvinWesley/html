@@ -213,23 +213,29 @@ const createFileItemHTML = (file, uniqueId) => {
                 <div class="file-content-wrapper">
                     <div class="file-content">
                         <div class="file-details">
-                            <h5 class="file-name">${name}</h5>
+                            <h5 class="file-name">${trimName(name)}</h5>
                             <div class="file-info">
                                 <div class="file-smalls">
-                                    <small class="file-size">4Mb/${size}</small>
+                                    <small class="file-size">${formatFSize(
+                                      size
+                                    )}</small>
                                     <small class="file-divider">.</small>
                                     <small class="file-status">Pending...</small>
+                                    <div><button class="cancel-button">❌</button> </div>
                                 </div>
                                 <div class="file_choose">
                                     <input type="text" name="descr" id="a_descr${uniqueId}" placeholder="Add a description">
+                                    <div class="selectGroup">
                                     <label for="folder">Select Folder</label>
                                     <select class="form-control" id="f_folder-${uniqueId}">
                                         ${myFolders}
                                     </select>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <button class="cancel-button">❌</button>
+                        
                     </div>
                     <div class="file-progress-bar">
                         <div class="file-progress"></div>
@@ -242,7 +248,15 @@ const createFileItemHTML = (file, uniqueId) => {
   return theHTML;
  
 };
-
+function formatFSize(size) {
+  if (size >= 1024 * 1024 * 1024) {
+    return (size / (1024 * 1024 * 1024)).toFixed(2) + "GB";
+  } else if (size >= 1024 * 1024) {
+    return (size / (1024 * 1024)).toFixed(2) + "MB";
+  } else if (size >= 1024) {
+    return (size / 1024).toFixed(2) + "KB";
+  }
+};
 const handleFileUploading=(file,uniqueId)=>{
     const xhr =new  XMLHttpRequest();
     const formData =new FormData();
