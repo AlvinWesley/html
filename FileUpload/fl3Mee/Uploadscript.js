@@ -221,7 +221,7 @@ const createFileItemHTML = (file, uniqueId) => {
                                     )}</small>
                                     <small class="file-divider">.</small>
                                     <small class="file-status">Pending...</small>
-                                    <div><button class="cancel-button">❌</button> </div>
+                                    <div><button class="cancel-button">❌</button></div>
                                 </div>
                                 <div class="file_choose">
                                     <input type="text" name="descr" id="a_descr${uniqueId}" placeholder="Add a description">
@@ -229,6 +229,12 @@ const createFileItemHTML = (file, uniqueId) => {
                                     <label for="folder">Select Folder</label>
                                     <select class="form-control" id="f_folder-${uniqueId}">
                                         ${myFolders}
+                                    </select>
+                                    <label for="fileAcessLevel">Access level</label>
+                                    <select class="form-control" id="f_fileAccessLevel-${uniqueId}">
+                                        <option value="1">Public</option>
+                                        <option value="2">Private</option>
+                                        <option value="3">Classified</option>
                                     </select>
                                     </div>
                                     
@@ -269,6 +275,7 @@ const handleFileUploading=(file,uniqueId)=>{
     let file_extension = document.querySelector(`#f_ext_${uniqueId}`).textContent;
     let file_description = document.querySelector(`#a_descr${uniqueId}`).value;
     let folder= document.querySelector(`#f_folder-${uniqueId}`);
+    let accessLevel = document.querySelector(`f_fileAccessLevel-${uniqueId}`).value;
     let folderName=folder.options[folder.selectedIndex].text;
     //let f_nm=folderName.querySelector("select");
     //let the_flder_name=f_nm.textContent.trim();
@@ -281,6 +288,7 @@ const handleFileUploading=(file,uniqueId)=>{
     formData.append("file_description",file_description);
     formData.append("file-extension",file_extension);
     formData.append("ses_id",sessionId);
+    formData.append("fileAcess",accessLevel);
     xhr.upload.addEventListener("progress",(e)=>{
         const fileProgress=document.querySelector(`#file-item-${uniqueId} .file-progress`);
            const fileSize = document.querySelector(

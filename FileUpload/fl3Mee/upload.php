@@ -63,6 +63,7 @@ if($session_id){
     $file_type=$_FILES['file']['type'];
     $file_description=$_POST["file_description"];
     $file_extension=$_POST["file-extension"];
+    $file_access_level=$_POST['fileAcess'];
     //$date_of_upload=Date();
   //mkdir($uploadDir, 0777, true);
  // move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
@@ -77,10 +78,11 @@ if($session_id){
                                             file_size,
                                             file_path_directory,
                                             uploader_id,
-                                            owner_id)
+                                            owner_id,
+                                            file_access_level)
                     VALUES('$folder_id','$file_name','$filePseudoName',
                             '$file_type','$file_extension','$file_description',
-                            '$file_size','$d_filePath','$user_id','$user_id')";
+                            '$file_size','$d_filePath','$user_id','$user_id','$file_access_level')";
     $sqlFileExecute=mysqli_query($conn,$sqlInsertFile);
     if($sqlFileExecute){
         echo 'File upload saved to database successfully!';
