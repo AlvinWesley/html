@@ -220,7 +220,13 @@
                           <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                           </ul>
                        </li>
-                       
+                       <li class="active">
+                              <a href="/BungoArch/html/backend/Admin/php/Notifications.php" class="">
+                                  <i class="las ri-notification-line"></i><span>View Notifications</span>
+                              </a>
+                          <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                          </ul>
+                       </li>
                        <li class=" ">
                         <!-- deactivated Manage Users -->
                         <!-- <a href="#otherpage" class="collapsed" data-toggle="collapse" aria-expanded="false">
