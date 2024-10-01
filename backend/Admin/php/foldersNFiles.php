@@ -67,9 +67,9 @@
                                     <span class="dropdown-toggle dropdown-bg btn bg-white" id="dropdownMenuButton1"
                                         data-toggle="dropdown">
                                         <div class="addNewFlder">
-                                <button style="padding:10px; border:none; border-radius:5px; outline :none">
+                                <button id="newFolder_e" style="padding:5px; border:none; border-radius:5px; outline :none">
                                     Add New Folder
-                                </button>    
+                                </button>  
                             </div>
                                         Name<i class="ri-arrow-down-s-line ml-1"></i>
                                     </span>

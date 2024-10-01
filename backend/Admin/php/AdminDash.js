@@ -108,7 +108,11 @@ function UserItems() {
       if (a > 0) {
         clickLoadStatus = true;
       }
-      document.getElementById("U_R_list").innerHTML = output;
+      let URLIST = (document.getElementById("U_R_list"));
+      if(URLIST){
+      URLIST.innerHTML = output;  
+      }
+      
     } else {
       console.log("Hello This loadRequest function has not executed");
     }
@@ -245,7 +249,10 @@ function ItemsForm() {
       }
       console.log("this Function did not execute");
       console.log(items.log);
-      document.getElementById("fname").innerHTML = "Welcome " + items.f_name;
+      const welcomeGreetings = document.getElementById("fname");
+      if(welcomeGreetings){
+        welcomeGreetings.innerHTML = "Welcome " + items.f_name;
+      }
       document.getElementById("profile_name_init").textContent =
         items.firstNameInit;
       document.getElementById("profile_name_init1").textContent =
@@ -316,45 +323,61 @@ const new_flr_4 = document.querySelector("#newFolder_e");
 // id = "upl_fl_2";
 // id = "shr_fl_2";
 const newFldr2 = document.querySelector("#new_flr_2");
-newFldr2.addEventListener("click",()=>{
- Fldmdl.showModal();
- console.log("the second newFolder2");
-})
+if(newFldr2){
+newFldr2.addEventListener("click", () => {
+  Fldmdl.showModal();
+  console.log("the second newFolder2");
+});
+}
+
 new_flr_4.addEventListener("click", () => {
   Fldmdl.showModal();
   console.log("the second newFolder2");
 });
 const newFldr3 = document.querySelector("#nw_fldr_3");
-  newFldr3.addEventListener("click", () => {
-  Fldmdl.showModal();
-  console.log("the third newFolder3");
-});
+if(newFldr3){
+ newFldr3.addEventListener("click", () => {
+   Fldmdl.showModal();
+   console.log("the third newFolder3");
+ });
+}
+ 
 const Upl_Fld3 = document.querySelector("#upl_fl_3");
-Upl_Fld3.addEventListener("click", () => {
-  //alert("here we go");
-  Fmdl.showModal();
-  loadThemFolders();
-});
+if(Upl_Fld3){
+  Upl_Fld3.addEventListener("click", () => {
+    //alert("here we go");
+    Fmdl.showModal();
+    loadThemFolders();
+  });
+}
 Upl_Fld4.addEventListener("click", () => {
   //alert("here we go");
   Fmdl.showModal();
   loadThemFolders();
 });
 const Upl_Fldr2 = document.querySelector("#upl_fl_2");
+if(Upl_Fldr2){
 Upl_Fldr2.addEventListener("click", () => {
   //alert("here we go");
   console.log("swaeaeaw");
- Fmdl.showModal();
+  Fmdl.showModal();
 });
+}
+
 const Shr_Fl2=document.querySelector("#shr_fl_2");
-Shr_Fl2.addEventListener("click", () => {
+if(Shr_Fl2){
+  Shr_Fl2.addEventListener("click", () => {
   FlShrmdl.showModal();
 });
+}
 const Shr_Fl3 = document.querySelector("#shr_fl_3");
+if(Shr_Fl3){
 Shr_Fl3.addEventListener("click", () => {
   FlShrmdl.showModal();
   console.log("tell me why");
 });
+}
+
 
 ShrFl.addEventListener("click",()=>{
 FlShrmdl.showModal();
