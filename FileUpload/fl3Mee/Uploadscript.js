@@ -275,7 +275,7 @@ const handleFileUploading=(file,uniqueId)=>{
     let file_extension = document.querySelector(`#f_ext_${uniqueId}`).textContent;
     let file_description = document.querySelector(`#a_descr${uniqueId}`).value;
     let folder= document.querySelector(`#f_folder-${uniqueId}`);
-    let accessLevel = document.querySelector(`f_fileAccessLevel-${uniqueId}`).value;
+    let accessLevel = document.querySelector(`#f_fileAccessLevel-${uniqueId}`).value;
     let folderName=folder.options[folder.selectedIndex].text;
     //let f_nm=folderName.querySelector("select");
     //let the_flder_name=f_nm.textContent.trim();
