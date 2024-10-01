@@ -37,8 +37,6 @@
       include "test/userLayout/sidenav.php";
       include "test/userLayout/header.php";
       ?>
-             
-      
       <div class="content-page">
         <div class="container-fluid">
             <div class="row">
@@ -142,8 +140,9 @@
                                 <h4 class="card-title">Documents</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
-                                 <button style="margin: 2px; border:none; padding:5px; border-radius:5px; background:#C2C3CCFF" href="#" class=" view-more" id="upload_fl_ease">Upload New Files</button>
-                                <a href="foldersNFiles.php" class=" view-more">View All</a>
+                                <button style="margin: 2px;background:#C2C3CCFF; border:none; padding:5px; border-radius:5px" href="#" class=" view-more" id="upload_fl_ease">Upload New Files</button>
+                                <a href="#" class=" view-more">View All</a>
+
                             </div>
                         </div>
                     </div>
@@ -169,18 +168,20 @@
                         <div class="card-header d-flex justify-content-between pb-0">
                             <div class="header-title">
                                 <h4 class="card-title">Folders</h4>
-                            </div>
-                            <div class="addNewFlder">
-                                <button style="padding:10px; border:none; border-radius:5px; outline :none">
-                                    Add New Folder
-                                </button>
+                                <div class="addNewFlder">
+                                
                                 
                             </div>
+                            </div>
+                            
                             <div class="card-header-toolbar d-flex align-items-center">
                                 <div class="dropdown">
                                     <span class="dropdown-toggle dropdown-bg btn bg-white" id="dropdownMenuButton1"
                                         data-toggle="dropdown">
                                         Name<i class="ri-arrow-down-s-line ml-1"></i>
+                                        <button id="newFolder_e" style="padding:5px; border:none; border-radius:5px; outline :none">
+                                    Add New Folder
+                                </button>
                                     </span>
                                     <div class="dropdown-menu dropdown-menu-right shadow-none"
                                         aria-labelledby="dropdownMenuButton1">

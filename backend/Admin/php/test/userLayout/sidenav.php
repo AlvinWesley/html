@@ -16,10 +16,10 @@
                       <span class="caret"><!--icon--></span>
                       </div>
                       <ul class="dropdown-menu">
-                          <li class="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
-                          <li class="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
-                          <li class="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
-                      </ul>
+                         <li class="upload-file-upf" id="upload-file-upf"><div class="item"><i class="ri-folder-add-line pr-3 "></i>Upload Files</div></li>
+                          <li class="nfd-ct" id="nfd-ct"><div class="item"><i class="ri-file-upload-line pr-3"></i>New Folder</div></li>
+                          <li class="nfl-ct" id="nfl-ct"><div class="item"><i class="ri-folder-upload-line pr-3"></i>Share File</div></li>
+                        </ul>
                         <dialog id="d-mdl-fu" class="file-uploader" >
         
         <div class="uploader-header">
